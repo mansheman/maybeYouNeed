@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <rect width="1400" height="900" fill="#f4f7fb"/>
+  <rect x="60" y="50" width="1280" height="800" rx="28" fill="#ffffff" stroke="#d7dfef" stroke-width="3"/>
+  <text x="110" y="115" fill="#14213d" font-size="34" font-family="Arial, Helvetica, sans-serif" font-weight="700">What Sysmon gives a hunter</text>
+  <text x="110" y="155" fill="#52627a" font-size="20" font-family="Arial, Helvetica, sans-serif">Think of Sysmon as the layer that connects execution, persistence, and communication on the same host.</text>
+
+  <defs>
+    <marker id="arrow3" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#355c7d"/>
+    </marker>
+  </defs>
+
+  <rect x="560" y="360" width="280" height="150" rx="24" fill="#dce8ff" stroke="#7aa2e3" stroke-width="4"/>
+  <text x="650" y="420" fill="#102542" font-size="30" font-family="Arial, Helvetica, sans-serif" font-weight="700">Sysmon</text>
+  <text x="608" y="455" fill="#29435c" font-size="20" font-family="Arial, Helvetica, sans-serif">Richer endpoint telemetry</text>
+  <text x="605" y="485" fill="#29435c" font-size="20" font-family="Arial, Helvetica, sans-serif">for Windows hunting</text>
+
+  <rect x="140" y="180" width="260" height="120" rx="20" fill="#fff4d8" stroke="#d9a441" stroke-width="3"/>
+  <text x="205" y="230" fill="#4b3200" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700">Process</text>
+  <text x="170" y="265" fill="#6c4b12" font-size="18" font-family="Arial, Helvetica, sans-serif">`1`, `10`, `25`</text>
+  <text x="170" y="290" fill="#6c4b12" font-size="18" font-family="Arial, Helvetica, sans-serif">command line, parent, tampering</text>
+
+  <rect x="520" y="170" width="360" height="120" rx="20" fill="#e7f7ef" stroke="#67b984" stroke-width="3"/>
+  <text x="650" y="220" fill="#123524" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700">Network and DNS</text>
+  <text x="560" y="255" fill="#274c3a" font-size="18" font-family="Arial, Helvetica, sans-serif">`3`, `22` link process to IP, port, host, and query</text>
+  <text x="560" y="280" fill="#274c3a" font-size="18" font-family="Arial, Helvetica, sans-serif">This is where execution meets communication.</text>
+
+  <rect x="1010" y="180" width="240" height="120" rx="20" fill="#ffe1e1" stroke="#cf6a6a" stroke-width="3"/>
+  <text x="1082" y="230" fill="#5a1e1e" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700">Files</text>
+  <text x="1045" y="265" fill="#6f2a2a" font-size="18" font-family="Arial, Helvetica, sans-serif">`11`, `23`</text>
+  <text x="1045" y="290" fill="#6f2a2a" font-size="18" font-family="Arial, Helvetica, sans-serif">dropped and deleted payloads</text>
+
+  <rect x="160" y="610" width="250" height="120" rx="20" fill="#efe4ff" stroke="#8d72c9" stroke-width="3"/>
+  <text x="230" y="660" fill="#2f2057" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700">Registry</text>
+  <text x="190" y="695" fill="#48326f" font-size="18" font-family="Arial, Helvetica, sans-serif">`12`, `13`, `14`</text>
+  <text x="190" y="720" fill="#48326f" font-size="18" font-family="Arial, Helvetica, sans-serif">persistence and config changes</text>
+
+  <rect x="550" y="620" width="300" height="120" rx="20" fill="#dff7f5" stroke="#58a7a0" stroke-width="3"/>
+  <text x="655" y="670" fill="#124645" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700">WMI</text>
+  <text x="600" y="705" fill="#1e6461" font-size="18" font-family="Arial, Helvetica, sans-serif">`19`, `20`, `21`</text>
+  <text x="600" y="730" fill="#1e6461" font-size="18" font-family="Arial, Helvetica, sans-serif">execution and persistence surfaces</text>
+
+  <rect x="980" y="610" width="300" height="120" rx="20" fill="#f3f0ea" stroke="#97866a" stroke-width="3"/>
+  <text x="1055" y="660" fill="#433729" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700">Drivers and raw access</text>
+  <text x="1025" y="695" fill="#5d4d3a" font-size="18" font-family="Arial, Helvetica, sans-serif">`6`, `8`, `9`</text>
+  <text x="1025" y="720" fill="#5d4d3a" font-size="18" font-family="Arial, Helvetica, sans-serif">lower-level abuse and injection clues</text>
+
+  <line x1="560" y1="410" x2="400" y2="290" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow3)"/>
+  <line x1="700" y1="360" x2="700" y2="290" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow3)"/>
+  <line x1="840" y1="410" x2="1010" y2="290" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow3)"/>
+  <line x1="560" y1="470" x2="410" y2="640" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow3)"/>
+  <line x1="700" y1="510" x2="700" y2="620" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow3)"/>
+  <line x1="840" y1="470" x2="980" y2="640" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow3)"/>
+
+  <text x="140" y="795" fill="#52627a" font-size="18" font-family="Arial, Helvetica, sans-serif">The power of Sysmon is correlation: the same host can reveal how code ran, what it touched, and where it tried to talk.</text>
+</svg>

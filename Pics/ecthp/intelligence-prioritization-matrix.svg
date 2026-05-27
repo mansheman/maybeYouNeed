@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .title { font-size: 18px; font-weight: 700; fill: #e2e8f0; }
+      .quad { font-size: 18px; font-weight: 700; fill: #0a0e17; }
+      .label { font-size: 12px; fill: #cbd5e1; }
+      .small { font-size: 10px; fill: #94a3b8; }
+    </style>
+  </defs>
+
+  <rect width="960" height="560" fill="#0a0e17"/>
+  <text x="480" y="34" text-anchor="middle" class="title">Intelligence Prioritization Matrix</text>
+  <text x="480" y="54" text-anchor="middle" class="small">Course emphasis: prioritize by relevance, actionability, and criticality.</text>
+
+  <line x1="180" y1="430" x2="760" y2="430" stroke="#94a3b8" stroke-width="3"/>
+  <line x1="180" y1="430" x2="180" y2="110" stroke="#94a3b8" stroke-width="3"/>
+  <line x1="470" y1="110" x2="470" y2="430" stroke="#1e293b" stroke-width="2" stroke-dasharray="8 8"/>
+  <line x1="180" y1="270" x2="760" y2="270" stroke="#1e293b" stroke-width="2" stroke-dasharray="8 8"/>
+
+  <rect x="180" y="270" width="290" height="160" fill="#fde68a"/>
+  <rect x="470" y="270" width="290" height="160" fill="#86efac"/>
+  <rect x="180" y="110" width="290" height="160" fill="#fdba74"/>
+  <rect x="470" y="110" width="290" height="160" fill="#f87171"/>
+
+  <text x="325" y="192" text-anchor="middle" class="quad">Investigate</text>
+  <text x="325" y="214" text-anchor="middle" fill="#0a0e17" font-size="11">Relevant but less directly actionable</text>
+
+  <text x="615" y="192" text-anchor="middle" class="quad">Prioritize</text>
+  <text x="615" y="214" text-anchor="middle" fill="#0a0e17" font-size="11">Relevant and immediately actionable</text>
+
+  <text x="325" y="352" text-anchor="middle" class="quad">Ignore</text>
+  <text x="325" y="374" text-anchor="middle" fill="#0a0e17" font-size="11">Low relevance, low actionability</text>
+
+  <text x="615" y="352" text-anchor="middle" class="quad">Watch</text>
+  <text x="615" y="374" text-anchor="middle" fill="#0a0e17" font-size="11">Actionable, but low organizational fit</text>
+
+  <text x="470" y="476" text-anchor="middle" class="label">Actionability</text>
+  <text x="176" y="496" text-anchor="start" class="small">Low</text>
+  <text x="760" y="496" text-anchor="end" class="small">High</text>
+
+  <g transform="translate(84 270) rotate(-90)">
+    <text x="0" y="0" text-anchor="middle" class="label">Relevance</text>
+  </g>
+  <text x="118" y="430" text-anchor="end" class="small">Low</text>
+  <text x="118" y="116" text-anchor="end" class="small">High</text>
+
+  <rect x="784" y="130" width="126" height="98" rx="16" fill="#111827" stroke="#334155" stroke-width="1.5"/>
+  <text x="847" y="158" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="700">Criticality</text>
+  <text x="847" y="180" text-anchor="middle" class="small">Impact</text>
+  <text x="847" y="196" text-anchor="middle" class="small">Exposure</text>
+  <text x="847" y="212" text-anchor="middle" class="small">Likelihood</text>
+
+  <text x="960" y="552" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

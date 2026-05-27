@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .title { font-size: 18px; font-weight: 700; fill: #e2e8f0; }
+      .box-title { font-size: 18px; font-weight: 700; fill: #f8fafc; }
+      .box-sub { font-size: 12px; fill: #e2e8f0; }
+      .meta { font-size: 10px; fill: #cbd5e1; }
+    </style>
+  </defs>
+
+  <rect width="960" height="540" fill="#0a0e17"/>
+  <text x="480" y="34" text-anchor="middle" class="title">Threat Intelligence Levels</text>
+  <text x="480" y="54" text-anchor="middle" fill="#64748b" font-size="10">Each level serves a different audience, question, and output.</text>
+
+  <rect x="240" y="84" width="480" height="90" rx="22" fill="#2563eb"/>
+  <text x="480" y="118" text-anchor="middle" class="box-title">Strategic</text>
+  <text x="480" y="142" text-anchor="middle" class="box-sub">Vision and priorities for executives and program owners</text>
+  <text x="480" y="160" text-anchor="middle" class="meta">Risk assessments, trends, sector targeting, policy decisions</text>
+
+  <rect x="220" y="196" width="520" height="90" rx="22" fill="#65a30d"/>
+  <text x="480" y="230" text-anchor="middle" class="box-title">Operational</text>
+  <text x="480" y="254" text-anchor="middle" class="box-sub">Campaign context for CTI, IR, and hunt leads</text>
+  <text x="480" y="272" text-anchor="middle" class="meta">Adversary profiles, campaign briefs, timelines, heat maps</text>
+
+  <rect x="200" y="308" width="560" height="90" rx="22" fill="#d97706"/>
+  <text x="480" y="342" text-anchor="middle" class="box-title">Tactical</text>
+  <text x="480" y="366" text-anchor="middle" class="box-sub">Defensive behavior for SOC, hunters, and detection engineers</text>
+  <text x="480" y="384" text-anchor="middle" class="meta">Hunt queries, Sigma or YARA rules, response playbooks</text>
+
+  <rect x="180" y="420" width="600" height="90" rx="22" fill="#0891b2"/>
+  <text x="480" y="454" text-anchor="middle" class="box-title">Technical</text>
+  <text x="480" y="478" text-anchor="middle" class="box-sub">Indicators and IOCs for analysts and security tooling</text>
+  <text x="480" y="496" text-anchor="middle" class="meta">IPs, domains, URLs, hashes, samples, blocklists, feed integrations</text>
+
+  <text x="952" y="532" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

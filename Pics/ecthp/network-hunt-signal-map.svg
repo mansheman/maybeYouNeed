@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 520">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .title { font-size: 18px; font-weight: 700; fill: #e2e8f0; }
+      .label { font-size: 15px; font-weight: 700; fill: #f8fafc; }
+      .small { font-size: 11px; fill: #cbd5e1; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#fb923c"/>
+    </marker>
+  </defs>
+
+  <rect width="1280" height="520" fill="#0a0e17"/>
+  <text x="640" y="34" text-anchor="middle" class="title">Network Hunt Signal Map</text>
+  <text x="640" y="54" text-anchor="middle" class="small">Network hunts usually begin from a trigger, then move into IOC context, traffic behavior, and validation.</text>
+
+  <rect x="60" y="142" width="230" height="110" rx="24" fill="#2563eb"/>
+  <text x="175" y="180" text-anchor="middle" class="label">Triggers</text>
+  <text x="175" y="204" text-anchor="middle" class="small">SOC reports</text>
+  <text x="175" y="222" text-anchor="middle" class="small">network alerts</text>
+  <text x="175" y="240" text-anchor="middle" class="small">threat intel</text>
+
+  <rect x="354" y="110" width="262" height="174" rx="24" fill="#111827" stroke="#22c55e" stroke-width="2.5"/>
+  <text x="485" y="146" text-anchor="middle" fill="#22c55e" font-size="19" font-weight="700">Network IOCs</text>
+  <text x="485" y="180" text-anchor="middle" class="small">IPs and ranges</text>
+  <text x="485" y="200" text-anchor="middle" class="small">domains and subdomains</text>
+  <text x="485" y="220" text-anchor="middle" class="small">odd ports and protocol misuse</text>
+  <text x="485" y="240" text-anchor="middle" class="small">endpoint and firewall clues</text>
+
+  <rect x="682" y="110" width="262" height="174" rx="24" fill="#111827" stroke="#f59e0b" stroke-width="2.5"/>
+  <text x="813" y="146" text-anchor="middle" fill="#f59e0b" font-size="19" font-weight="700">Behavior Checks</text>
+  <text x="813" y="180" text-anchor="middle" class="small">volume</text>
+  <text x="813" y="200" text-anchor="middle" class="small">frequency</text>
+  <text x="813" y="220" text-anchor="middle" class="small">source and destination</text>
+  <text x="813" y="240" text-anchor="middle" class="small">direction and timing</text>
+
+  <rect x="990" y="142" width="230" height="110" rx="24" fill="#a855f7"/>
+  <text x="1105" y="180" text-anchor="middle" class="label">Validation</text>
+  <text x="1105" y="204" text-anchor="middle" class="small">pcap review</text>
+  <text x="1105" y="222" text-anchor="middle" class="small">protocol analysis</text>
+  <text x="1105" y="240" text-anchor="middle" class="small">cross-source confirmation</text>
+
+  <line x1="290" y1="197" x2="354" y2="197" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="616" y1="197" x2="682" y2="197" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="944" y1="197" x2="990" y2="197" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="312" y="356" width="656" height="86" rx="22" fill="#ef4444"/>
+  <text x="640" y="388" text-anchor="middle" class="label">What you are really hunting for</text>
+  <text x="640" y="414" text-anchor="middle" class="small">Signals that traffic is malicious, misplaced, mistimed, or behaving unlike the environment baseline.</text>
+
+  <text x="1272" y="512" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

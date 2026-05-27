@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <rect width="1400" height="900" fill="#f5f8fc"/>
+  <rect x="60" y="50" width="1280" height="800" rx="28" fill="#ffffff" stroke="#d7dfef" stroke-width="3"/>
+  <text x="110" y="115" fill="#14213d" font-size="34" font-family="Arial, Helvetica, sans-serif" font-weight="700">Splunk hunt workflow</text>
+  <text x="110" y="155" fill="#52627a" font-size="20" font-family="Arial, Helvetica, sans-serif">Splunk is the environment-wide pivot layer that sits on top of endpoint telemetry.</text>
+
+  <defs>
+    <marker id="arrow5" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#355c7d"/>
+    </marker>
+  </defs>
+
+  <rect x="120" y="250" width="230" height="120" rx="20" fill="#e7f7ef" stroke="#67b984" stroke-width="3"/>
+  <text x="180" y="302" fill="#123524" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Forwarders</text>
+  <text x="145" y="337" fill="#274c3a" font-size="18" font-family="Arial, Helvetica, sans-serif">Windows, Sysmon, DNS,</text>
+  <text x="145" y="362" fill="#274c3a" font-size="18" font-family="Arial, Helvetica, sans-serif">firewall, endpoint logs</text>
+
+  <rect x="450" y="250" width="230" height="120" rx="20" fill="#dce8ff" stroke="#7aa2e3" stroke-width="4"/>
+  <text x="525" y="302" fill="#102542" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Indexer</text>
+  <text x="490" y="337" fill="#29435c" font-size="18" font-family="Arial, Helvetica, sans-serif">stores and indexes</text>
+  <text x="490" y="362" fill="#29435c" font-size="18" font-family="Arial, Helvetica, sans-serif">searchable events</text>
+
+  <rect x="780" y="250" width="250" height="120" rx="20" fill="#fff4d8" stroke="#d9a441" stroke-width="3"/>
+  <text x="835" y="302" fill="#4b3200" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Search head</text>
+  <text x="810" y="337" fill="#6c4b12" font-size="18" font-family="Arial, Helvetica, sans-serif">run SPL, pivot, table,</text>
+  <text x="810" y="362" fill="#6c4b12" font-size="18" font-family="Arial, Helvetica, sans-serif">stats, visualize</text>
+
+  <rect x="1080" y="250" width="190" height="120" rx="20" fill="#ffe1e1" stroke="#cf6a6a" stroke-width="3"/>
+  <text x="1120" y="302" fill="#5a1e1e" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Hunter</text>
+  <text x="1108" y="337" fill="#6f2a2a" font-size="18" font-family="Arial, Helvetica, sans-serif">hypothesis, query,</text>
+  <text x="1108" y="362" fill="#6f2a2a" font-size="18" font-family="Arial, Helvetica, sans-serif">validation, pivot</text>
+
+  <rect x="170" y="570" width="230" height="120" rx="20" fill="#efe4ff" stroke="#8d72c9" stroke-width="3"/>
+  <text x="215" y="622" fill="#2f2057" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Initial query</text>
+  <text x="205" y="657" fill="#48326f" font-size="18" font-family="Arial, Helvetica, sans-serif">`index=sysmon ...`</text>
+
+  <rect x="480" y="570" width="230" height="120" rx="20" fill="#dff7f5" stroke="#58a7a0" stroke-width="3"/>
+  <text x="545" y="622" fill="#124645" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Raw events</text>
+  <text x="515" y="657" fill="#1e6461" font-size="18" font-family="Arial, Helvetica, sans-serif">validate host, user,</text>
+  <text x="515" y="682" fill="#1e6461" font-size="18" font-family="Arial, Helvetica, sans-serif">command line, time</text>
+
+  <rect x="790" y="570" width="230" height="120" rx="20" fill="#f3f0ea" stroke="#97866a" stroke-width="3"/>
+  <text x="855" y="622" fill="#433729" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Pivot</text>
+  <text x="825" y="657" fill="#5d4d3a" font-size="18" font-family="Arial, Helvetica, sans-serif">hashes, other hosts,</text>
+  <text x="825" y="682" fill="#5d4d3a" font-size="18" font-family="Arial, Helvetica, sans-serif">network, persistence</text>
+
+  <rect x="1100" y="570" width="170" height="120" rx="20" fill="#e9eefc" stroke="#6d82c7" stroke-width="3"/>
+  <text x="1132" y="622" fill="#1f2f5a" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Decision</text>
+  <text x="1122" y="657" fill="#344b84" font-size="18" font-family="Arial, Helvetica, sans-serif">benign, suspicious,</text>
+  <text x="1122" y="682" fill="#344b84" font-size="18" font-family="Arial, Helvetica, sans-serif">or malicious</text>
+
+  <line x1="350" y1="310" x2="450" y2="310" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow5)"/>
+  <line x1="680" y1="310" x2="780" y2="310" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow5)"/>
+  <line x1="1030" y1="310" x2="1080" y2="310" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow5)"/>
+  <line x1="1175" y1="370" x2="1175" y2="570" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow5)"/>
+  <line x1="1100" y1="630" x2="1020" y2="630" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow5)"/>
+  <line x1="790" y1="630" x2="710" y2="630" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow5)"/>
+  <line x1="480" y1="630" x2="400" y2="630" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow5)"/>
+
+  <text x="120" y="785" fill="#52627a" font-size="18" font-family="Arial, Helvetica, sans-serif">The main idea: start narrow, validate in raw events, then widen through pivots only after the first signal makes sense.</text>
+</svg>

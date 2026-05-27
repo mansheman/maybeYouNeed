@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 300">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+    </style>
+  </defs>
+  <rect width="820" height="300" fill="#0a0e17"/>
+  <text x="410" y="28" text-anchor="middle" fill="#e2e8f0" font-size="15" font-weight="700">Reactive vs Proactive Security Operations</text>
+
+  <rect x="40" y="70" width="320" height="170" rx="4" fill="#111827" stroke="#ff0040" stroke-width="1.5"/>
+  <text x="200" y="95" text-anchor="middle" fill="#ff0040" font-size="13" font-weight="700">Reactive</text>
+  <text x="60" y="125" fill="#e2e8f0" font-size="10">- Starts from alerts</text>
+  <text x="60" y="145" fill="#e2e8f0" font-size="10">- EDR / SOC / SIEM / IPS notifications</text>
+  <text x="60" y="165" fill="#e2e8f0" font-size="10">- Strong for known and noisy threats</text>
+  <text x="60" y="185" fill="#e2e8f0" font-size="10">- Depends on rules and signatures</text>
+  <text x="60" y="215" fill="#4a5568" font-size="9">Best for fast response to known activity</text>
+
+  <rect x="460" y="70" width="320" height="170" rx="4" fill="#111827" stroke="#00ff41" stroke-width="1.5"/>
+  <text x="620" y="95" text-anchor="middle" fill="#00ff41" font-size="13" font-weight="700">Proactive</text>
+  <text x="480" y="125" fill="#e2e8f0" font-size="10">- Starts from a hypothesis</text>
+  <text x="480" y="145" fill="#e2e8f0" font-size="10">- Searches logs and telemetry directly</text>
+  <text x="480" y="165" fill="#e2e8f0" font-size="10">- Uses assumption of breach</text>
+  <text x="480" y="185" fill="#e2e8f0" font-size="10">- Useful for stealthy or advanced threats</text>
+  <text x="480" y="215" fill="#4a5568" font-size="9">Best for uncovering missed attacker activity</text>
+
+  <line x1="360" y1="155" x2="460" y2="155" stroke="#1e293b" stroke-width="1.2"/>
+  <text x="410" y="148" text-anchor="middle" fill="#ffb000" font-size="9">Defense in depth</text>
+  <text x="800" y="292" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

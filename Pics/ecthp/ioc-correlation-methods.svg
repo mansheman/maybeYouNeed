@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 560">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .title { font-size: 18px; font-weight: 700; fill: #e2e8f0; }
+      .node { font-size: 15px; font-weight: 700; fill: #f8fafc; }
+      .small { font-size: 11px; fill: #cbd5e1; }
+    </style>
+  </defs>
+
+  <rect width="1100" height="560" fill="#0a0e17"/>
+  <text x="550" y="34" text-anchor="middle" class="title">IoC Correlation Methods</text>
+  <text x="550" y="54" text-anchor="middle" fill="#64748b" font-size="10">Multiple methods turn scattered indicators into a usable intelligence picture.</text>
+
+  <circle cx="550" cy="280" r="96" fill="#111827" stroke="#38bdf8" stroke-width="3"/>
+  <text x="550" y="270" text-anchor="middle" fill="#38bdf8" font-size="22" font-weight="700">Correlation</text>
+  <text x="550" y="294" text-anchor="middle" class="small">Link indicators across</text>
+  <text x="550" y="312" text-anchor="middle" class="small">time, tools, and sources</text>
+
+  <rect x="112" y="94" width="216" height="86" rx="20" fill="#2563eb"/>
+  <text x="220" y="128" text-anchor="middle" class="node">Exact Matching</text>
+  <text x="220" y="148" text-anchor="middle" class="small">Same IP, hash, or domain</text>
+
+  <rect x="772" y="94" width="216" height="86" rx="20" fill="#22c55e"/>
+  <text x="880" y="128" text-anchor="middle" class="node">Infrastructure Pivoting</text>
+  <text x="880" y="148" text-anchor="middle" class="small">WHOIS, passive DNS, cert reuse</text>
+
+  <rect x="70" y="388" width="230" height="86" rx="20" fill="#d97706"/>
+  <text x="185" y="422" text-anchor="middle" class="node">Fuzzy Matching</text>
+  <text x="185" y="442" text-anchor="middle" class="small">Lookalikes and near-identical malware</text>
+
+  <rect x="400" y="424" width="300" height="86" rx="20" fill="#ef4444"/>
+  <text x="550" y="458" text-anchor="middle" class="node">Time-Based Analysis</text>
+  <text x="550" y="478" text-anchor="middle" class="small">Reconstruct sequence and lateral movement</text>
+
+  <rect x="800" y="388" width="230" height="86" rx="20" fill="#a855f7"/>
+  <text x="915" y="422" text-anchor="middle" class="node">TTP and Campaign Linking</text>
+  <text x="915" y="442" text-anchor="middle" class="small">Map to ATT&amp;CK and actor patterns</text>
+
+  <line x1="328" y1="180" x2="474" y2="236" stroke="#fb923c" stroke-width="2.5"/>
+  <line x1="772" y1="180" x2="626" y2="236" stroke="#fb923c" stroke-width="2.5"/>
+  <line x1="300" y1="388" x2="472" y2="324" stroke="#fb923c" stroke-width="2.5"/>
+  <line x1="700" y1="424" x2="612" y2="358" stroke="#fb923c" stroke-width="2.5"/>
+  <line x1="800" y1="388" x2="628" y2="324" stroke="#fb923c" stroke-width="2.5"/>
+
+  <text x="550" y="536" text-anchor="middle" fill="#94a3b8" font-size="10">Best practice: normalize, enrich, verify internally, and avoid linking everything without purpose.</text>
+  <text x="1092" y="552" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1220 520">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .title { font-size: 18px; font-weight: 700; fill: #e2e8f0; }
+      .label { font-size: 15px; font-weight: 700; fill: #f8fafc; }
+      .small { font-size: 11px; fill: #cbd5e1; }
+    </style>
+  </defs>
+
+  <rect width="1220" height="520" fill="#0a0e17"/>
+  <text x="610" y="34" text-anchor="middle" class="title">Structured Analytical Techniques and Biases</text>
+  <text x="610" y="54" text-anchor="middle" fill="#64748b" font-size="10">SATs improve thinking under pressure; biases quietly distort it.</text>
+
+  <rect x="70" y="94" width="450" height="344" rx="28" fill="#111827" stroke="#22c55e" stroke-width="2.5"/>
+  <text x="295" y="130" text-anchor="middle" fill="#22c55e" font-size="20" font-weight="700">Helpful Techniques</text>
+  <text x="108" y="170" class="small">ACH</text>
+  <text x="108" y="194" class="small">Key Assumptions Check</text>
+  <text x="108" y="218" class="small">Red Team Analysis</text>
+  <text x="108" y="242" class="small">Timeline or Chronology</text>
+  <text x="108" y="266" class="small">Mind Mapping or Link Analysis</text>
+  <text x="108" y="290" class="small">Devil's Advocacy</text>
+  <text x="108" y="314" class="small">Indicators and Signposts of Change</text>
+  <text x="295" y="390" text-anchor="middle" fill="#94a3b8" font-size="10">Goal: challenge assumptions, compare hypotheses, and improve rigor.</text>
+
+  <rect x="700" y="94" width="450" height="344" rx="28" fill="#111827" stroke="#ef4444" stroke-width="2.5"/>
+  <text x="925" y="130" text-anchor="middle" fill="#ef4444" font-size="20" font-weight="700">Common Biases</text>
+  <text x="738" y="170" class="small">Confirmation bias</text>
+  <text x="738" y="194" class="small">Anchoring bias</text>
+  <text x="738" y="218" class="small">Mirror imaging</text>
+  <text x="738" y="242" class="small">Availability bias</text>
+  <text x="738" y="266" class="small">Groupthink</text>
+  <text x="738" y="290" class="small">Satisficing</text>
+  <text x="738" y="314" class="small">Overconfidence</text>
+  <text x="925" y="390" text-anchor="middle" fill="#94a3b8" font-size="10">Goal: notice them early before they distort attribution, scope, and risk decisions.</text>
+
+  <circle cx="610" cy="266" r="80" fill="#2563eb"/>
+  <text x="610" y="258" text-anchor="middle" class="label">Rigorous</text>
+  <text x="610" y="280" text-anchor="middle" class="label">CTI</text>
+
+  <line x1="520" y1="266" x2="530" y2="266" stroke="#fb923c" stroke-width="3"/>
+  <line x1="690" y1="266" x2="700" y2="266" stroke="#fb923c" stroke-width="3"/>
+
+  <text x="1212" y="512" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

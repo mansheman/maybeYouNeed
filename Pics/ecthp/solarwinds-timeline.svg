@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .title { font-size: 18px; font-weight: 700; fill: #e2e8f0; }
+      .label { font-size: 14px; font-weight: 700; fill: #f8fafc; }
+      .small { font-size: 11px; fill: #cbd5e1; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="420" fill="#0a0e17"/>
+  <text x="600" y="34" text-anchor="middle" class="title">SolarWinds Timeline and Intelligence View</text>
+  <text x="600" y="54" text-anchor="middle" fill="#64748b" font-size="10">A supply-chain compromise that required multi-level CTI and cross-organization sharing.</text>
+
+  <line x1="120" y1="220" x2="1080" y2="220" stroke="#94a3b8" stroke-width="4"/>
+
+  <circle cx="220" cy="220" r="18" fill="#2563eb"/>
+  <circle cx="580" cy="220" r="18" fill="#22c55e"/>
+  <circle cx="930" cy="220" r="18" fill="#ef4444"/>
+
+  <text x="220" y="176" text-anchor="middle" class="label">Sep 2019</text>
+  <text x="220" y="196" text-anchor="middle" class="small">Initial access</text>
+
+  <text x="580" y="176" text-anchor="middle" class="label">Mar 2020</text>
+  <text x="580" y="196" text-anchor="middle" class="small">Trojanized update deployed</text>
+
+  <text x="930" y="176" text-anchor="middle" class="label">Dec 2020</text>
+  <text x="930" y="196" text-anchor="middle" class="small">Discovery and disclosure</text>
+
+  <rect x="100" y="274" width="260" height="92" rx="20" fill="#111827" stroke="#334155" stroke-width="1.5"/>
+  <text x="230" y="304" text-anchor="middle" class="label">Techniques</text>
+  <text x="230" y="326" text-anchor="middle" class="small">Supply-chain compromise</text>
+  <text x="230" y="342" text-anchor="middle" class="small">SAML token forgery</text>
+
+  <rect x="470" y="274" width="260" height="92" rx="20" fill="#111827" stroke="#334155" stroke-width="1.5"/>
+  <text x="600" y="304" text-anchor="middle" class="label">Telemetry Lesson</text>
+  <text x="600" y="326" text-anchor="middle" class="small">Detection needed more than malware</text>
+  <text x="600" y="342" text-anchor="middle" class="small">Vendor trust and identity telemetry mattered</text>
+
+  <rect x="840" y="274" width="260" height="92" rx="20" fill="#111827" stroke="#334155" stroke-width="1.5"/>
+  <text x="970" y="304" text-anchor="middle" class="label">Sharing Lesson</text>
+  <text x="970" y="326" text-anchor="middle" class="small">FireEye, Microsoft, CISA, Volexity</text>
+  <text x="970" y="342" text-anchor="middle" class="small">STIX, TAXII, and controlled distribution</text>
+
+  <text x="1192" y="412" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

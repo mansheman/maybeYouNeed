@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 440">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .title { font-size: 18px; font-weight: 700; fill: #e2e8f0; }
+      .label { font-size: 18px; font-weight: 700; fill: #f8fafc; }
+      .small { font-size: 11px; fill: #cbd5e1; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#fb923c"/>
+    </marker>
+  </defs>
+
+  <rect width="1120" height="440" fill="#0a0e17"/>
+  <text x="560" y="34" text-anchor="middle" class="title">STIX, TAXII, and TLP</text>
+  <text x="560" y="54" text-anchor="middle" fill="#64748b" font-size="10">A simple memory aid: STIX is what, TAXII is how, TLP is who.</text>
+
+  <rect x="82" y="116" width="260" height="170" rx="24" fill="#2563eb"/>
+  <text x="212" y="160" text-anchor="middle" class="label">STIX</text>
+  <text x="212" y="186" text-anchor="middle" class="small">What is shared</text>
+  <text x="212" y="210" text-anchor="middle" class="small">Indicators, actors, malware,</text>
+  <text x="212" y="226" text-anchor="middle" class="small">relationships, JSON objects</text>
+
+  <rect x="430" y="116" width="260" height="170" rx="24" fill="#22c55e"/>
+  <text x="560" y="160" text-anchor="middle" class="label">TAXII</text>
+  <text x="560" y="186" text-anchor="middle" class="small">How it is shared</text>
+  <text x="560" y="210" text-anchor="middle" class="small">HTTP and REST transport,</text>
+  <text x="560" y="226" text-anchor="middle" class="small">collections, push and pull</text>
+
+  <rect x="778" y="116" width="260" height="170" rx="24" fill="#a855f7"/>
+  <text x="908" y="160" text-anchor="middle" class="label">TLP</text>
+  <text x="908" y="186" text-anchor="middle" class="small">Who it is shared with</text>
+  <text x="908" y="210" text-anchor="middle" class="small">RED, AMBER, GREEN, CLEAR</text>
+  <text x="908" y="226" text-anchor="middle" class="small">Distribution guidance</text>
+
+  <line x1="342" y1="201" x2="430" y2="201" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="690" y1="201" x2="778" y2="201" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="332" y="332" width="456" height="68" rx="20" fill="#111827" stroke="#334155" stroke-width="1.5"/>
+  <text x="560" y="360" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="700">Together they make sharing structured, automated, and controlled.</text>
+  <text x="1112" y="432" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

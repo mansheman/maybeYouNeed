@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 520">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .title { font-size: 18px; font-weight: 700; fill: #e2e8f0; }
+      .label { font-size: 16px; font-weight: 700; fill: #f8fafc; }
+      .small { font-size: 11px; fill: #cbd5e1; }
+    </style>
+  </defs>
+
+  <rect width="1260" height="520" fill="#0a0e17"/>
+  <text x="630" y="34" text-anchor="middle" class="title">Normal vs Suspicious TCP Traffic</text>
+  <text x="630" y="54" text-anchor="middle" class="small">The fastest TCP question is whether the flow behaves like a real session or like reconnaissance.</text>
+
+  <rect x="92" y="110" width="470" height="300" rx="28" fill="#22c55e"/>
+  <text x="327" y="148" text-anchor="middle" class="label">Normal</text>
+  <text x="327" y="182" text-anchor="middle" class="small">SYN -> SYN/ACK -> ACK</text>
+  <text x="327" y="206" text-anchor="middle" class="small">Connection is established before data</text>
+  <text x="327" y="230" text-anchor="middle" class="small">Traffic stays scoped to expected ports and peers</text>
+
+  <line x1="170" y1="280" x2="484" y2="280" stroke="#0a0e17" stroke-width="3"/>
+  <circle cx="190" cy="280" r="14" fill="#0a0e17"/>
+  <circle cx="327" cy="280" r="14" fill="#0a0e17"/>
+  <circle cx="464" cy="280" r="14" fill="#0a0e17"/>
+  <text x="190" y="312" text-anchor="middle" fill="#0a0e17" font-size="12" font-weight="700">SYN</text>
+  <text x="327" y="312" text-anchor="middle" fill="#0a0e17" font-size="12" font-weight="700">SYN/ACK</text>
+  <text x="464" y="312" text-anchor="middle" fill="#0a0e17" font-size="12" font-weight="700">ACK</text>
+
+  <rect x="698" y="110" width="470" height="300" rx="28" fill="#ef4444"/>
+  <text x="933" y="148" text-anchor="middle" class="label">Suspicious</text>
+  <text x="933" y="182" text-anchor="middle" class="small">Excessive SYNs</text>
+  <text x="933" y="204" text-anchor="middle" class="small">Odd or evasive flag combinations</text>
+  <text x="933" y="226" text-anchor="middle" class="small">One host to many ports or many hosts</text>
+  <text x="933" y="248" text-anchor="middle" class="small">Handshake pattern breaks down</text>
+
+  <rect x="800" y="292" width="266" height="66" rx="16" fill="#0a0e17"/>
+  <text x="933" y="320" text-anchor="middle" fill="#f8fafc" font-size="12" font-weight="700">Typical meaning</text>
+  <text x="933" y="342" text-anchor="middle" fill="#cbd5e1" font-size="11">scan, probing, stealth recon, evasive activity</text>
+
+  <text x="1252" y="512" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

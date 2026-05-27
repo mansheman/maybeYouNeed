@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="860" viewBox="0 0 1400 860">
+  <rect width="1400" height="860" fill="#f6f8fc"/>
+  <rect x="60" y="50" width="1280" height="760" rx="28" fill="#ffffff" stroke="#d7dfef" stroke-width="3"/>
+  <text x="110" y="115" fill="#14213d" font-size="34" font-family="Arial, Helvetica, sans-serif" font-weight="700">ELK hunt workflow</text>
+  <text x="110" y="155" fill="#52627a" font-size="20" font-family="Arial, Helvetica, sans-serif">Use KQL for fast filtering and EQL when the hunt depends on event sequence.</text>
+
+  <defs>
+    <marker id="arrow6" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#355c7d"/>
+    </marker>
+  </defs>
+
+  <rect x="120" y="250" width="210" height="120" rx="20" fill="#e7f7ef" stroke="#67b984" stroke-width="3"/>
+  <text x="175" y="302" fill="#123524" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Beats</text>
+  <text x="145" y="337" fill="#274c3a" font-size="18" font-family="Arial, Helvetica, sans-serif">Winlogbeat, Filebeat</text>
+
+  <rect x="410" y="250" width="220" height="120" rx="20" fill="#dce8ff" stroke="#7aa2e3" stroke-width="4"/>
+  <text x="472" y="302" fill="#102542" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Logstash</text>
+  <text x="450" y="337" fill="#29435c" font-size="18" font-family="Arial, Helvetica, sans-serif">transform and parse</text>
+
+  <rect x="720" y="250" width="240" height="120" rx="20" fill="#fff4d8" stroke="#d9a441" stroke-width="3"/>
+  <text x="765" y="302" fill="#4b3200" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Elasticsearch</text>
+  <text x="765" y="337" fill="#6c4b12" font-size="18" font-family="Arial, Helvetica, sans-serif">store and search</text>
+
+  <rect x="1050" y="250" width="200" height="120" rx="20" fill="#ffe1e1" stroke="#cf6a6a" stroke-width="3"/>
+  <text x="1108" y="302" fill="#5a1e1e" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Kibana</text>
+  <text x="1082" y="337" fill="#6f2a2a" font-size="18" font-family="Arial, Helvetica, sans-serif">query and visualize</text>
+
+  <rect x="180" y="560" width="230" height="120" rx="20" fill="#efe4ff" stroke="#8d72c9" stroke-width="3"/>
+  <text x="255" y="612" fill="#2f2057" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">KQL</text>
+  <text x="220" y="647" fill="#48326f" font-size="18" font-family="Arial, Helvetica, sans-serif">fast field-based filtering</text>
+
+  <rect x="580" y="560" width="230" height="120" rx="20" fill="#dff7f5" stroke="#58a7a0" stroke-width="3"/>
+  <text x="655" y="612" fill="#124645" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">EQL</text>
+  <text x="615" y="647" fill="#1e6461" font-size="18" font-family="Arial, Helvetica, sans-serif">correlation and sequence</text>
+
+  <rect x="970" y="560" width="250" height="120" rx="20" fill="#f3f0ea" stroke="#97866a" stroke-width="3"/>
+  <text x="1025" y="612" fill="#433729" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Hunter decision</text>
+  <text x="995" y="647" fill="#5d4d3a" font-size="18" font-family="Arial, Helvetica, sans-serif">validate, pivot, conclude</text>
+
+  <line x1="330" y1="310" x2="410" y2="310" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow6)"/>
+  <line x1="630" y1="310" x2="720" y2="310" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow6)"/>
+  <line x1="960" y1="310" x2="1050" y2="310" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow6)"/>
+  <line x1="1150" y1="370" x2="1095" y2="560" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow6)"/>
+  <line x1="1110" y1="560" x2="800" y2="620" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow6)"/>
+  <line x1="980" y1="620" x2="410" y2="620" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow6)"/>
+
+  <text x="120" y="760" fill="#52627a" font-size="18" font-family="Arial, Helvetica, sans-serif">Rule of thumb: KQL narrows the field quickly, EQL helps tell the attack story.</text>
+</svg>

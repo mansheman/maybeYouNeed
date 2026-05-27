@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 440">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .mono { font-family: 'Fira Code', 'Courier New', monospace; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="780" height="440" fill="#0a0e17"/>
+
+  <!-- Title -->
+  <text x="390" y="30" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">SOAP vs REST</text>
+
+  <!-- Column Headers -->
+  <!-- Category column header -->
+  <rect x="30" y="48" width="140" height="34" rx="3" fill="#111827" stroke="#4a5568" stroke-width="0.8"/>
+  <text x="100" y="70" text-anchor="middle" fill="#4a5568" font-size="11" font-weight="600">Category</text>
+
+  <!-- SOAP column header -->
+  <rect x="178" y="48" width="280" height="34" rx="3" fill="#111827" stroke="#00d4ff" stroke-width="1.2"/>
+  <text x="318" y="70" text-anchor="middle" fill="#00d4ff" font-size="12" font-weight="600">SOAP</text>
+
+  <!-- REST column header -->
+  <rect x="466" y="48" width="284" height="34" rx="3" fill="#111827" stroke="#00ff41" stroke-width="1.2"/>
+  <text x="608" y="70" text-anchor="middle" fill="#00ff41" font-size="12" font-weight="600">REST</text>
+
+  <!-- Row 1: Protocol -->
+  <rect x="30" y="90" width="140" height="36" rx="3" fill="#111827" stroke="#1e293b" stroke-width="0.6"/>
+  <text x="100" y="113" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="600">Protocol</text>
+
+  <rect x="178" y="90" width="280" height="36" rx="3" fill="#0d1321" stroke="#1e293b" stroke-width="0.6"/>
+  <text x="318" y="108" text-anchor="middle" fill="#e2e8f0" font-size="10">XML only</text>
+  <text x="318" y="120" text-anchor="middle" fill="#4a5568" font-size="8">Strict envelope format</text>
+
+  <rect x="466" y="90" width="284" height="36" rx="3" fill="#0d1321" stroke="#1e293b" stroke-width="0.6"/>
+  <text x="608" y="108" text-anchor="middle" fill="#e2e8f0" font-size="10">JSON, XML, YAML</text>
+  <text x="608" y="120" text-anchor="middle" fill="#4a5568" font-size="8">Flexible data formats</text>
+
+  <!-- Row 2: Transport -->
+  <rect x="30" y="134" width="140" height="36" rx="3" fill="#111827" stroke="#1e293b" stroke-width="0.6"/>
+  <text x="100" y="157" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="600">Transport</text>
+
+  <rect x="178" y="134" width="280" height="36" rx="3" fill="#111827" stroke="#1e293b" stroke-width="0.6"/>
+  <text x="318" y="152" text-anchor="middle" fill="#e2e8f0" font-size="10">HTTP, SMTP, TCP</text>
+  <text x="318" y="164" text-anchor="middle" fill="#4a5568" font-size="8">Multiple transport protocols</text>
+
+  <rect x="466" y="134" width="284" height="36" rx="3" fill="#111827" stroke="#1e293b" stroke-width="0.6"/>
+  <text x="608" y="152" text-anchor="middle" fill="#e2e8f0" font-size="10">HTTP / HTTPS</text>
+  <text x="608" y="164" text-anchor="middle" fill="#4a5568" font-size="8">Web-native only</text>
+
+  <!-- Row 3: Contract -->
+  <rect x="30" y="178" width="140" height="36" rx="3" fill="#111827" stroke="#1e293b" stroke-width="0.6"/>
+  <text x="100" y="201" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="600">Contract</text>
+
+  <rect x="178" y="178" width="280" height="36" rx="3" fill="#0d1321" stroke="#1e293b" stroke-width="0.6"/>
+  <text x="318" y="196" text-anchor="middle" fill="#e2e8f0" font-size="10">WSDL (strict)</text>
+  <text x="318" y="208" text-anchor="middle" fill="#4a5568" font-size="8">Formal contract required</text>
+
+  <rect x="466" y="178" width="284" height="36" rx="3" fill="#0d1321" stroke="#1e293b" stroke-width="0.6"/>
+  <text x="608" y="196" text-anchor="middle" fill="#e2e8f0" font-size="10">OpenAPI / Swagger (optional)</text>
+  <text x="608" y="208" text-anchor="middle" fill="#4a5568" font-size="8">Documentation optional</text>
+
+  <!-- Row 4: Security -->
+  <rect x="30" y="222" width="140" height="36" rx="3" fill="#111827" stroke="#1e293b" stroke-width="0.6"/>
+  <text x="100" y="245" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="600">Security</text>
+
+  <rect x="178" y="222" width="280" height="36" rx="3" fill="#111827" stroke="#1e293b" stroke-width="0.6"/>
+  <text x="318" y="240" text-anchor="middle" fill="#e2e8f0" font-size="10">WS-Security</text>
+  <text x="318" y="252" text-anchor="middle" fill="#4a5568" font-size="8">Built-in security standard</text>
+
+  <rect x="466" y="222" width="284" height="36" rx="3" fill="#111827" stroke="#1e293b" stroke-width="0.6"/>
+  <text x="608" y="240" text-anchor="middle" fill="#e2e8f0" font-size="10">OAuth 2.0, API Keys</text>
+  <text x="608" y="252" text-anchor="middle" fill="#4a5568" font-size="8">Relies on transport security</text>
+
+  <!-- Row 5: State -->
+  <rect x="30" y="266" width="140" height="36" rx="3" fill="#111827" stroke="#1e293b" stroke-width="0.6"/>
+  <text x="100" y="289" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="600">State</text>
+
+  <rect x="178" y="266" width="280" height="36" rx="3" fill="#0d1321" stroke="#1e293b" stroke-width="0.6"/>
+  <text x="318" y="284" text-anchor="middle" fill="#e2e8f0" font-size="10">Can be stateful</text>
+  <text x="318" y="296" text-anchor="middle" fill="#4a5568" font-size="8">Supports WS-ReliableMessaging</text>
+
+  <rect x="466" y="266" width="284" height="36" rx="3" fill="#0d1321" stroke="#1e293b" stroke-width="0.6"/>
+  <text x="608" y="284" text-anchor="middle" fill="#e2e8f0" font-size="10">Stateless</text>
+  <text x="608" y="296" text-anchor="middle" fill="#4a5568" font-size="8">Each request is independent</text>
+
+  <!-- Row 6: Style -->
+  <rect x="30" y="310" width="140" height="36" rx="3" fill="#111827" stroke="#1e293b" stroke-width="0.6"/>
+  <text x="100" y="333" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="600">Style</text>
+
+  <rect x="178" y="310" width="280" height="36" rx="3" fill="#111827" stroke="#1e293b" stroke-width="0.6"/>
+  <text x="318" y="328" text-anchor="middle" fill="#e2e8f0" font-size="10">RPC (operations)</text>
+  <text x="318" y="340" text-anchor="middle" fill="#4a5568" font-size="8">Action-based: doSomething()</text>
+
+  <rect x="466" y="310" width="284" height="36" rx="3" fill="#111827" stroke="#1e293b" stroke-width="0.6"/>
+  <text x="608" y="328" text-anchor="middle" fill="#e2e8f0" font-size="10">Resource-based (CRUD)</text>
+  <text x="608" y="340" text-anchor="middle" fill="#4a5568" font-size="8">GET /users, POST /orders</text>
+
+  <!-- Divider -->
+  <line x1="30" y1="360" x2="750" y2="360" stroke="#1e293b" stroke-width="0.8"/>
+
+  <!-- Attack Surface section -->
+  <text x="100" y="380" text-anchor="middle" fill="#ff0040" font-size="10" font-weight="600">Attack Surface</text>
+
+  <!-- SOAP attacks -->
+  <rect x="178" y="366" width="280" height="50" rx="3" fill="#111827" stroke="#ff0040" stroke-width="0.8"/>
+  <text x="318" y="384" text-anchor="middle" fill="#ff0040" font-size="9" class="mono">XXE, SOAP Injection</text>
+  <text x="318" y="398" text-anchor="middle" fill="#ff0040" font-size="9" class="mono">XSW, SOAPAction Spoofing</text>
+  <text x="318" y="410" text-anchor="middle" fill="#4a5568" font-size="7">XML-based attack vectors</text>
+
+  <!-- REST attacks -->
+  <rect x="466" y="366" width="284" height="50" rx="3" fill="#111827" stroke="#ff0040" stroke-width="0.8"/>
+  <text x="608" y="384" text-anchor="middle" fill="#ff0040" font-size="9" class="mono">BOLA/IDOR, Mass Assignment</text>
+  <text x="608" y="398" text-anchor="middle" fill="#ff0040" font-size="9" class="mono">Rate Limit Bypass</text>
+  <text x="608" y="410" text-anchor="middle" fill="#4a5568" font-size="7">API-specific attack vectors</text>
+
+  <!-- Copyright -->
+  <text x="762" y="434" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

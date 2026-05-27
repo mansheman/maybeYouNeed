@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 560">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .title { font-size: 18px; font-weight: 700; fill: #e2e8f0; }
+      .label { font-size: 15px; font-weight: 700; fill: #f8fafc; }
+      .small { font-size: 11px; fill: #cbd5e1; }
+    </style>
+  </defs>
+
+  <rect width="1320" height="560" fill="#0a0e17"/>
+  <text x="660" y="34" text-anchor="middle" class="title">Normal vs Suspicious ARP, ICMP, and DHCP</text>
+  <text x="660" y="54" text-anchor="middle" class="small">These protocols are structured and local enough that disorder is often the strongest signal.</text>
+
+  <rect x="54" y="110" width="380" height="340" rx="28" fill="#2563eb"/>
+  <text x="244" y="148" text-anchor="middle" class="label">ARP</text>
+  <text x="244" y="180" text-anchor="middle" class="small">Normal: reasonable broadcasts, replies after requests</text>
+  <text x="244" y="206" text-anchor="middle" class="small">Suspicious: flood of broadcasts</text>
+  <text x="244" y="228" text-anchor="middle" class="small">gratuitous replies</text>
+  <text x="244" y="250" text-anchor="middle" class="small">same MAC mapped to different IPs</text>
+
+  <rect x="470" y="110" width="380" height="340" rx="28" fill="#22c55e"/>
+  <text x="660" y="148" text-anchor="middle" class="label">ICMP Echo</text>
+  <text x="660" y="180" text-anchor="middle" class="small">Normal: limited requests, replies follow requests</text>
+  <text x="660" y="206" text-anchor="middle" class="small">small payloads</text>
+  <text x="660" y="228" text-anchor="middle" class="small">Suspicious: floods, replies without requests</text>
+  <text x="660" y="250" text-anchor="middle" class="small">large data fields or covert transport</text>
+
+  <rect x="886" y="110" width="380" height="340" rx="28" fill="#a855f7"/>
+  <text x="1076" y="148" text-anchor="middle" class="label">DHCP</text>
+  <text x="1076" y="180" text-anchor="middle" class="small">Normal: DORA sequence</text>
+  <text x="1076" y="202" text-anchor="middle" class="small">offers from legitimate DHCP servers</text>
+  <text x="1076" y="228" text-anchor="middle" class="small">Suspicious: offers without requests</text>
+  <text x="1076" y="250" text-anchor="middle" class="small">out-of-order packets and rogue servers</text>
+
+  <rect x="382" y="478" width="556" height="52" rx="16" fill="#111827" stroke="#334155" stroke-width="1.5"/>
+  <text x="660" y="510" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="700">If the sequence, responder, or rate looks wrong, start treating it as suspicious.</text>
+
+  <text x="1312" y="552" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 620">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .title { font-size: 18px; font-weight: 700; fill: #e2e8f0; }
+      .phase { font-size: 14px; font-weight: 700; fill: #ffffff; }
+      .small { font-size: 10px; fill: #0a0e17; }
+    </style>
+  </defs>
+
+  <rect width="980" height="620" fill="#0a0e17"/>
+  <text x="490" y="36" text-anchor="middle" class="title">Cyber Threat Intelligence Lifecycle</text>
+  <text x="490" y="56" text-anchor="middle" fill="#64748b" font-size="10">An iterative cycle from direction to feedback with actionable intelligence as the output.</text>
+
+  <path d="M490 108 A182 182 0 0 1 657 205" fill="none" stroke="#94a3b8" stroke-width="3"/>
+  <path d="M711 310 A182 182 0 0 1 581 482" fill="none" stroke="#94a3b8" stroke-width="3"/>
+  <path d="M399 482 A182 182 0 0 1 269 310" fill="none" stroke="#94a3b8" stroke-width="3"/>
+  <path d="M323 205 A182 182 0 0 1 490 108" fill="none" stroke="#94a3b8" stroke-width="3"/>
+
+  <rect x="404" y="86" width="172" height="78" rx="20" fill="#f97316"/>
+  <text x="490" y="118" text-anchor="middle" class="phase">Planning &amp;</text>
+  <text x="490" y="138" text-anchor="middle" class="phase">Direction</text>
+  <text x="490" y="154" text-anchor="middle" class="small">PIRs, scope, priorities</text>
+
+  <rect x="660" y="208" width="172" height="78" rx="20" fill="#fb923c"/>
+  <text x="746" y="240" text-anchor="middle" class="phase">Collection</text>
+  <text x="746" y="256" text-anchor="middle" class="small">Telemetry and CTI sources</text>
+
+  <rect x="608" y="400" width="196" height="82" rx="20" fill="#f59e0b"/>
+  <text x="706" y="430" text-anchor="middle" class="phase">Processing &amp;</text>
+  <text x="706" y="450" text-anchor="middle" class="phase">Exploitation</text>
+  <text x="706" y="468" text-anchor="middle" class="small">Normalize, de-dupe, enrich</text>
+
+  <rect x="176" y="400" width="208" height="82" rx="20" fill="#22c55e"/>
+  <text x="280" y="430" text-anchor="middle" class="phase">Analysis &amp;</text>
+  <text x="280" y="450" text-anchor="middle" class="phase">Production</text>
+  <text x="280" y="468" text-anchor="middle" class="small">Hypothesis testing, correlation</text>
+
+  <rect x="148" y="208" width="184" height="78" rx="20" fill="#38bdf8"/>
+  <text x="240" y="240" text-anchor="middle" class="phase">Dissemination</text>
+  <text x="240" y="256" text-anchor="middle" class="small">Reports, tickets, playbooks</text>
+
+  <rect x="390" y="520" width="200" height="66" rx="18" fill="#a78bfa"/>
+  <text x="490" y="548" text-anchor="middle" class="phase">Feedback</text>
+  <text x="490" y="566" text-anchor="middle" class="small">Refine scope and detections</text>
+
+  <text x="490" y="324" text-anchor="middle" fill="#f8fafc" font-size="22" font-weight="700">Actionable</text>
+  <text x="490" y="350" text-anchor="middle" fill="#f8fafc" font-size="22" font-weight="700">Intelligence</text>
+  <text x="490" y="372" text-anchor="middle" fill="#64748b" font-size="10">The lifecycle is continuous, not linear.</text>
+
+  <text x="972" y="612" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .label { font-size: 14px; font-weight: 700; }
+      .detail { font-size: 10px; }
+    </style>
+  </defs>
+
+  <rect width="900" height="520" fill="#0a0e17"/>
+  <text x="450" y="28" text-anchor="middle" fill="#e2e8f0" font-size="16" font-weight="700">Pyramid of Pain</text>
+  <text x="450" y="48" text-anchor="middle" fill="#4a5568" font-size="10">Bottom stages are easier for attackers to replace; top stages force deeper behavioral change.</text>
+
+  <polygon points="450,84 290,424 610,424" fill="#111827" stroke="#1e293b" stroke-width="2"/>
+
+  <polygon points="390,364 510,364 540,424 360,424" fill="#ff0040" opacity="0.92"/>
+  <text x="450" y="394" text-anchor="middle" fill="#ffffff" class="label">Hash Values</text>
+  <text x="450" y="410" text-anchor="middle" fill="#ffffff" class="detail">Easy to change, easy to detect, low cost to replace</text>
+
+  <polygon points="374,304 526,304 510,364 390,364" fill="#ff6b00" opacity="0.92"/>
+  <text x="450" y="334" text-anchor="middle" fill="#ffffff" class="label">IP Addresses</text>
+  <text x="450" y="350" text-anchor="middle" fill="#ffffff" class="detail">Temporary infrastructure is common, especially with hosting rotation</text>
+
+  <polygon points="356,248 544,248 526,304 374,304" fill="#ffb000" opacity="0.92"/>
+  <text x="450" y="278" text-anchor="middle" fill="#0a0e17" class="label">Domain Names</text>
+  <text x="450" y="294" text-anchor="middle" fill="#0a0e17" class="detail">Requires registration, payment, and hosting changes</text>
+
+  <polygon points="336,194 564,194 544,248 356,248" fill="#00d4ff" opacity="0.92"/>
+  <text x="450" y="224" text-anchor="middle" fill="#0a0e17" class="label">Network &amp; Host Artifacts</text>
+  <text x="450" y="240" text-anchor="middle" fill="#0a0e17" class="detail">User-agents, unusual ports, registry keys, file paths, process clues</text>
+
+  <polygon points="316,140 584,140 564,194 336,194" fill="#00ff41" opacity="0.92"/>
+  <text x="450" y="170" text-anchor="middle" fill="#0a0e17" class="label">Tools</text>
+  <text x="450" y="186" text-anchor="middle" fill="#0a0e17" class="detail">Blocking or detecting tools forces adversaries to rebuild capability</text>
+
+  <polygon points="450,84 316,140 584,140" fill="#bf00ff" opacity="0.96"/>
+  <text x="450" y="108" text-anchor="middle" fill="#ffffff" class="label">TTPs</text>
+  <text x="450" y="124" text-anchor="middle" fill="#ffffff" class="detail">Highest pain: defenders detect behavior, not just tools or artifacts</text>
+
+  <line x1="450" y1="84" x2="450" y2="424" stroke="#1e293b" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <text x="646" y="130" fill="#e2e8f0" font-size="11" font-weight="700">Attacker effort increases upward</text>
+  <text x="646" y="150" fill="#4a5568" font-size="10">Higher layers are more durable for defenders</text>
+  <text x="646" y="170" fill="#4a5568" font-size="10">and more expensive for attackers to change.</text>
+  <text x="892" y="512" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

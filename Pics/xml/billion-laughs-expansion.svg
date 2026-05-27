@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .mono { font-family: 'Fira Code', 'Courier New', monospace; }
+    </style>
+    <marker id="a1" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+      <path d="M0,0 L7,2.5 L0,5" fill="#00ff41"/>
+    </marker>
+    <marker id="a2" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+      <path d="M0,0 L7,2.5 L0,5" fill="#ffb000"/>
+    </marker>
+    <marker id="a3" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+      <path d="M0,0 L7,2.5 L0,5" fill="#ff0040"/>
+    </marker>
+  </defs>
+
+  <rect width="720" height="380" fill="#0a0e17"/>
+
+  <!-- Title -->
+  <text x="360" y="24" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="700">Exponential Entity Expansion (Billion Laughs)</text>
+  <text x="360" y="38" text-anchor="middle" fill="#4a5568" font-size="9">CVE-2003-1564</text>
+
+  <!-- Input box (small, green) -->
+  <rect x="20" y="60" width="68" height="42" rx="3" fill="#111827" stroke="#00ff41" stroke-width="1.2"/>
+  <text x="54" y="78" text-anchor="middle" fill="#00ff41" font-size="10" font-weight="600">Input</text>
+  <text x="54" y="92" text-anchor="middle" fill="#e2e8f0" font-size="9">~1 KB</text>
+
+  <!-- Entity expansion chain -->
+  <!-- lol1 -->
+  <rect x="112" y="63" width="52" height="36" rx="3" fill="#111827" stroke="#00ff41" stroke-width="0.8"/>
+  <text x="138" y="78" text-anchor="middle" fill="#00ff41" font-size="8" class="mono">lol1</text>
+  <text x="138" y="90" text-anchor="middle" fill="#e2e8f0" font-size="7">10</text>
+
+  <line x1="92" y1="81" x2="109" y2="81" stroke="#00ff41" stroke-width="1" marker-end="url(#a1)"/>
+
+  <!-- lol2 -->
+  <rect x="182" y="63" width="52" height="36" rx="3" fill="#111827" stroke="#00ff41" stroke-width="0.8"/>
+  <text x="208" y="78" text-anchor="middle" fill="#00ff41" font-size="8" class="mono">lol2</text>
+  <text x="208" y="90" text-anchor="middle" fill="#e2e8f0" font-size="7">100</text>
+
+  <line x1="168" y1="81" x2="179" y2="81" stroke="#00ff41" stroke-width="1.2" marker-end="url(#a1)"/>
+
+  <!-- lol3 -->
+  <rect x="252" y="63" width="52" height="36" rx="3" fill="#111827" stroke="#ffb000" stroke-width="0.8"/>
+  <text x="278" y="78" text-anchor="middle" fill="#ffb000" font-size="8" class="mono">lol3</text>
+  <text x="278" y="90" text-anchor="middle" fill="#e2e8f0" font-size="7">1,000</text>
+
+  <line x1="238" y1="81" x2="249" y2="81" stroke="#ffb000" stroke-width="1.4" marker-end="url(#a2)"/>
+
+  <!-- lol4 -->
+  <rect x="322" y="63" width="52" height="36" rx="3" fill="#111827" stroke="#ffb000" stroke-width="0.8"/>
+  <text x="348" y="78" text-anchor="middle" fill="#ffb000" font-size="8" class="mono">lol4</text>
+  <text x="348" y="90" text-anchor="middle" fill="#e2e8f0" font-size="7">10,000</text>
+
+  <line x1="308" y1="81" x2="319" y2="81" stroke="#ffb000" stroke-width="1.6" marker-end="url(#a2)"/>
+
+  <!-- ... ellipsis -->
+  <text x="393" y="85" text-anchor="middle" fill="#4a5568" font-size="12">...</text>
+
+  <line x1="378" y1="81" x2="386" y2="81" stroke="#ffb000" stroke-width="1.8" marker-end="url(#a2)"/>
+
+  <!-- lol7 -->
+  <rect x="406" y="63" width="52" height="36" rx="3" fill="#111827" stroke="#ff0040" stroke-width="0.8"/>
+  <text x="432" y="78" text-anchor="middle" fill="#ff0040" font-size="8" class="mono">lol7</text>
+  <text x="432" y="90" text-anchor="middle" fill="#e2e8f0" font-size="7">10^7</text>
+
+  <line x1="400" y1="81" x2="403" y2="81" stroke="#ff0040" stroke-width="2" marker-end="url(#a3)"/>
+
+  <!-- lol8 -->
+  <rect x="476" y="63" width="52" height="36" rx="3" fill="#111827" stroke="#ff0040" stroke-width="0.8"/>
+  <text x="502" y="78" text-anchor="middle" fill="#ff0040" font-size="8" class="mono">lol8</text>
+  <text x="502" y="90" text-anchor="middle" fill="#e2e8f0" font-size="7">10^8</text>
+
+  <line x1="462" y1="81" x2="473" y2="81" stroke="#ff0040" stroke-width="2.2" marker-end="url(#a3)"/>
+
+  <!-- lol9 -->
+  <rect x="546" y="63" width="52" height="36" rx="3" fill="#111827" stroke="#ff0040" stroke-width="1.2"/>
+  <text x="572" y="78" text-anchor="middle" fill="#ff0040" font-size="8" class="mono" font-weight="600">lol9</text>
+  <text x="572" y="90" text-anchor="middle" fill="#e2e8f0" font-size="7">10^9</text>
+
+  <line x1="532" y1="81" x2="543" y2="81" stroke="#ff0040" stroke-width="2.5" marker-end="url(#a3)"/>
+
+  <!-- Output box (large, red) -->
+  <rect x="620" y="50" width="82" height="62" rx="3" fill="#111827" stroke="#ff0040" stroke-width="1.5"/>
+  <text x="661" y="74" text-anchor="middle" fill="#ff0040" font-size="11" font-weight="700">Output</text>
+  <text x="661" y="90" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="600">~3 GB</text>
+  <text x="661" y="104" text-anchor="middle" fill="#ff0040" font-size="7">MEMORY EXHAUSTION</text>
+
+  <line x1="602" y1="81" x2="617" y2="81" stroke="#ff0040" stroke-width="3" marker-end="url(#a3)"/>
+
+  <!-- XML Payload section -->
+  <rect x="20" y="128" width="680" height="130" rx="3" fill="#111827" stroke="#1e293b" stroke-width="0.8"/>
+  <text x="36" y="146" fill="#4a5568" font-size="9" font-weight="600">XML Payload:</text>
+
+  <text x="36" y="163" fill="#ff0040" font-size="9" class="mono">&lt;?xml version="1.0"?&gt;</text>
+  <text x="36" y="176" fill="#ff0040" font-size="9" class="mono">&lt;!DOCTYPE lolz [</text>
+  <text x="48" y="189" fill="#e2e8f0" font-size="9" class="mono">&lt;!ENTITY lol "<tspan fill="#00ff41">lol</tspan>"&gt;</text>
+  <text x="48" y="202" fill="#e2e8f0" font-size="9" class="mono">&lt;!ENTITY lol2 "<tspan fill="#00ff41">&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;</tspan>"&gt;</text>
+  <text x="48" y="215" fill="#e2e8f0" font-size="9" class="mono">&lt;!ENTITY lol3 "<tspan fill="#ffb000">&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;</tspan>"&gt;</text>
+  <text x="48" y="228" fill="#4a5568" font-size="9" class="mono">... (continues to lol9, each referencing 10x previous)</text>
+  <text x="36" y="241" fill="#ff0040" font-size="9" class="mono">]&gt;</text>
+  <text x="36" y="254" fill="#e2e8f0" font-size="9" class="mono">&lt;lolz&gt;&amp;lol9;&lt;/lolz&gt;</text>
+
+  <!-- Size comparison bar chart -->
+  <text x="360" y="284" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="600">Memory Expansion Comparison</text>
+  <line x1="20" y1="292" x2="700" y2="292" stroke="#1e293b" stroke-width="0.6"/>
+
+  <!-- Input bar -->
+  <text x="20" y="314" fill="#4a5568" font-size="9">Input XML</text>
+  <rect x="90" y="304" width="3" height="14" rx="1" fill="#00ff41"/>
+  <text x="100" y="315" fill="#00ff41" font-size="8" class="mono">~1 KB</text>
+
+  <!-- Memory bar -->
+  <text x="20" y="338" fill="#4a5568" font-size="9">In Memory</text>
+  <rect x="90" y="328" width="590" height="14" rx="1" fill="#ff0040" opacity="0.8"/>
+  <text x="390" y="339" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="600">~3,000,000 KB  (~3 GB)</text>
+
+  <!-- Expansion factor -->
+  <text x="20" y="360" fill="#4a5568" font-size="9">Ratio:</text>
+  <text x="90" y="360" fill="#ff0040" font-size="10" font-weight="700" class="mono">3,000,000x expansion</text>
+
+  <!-- Copyright -->
+  <text x="708" y="374" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

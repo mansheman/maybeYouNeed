@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 560">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .title { font-size: 18px; font-weight: 700; fill: #e2e8f0; }
+      .label { font-size: 16px; font-weight: 700; fill: #f8fafc; }
+      .small { font-size: 11px; fill: #cbd5e1; }
+    </style>
+  </defs>
+
+  <rect width="1260" height="560" fill="#0a0e17"/>
+  <text x="630" y="34" text-anchor="middle" class="title">Network Capture Placement</text>
+  <text x="630" y="54" text-anchor="middle" class="small">Capture location defines visibility. Each option sees a different slice of the network.</text>
+
+  <rect x="82" y="148" width="300" height="230" rx="28" fill="#2563eb"/>
+  <text x="232" y="190" text-anchor="middle" class="label">Network Tap</text>
+  <text x="232" y="220" text-anchor="middle" class="small">Inline visibility</text>
+  <text x="232" y="240" text-anchor="middle" class="small">Traffic copied to monitor port</text>
+  <text x="232" y="260" text-anchor="middle" class="small">Strong fidelity</text>
+  <text x="232" y="280" text-anchor="middle" class="small">Useful for C2, downloads, exfil</text>
+
+  <rect x="480" y="148" width="300" height="230" rx="28" fill="#22c55e"/>
+  <text x="630" y="190" text-anchor="middle" class="label">SPAN or Port Mirror</text>
+  <text x="630" y="220" text-anchor="middle" class="small">Traffic copied by switch</text>
+  <text x="630" y="240" text-anchor="middle" class="small">Good flexibility</text>
+  <text x="630" y="260" text-anchor="middle" class="small">Can drop packets under load</text>
+  <text x="630" y="280" text-anchor="middle" class="small">Dependent on switch config</text>
+
+  <rect x="878" y="148" width="300" height="230" rx="28" fill="#a855f7"/>
+  <text x="1028" y="190" text-anchor="middle" class="label">Endpoint Capture</text>
+  <text x="1028" y="220" text-anchor="middle" class="small">Only sees local endpoint traffic</text>
+  <text x="1028" y="240" text-anchor="middle" class="small">Broadcasts aside</text>
+  <text x="1028" y="260" text-anchor="middle" class="small">Encrypted traffic stays encrypted</text>
+  <text x="1028" y="280" text-anchor="middle" class="small">High detail for one host</text>
+
+  <rect x="352" y="436" width="556" height="60" rx="18" fill="#111827" stroke="#334155" stroke-width="1.5"/>
+  <text x="630" y="472" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="700">Use capture filters carefully: smaller files help, but over-filtering removes evidence you may need later.</text>
+
+  <text x="1252" y="552" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

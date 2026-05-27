@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 520">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .title { font-size: 18px; font-weight: 700; fill: #e2e8f0; }
+      .label { font-size: 15px; font-weight: 700; fill: #f8fafc; }
+      .small { font-size: 11px; fill: #cbd5e1; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#fb923c"/>
+    </marker>
+  </defs>
+
+  <rect width="1280" height="520" fill="#0a0e17"/>
+  <text x="640" y="34" text-anchor="middle" class="title">Threat Vectors and Delivery Thinking</text>
+  <text x="640" y="54" text-anchor="middle" class="small">The vector explains how the attacker got in; the telemetry tells you where to look next.</text>
+
+  <rect x="54" y="104" width="220" height="86" rx="20" fill="#2563eb"/>
+  <text x="164" y="138" text-anchor="middle" class="label">Removable Storage</text>
+  <text x="164" y="160" text-anchor="middle" class="small">USB drops, launched files</text>
+
+  <rect x="54" y="214" width="220" height="86" rx="20" fill="#22c55e"/>
+  <text x="164" y="248" text-anchor="middle" class="label">Malicious Files</text>
+  <text x="164" y="270" text-anchor="middle" class="small">macros, PDFs, steganography</text>
+
+  <rect x="54" y="324" width="220" height="86" rx="20" fill="#a855f7"/>
+  <text x="164" y="358" text-anchor="middle" class="label">Messaging</text>
+  <text x="164" y="380" text-anchor="middle" class="small">email, SMS, IM, phishing</text>
+
+  <rect x="342" y="104" width="250" height="306" rx="26" fill="#111827" stroke="#334155" stroke-width="1.5"/>
+  <text x="467" y="136" text-anchor="middle" fill="#e2e8f0" font-size="18" font-weight="700">Access Paths</text>
+  <text x="467" y="170" text-anchor="middle" class="small">vulnerabilities</text>
+  <text x="467" y="192" text-anchor="middle" class="small">unsupported systems</text>
+  <text x="467" y="214" text-anchor="middle" class="small">open ports</text>
+  <text x="467" y="236" text-anchor="middle" class="small">supply-chain compromise</text>
+  <text x="467" y="276" text-anchor="middle" fill="#94a3b8" font-size="10">These explain how entry was possible,</text>
+  <text x="467" y="292" text-anchor="middle" fill="#94a3b8" font-size="10">not just how the payload was delivered.</text>
+
+  <rect x="682" y="104" width="240" height="136" rx="24" fill="#ef4444"/>
+  <text x="802" y="140" text-anchor="middle" class="label">Malware Outcomes</text>
+  <text x="802" y="164" text-anchor="middle" class="small">ransomware</text>
+  <text x="802" y="182" text-anchor="middle" class="small">RAT and C2</text>
+  <text x="802" y="200" text-anchor="middle" class="small">rootkits</text>
+  <text x="802" y="218" text-anchor="middle" class="small">logic bombs</text>
+
+  <rect x="976" y="104" width="248" height="286" rx="26" fill="#0f766e"/>
+  <text x="1100" y="140" text-anchor="middle" class="label">Likely Telemetry</text>
+  <text x="1100" y="168" text-anchor="middle" class="small">email gateway and proxy logs</text>
+  <text x="1100" y="186" text-anchor="middle" class="small">process creation and Sysmon</text>
+  <text x="1100" y="204" text-anchor="middle" class="small">file writes and hashes</text>
+  <text x="1100" y="222" text-anchor="middle" class="small">registry and scheduled tasks</text>
+  <text x="1100" y="240" text-anchor="middle" class="small">DNS, HTTPS, firewall, IDS</text>
+  <text x="1100" y="258" text-anchor="middle" class="small">vulnerability and asset data</text>
+
+  <line x1="274" y1="147" x2="342" y2="147" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="274" y1="257" x2="342" y2="257" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="274" y1="367" x2="342" y2="367" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="592" y1="257" x2="682" y2="172" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="922" y1="172" x2="976" y2="172" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <text x="1272" y="512" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

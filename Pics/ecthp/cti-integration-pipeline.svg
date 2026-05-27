@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 500">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .title { font-size: 18px; font-weight: 700; fill: #e2e8f0; }
+      .label { font-size: 15px; font-weight: 700; fill: #f8fafc; }
+      .small { font-size: 11px; fill: #cbd5e1; }
+      .mini { font-size: 10px; fill: #94a3b8; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#fb923c"/>
+    </marker>
+  </defs>
+
+  <rect width="1320" height="500" fill="#0a0e17"/>
+  <text x="660" y="34" text-anchor="middle" class="title">CTI Integration with SIEM and SOAR</text>
+  <text x="660" y="54" text-anchor="middle" class="mini">Collect, centralize, enrich, detect, automate, and then feed lessons back into the system.</text>
+
+  <rect x="48" y="150" width="170" height="96" rx="22" fill="#2563eb"/>
+  <text x="133" y="188" text-anchor="middle" class="label">Sources</text>
+  <text x="133" y="210" text-anchor="middle" class="small">OSINT, ISACs,</text>
+  <text x="133" y="226" text-anchor="middle" class="small">commercial, internal</text>
+
+  <rect x="270" y="150" width="170" height="96" rx="22" fill="#0f766e"/>
+  <text x="355" y="188" text-anchor="middle" class="label">TIP</text>
+  <text x="355" y="210" text-anchor="middle" class="small">Scoring, tagging,</text>
+  <text x="355" y="226" text-anchor="middle" class="small">expiration, context</text>
+
+  <rect x="492" y="150" width="190" height="96" rx="22" fill="#22c55e"/>
+  <text x="587" y="188" text-anchor="middle" class="label">SIEM Enrichment</text>
+  <text x="587" y="210" text-anchor="middle" class="small">Add CTI to raw events</text>
+  <text x="587" y="226" text-anchor="middle" class="small">and telemetry</text>
+
+  <rect x="734" y="150" width="190" height="96" rx="22" fill="#d97706"/>
+  <text x="829" y="188" text-anchor="middle" class="label">Detections</text>
+  <text x="829" y="210" text-anchor="middle" class="small">IOC plus TTP rules</text>
+  <text x="829" y="226" text-anchor="middle" class="small">with context and scoring</text>
+
+  <rect x="976" y="150" width="190" height="96" rx="22" fill="#a855f7"/>
+  <text x="1071" y="188" text-anchor="middle" class="label">SOAR Response</text>
+  <text x="1071" y="210" text-anchor="middle" class="small">Prioritize, enrich,</text>
+  <text x="1071" y="226" text-anchor="middle" class="small">block, escalate</text>
+
+  <rect x="1110" y="346" width="160" height="82" rx="20" fill="#ef4444"/>
+  <text x="1190" y="378" text-anchor="middle" class="label">Feedback</text>
+  <text x="1190" y="398" text-anchor="middle" class="small">Tune feeds, rules,</text>
+  <text x="1190" y="414" text-anchor="middle" class="small">and playbooks</text>
+
+  <line x1="218" y1="198" x2="270" y2="198" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="440" y1="198" x2="492" y2="198" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="682" y1="198" x2="734" y2="198" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="924" y1="198" x2="976" y2="198" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M1071 246 C1071 304, 1142 292, 1164 346" fill="none" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M1110 386 C840 470, 410 470, 150 250" fill="none" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <text x="290" y="104" fill="#e2e8f0" font-size="12" font-weight="700">Operational effects</text>
+  <text x="290" y="124" class="mini">Better triage, lower false positives, faster MTTD</text>
+  <text x="290" y="140" class="mini">CTI maturity grows from ad hoc lookup to automated response</text>
+
+  <text x="1312" y="492" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

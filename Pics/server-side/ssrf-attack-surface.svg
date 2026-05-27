@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480">
+  <defs>
+    <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="none" stroke="#ff0040" stroke-width="1.2"/>
+    </marker>
+    <marker id="arrow-gray" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="none" stroke="#4a5568" stroke-width="1.2"/>
+    </marker>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .mono { font-family: 'Fira Code', 'Courier New', monospace; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="480" fill="#0a0e17"/>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">SSRF Attack Surface</text>
+
+  <!-- Attacker box -->
+  <rect x="30" y="210" width="110" height="44" rx="3" fill="#111827" stroke="#ff0040" stroke-width="1.2"/>
+  <text x="85" y="228" text-anchor="middle" fill="#ff0040" font-size="12" font-weight="600">Attacker</text>
+  <text x="85" y="243" text-anchor="middle" fill="#4a5568" font-size="9">Crafted URL input</text>
+
+  <!-- Arrow: Attacker -> Vulnerable Server -->
+  <line x1="140" y1="232" x2="295" y2="232" stroke="#ff0040" stroke-width="1.2" marker-end="url(#arrow-red)"/>
+  <text x="218" y="224" text-anchor="middle" fill="#4a5568" font-size="8">injection</text>
+
+  <!-- Vulnerable Server (center) -->
+  <rect x="300" y="196" width="170" height="68" rx="3" fill="#111827" stroke="#ffb000" stroke-width="1.5"/>
+  <text x="385" y="222" text-anchor="middle" fill="#ffb000" font-size="13" font-weight="600">Vulnerable Server</text>
+  <text x="385" y="240" text-anchor="middle" fill="#4a5568" font-size="9">Fetches attacker-controlled</text>
+  <text x="385" y="252" text-anchor="middle" fill="#4a5568" font-size="9">URLs server-side</text>
+
+  <!-- Target 1: Cloud Metadata (top-left) -->
+  <rect x="120" y="58" width="180" height="52" rx="3" fill="#111827" stroke="#ff0040" stroke-width="1.2"/>
+  <text x="210" y="78" text-anchor="middle" fill="#ff0040" font-size="12" font-weight="600">Cloud Metadata</text>
+  <text x="210" y="98" text-anchor="middle" fill="#4a5568" font-size="9" class="mono">169.254.169.254</text>
+
+  <!-- Target 2: Internal Admin Panels (top-right) -->
+  <rect x="480" y="58" width="200" height="52" rx="3" fill="#111827" stroke="#ff0040" stroke-width="1.2"/>
+  <text x="580" y="78" text-anchor="middle" fill="#ff0040" font-size="12" font-weight="600">Internal Admin Panels</text>
+  <text x="580" y="98" text-anchor="middle" fill="#4a5568" font-size="9" class="mono">localhost:8080/admin</text>
+
+  <!-- Target 3: Internal APIs (left) -->
+  <rect x="120" y="330" width="180" height="52" rx="3" fill="#111827" stroke="#ffb000" stroke-width="1.2"/>
+  <text x="210" y="350" text-anchor="middle" fill="#ffb000" font-size="12" font-weight="600">Internal APIs</text>
+  <text x="210" y="370" text-anchor="middle" fill="#4a5568" font-size="9" class="mono">http://10.0.0.x/api</text>
+
+  <!-- Target 4: Database Services (right) -->
+  <rect x="480" y="330" width="200" height="52" rx="3" fill="#111827" stroke="#ffb000" stroke-width="1.2"/>
+  <text x="580" y="350" text-anchor="middle" fill="#ffb000" font-size="12" font-weight="600">Database Services</text>
+  <text x="580" y="370" text-anchor="middle" fill="#4a5568" font-size="9" class="mono">redis://localhost:6379</text>
+
+  <!-- Target 5: File System (bottom-left) -->
+  <rect x="40" y="418" width="180" height="52" rx="3" fill="#111827" stroke="#bf00ff" stroke-width="1.2"/>
+  <text x="130" y="438" text-anchor="middle" fill="#bf00ff" font-size="12" font-weight="600">File System</text>
+  <text x="130" y="458" text-anchor="middle" fill="#4a5568" font-size="9" class="mono">file:///etc/passwd</text>
+
+  <!-- Target 6: Other Protocols (bottom-right) -->
+  <rect x="560" y="418" width="200" height="52" rx="3" fill="#111827" stroke="#bf00ff" stroke-width="1.2"/>
+  <text x="660" y="438" text-anchor="middle" fill="#bf00ff" font-size="12" font-weight="600">Other Protocols</text>
+  <text x="660" y="458" text-anchor="middle" fill="#4a5568" font-size="9" class="mono">gopher://, dict://</text>
+
+  <!-- Dashed arrows from Vulnerable Server to each target -->
+  <!-- To Cloud Metadata -->
+  <line x1="345" y1="196" x2="250" y2="110" stroke="#ff0040" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#arrow-red)"/>
+
+  <!-- To Internal Admin Panels -->
+  <line x1="425" y1="196" x2="540" y2="110" stroke="#ff0040" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#arrow-red)"/>
+
+  <!-- To Internal APIs -->
+  <line x1="345" y1="264" x2="250" y2="330" stroke="#ff0040" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#arrow-red)"/>
+
+  <!-- To Database Services -->
+  <line x1="425" y1="264" x2="540" y2="330" stroke="#ff0040" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#arrow-red)"/>
+
+  <!-- To File System -->
+  <line x1="320" y1="264" x2="175" y2="418" stroke="#ff0040" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#arrow-red)"/>
+
+  <!-- To Other Protocols -->
+  <line x1="450" y1="264" x2="610" y2="418" stroke="#ff0040" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#arrow-red)"/>
+
+  <!-- Copyright -->
+  <text x="780" y="474" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

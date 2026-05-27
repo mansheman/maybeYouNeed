@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 600">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .title { font-size: 18px; font-weight: 700; fill: #e2e8f0; }
+      .label { font-size: 15px; font-weight: 700; fill: #f8fafc; }
+      .small { font-size: 11px; fill: #cbd5e1; }
+    </style>
+  </defs>
+
+  <rect width="1320" height="600" fill="#0a0e17"/>
+  <text x="660" y="34" text-anchor="middle" class="title">Normal vs Suspicious DNS, HTTP, and HTTPS</text>
+  <text x="660" y="54" text-anchor="middle" class="small">For application traffic, suspicious often means wrong server, wrong port, wrong cadence, or the wrong protocol for that port.</text>
+
+  <rect x="54" y="110" width="380" height="380" rx="28" fill="#2563eb"/>
+  <text x="244" y="148" text-anchor="middle" class="label">DNS</text>
+  <text x="244" y="180" text-anchor="middle" class="small">Normal: query -> response, usually UDP 53</text>
+  <text x="244" y="202" text-anchor="middle" class="small">goes to approved DNS servers</text>
+  <text x="244" y="232" text-anchor="middle" class="small">Suspicious: DNS to non-DNS hosts</text>
+  <text x="244" y="254" text-anchor="middle" class="small">many queries with no responses</text>
+  <text x="244" y="276" text-anchor="middle" class="small">responses without matching queries</text>
+  <text x="244" y="298" text-anchor="middle" class="small">long encoded-looking subdomains</text>
+
+  <rect x="470" y="110" width="380" height="380" rx="28" fill="#22c55e"/>
+  <text x="660" y="148" text-anchor="middle" class="label">HTTP</text>
+  <text x="660" y="180" text-anchor="middle" class="small">Normal: request and response on expected web ports</text>
+  <text x="660" y="202" text-anchor="middle" class="small">usually to named hosts</text>
+  <text x="660" y="232" text-anchor="middle" class="small">Suspicious: odd ports, direct IPs</text>
+  <text x="660" y="254" text-anchor="middle" class="small">encrypted-looking traffic on port 80</text>
+  <text x="660" y="276" text-anchor="middle" class="small">highly regular beaconing patterns</text>
+
+  <rect x="886" y="110" width="380" height="380" rx="28" fill="#a855f7"/>
+  <text x="1076" y="148" text-anchor="middle" class="label">HTTPS</text>
+  <text x="1076" y="180" text-anchor="middle" class="small">Normal: TLS handshake, then encrypted app data</text>
+  <text x="1076" y="202" text-anchor="middle" class="small">usually on 443 or related ports</text>
+  <text x="1076" y="232" text-anchor="middle" class="small">Suspicious: plaintext on 443</text>
+  <text x="1076" y="254" text-anchor="middle" class="small">wrong protocol after supposed TLS setup</text>
+  <text x="1076" y="276" text-anchor="middle" class="small">highly regular encrypted calls to odd destinations</text>
+
+  <rect x="360" y="522" width="600" height="52" rx="16" fill="#ef4444"/>
+  <text x="660" y="554" text-anchor="middle" fill="#f8fafc" font-size="12" font-weight="700">Standard ports are not proof of legitimacy. Behavior and context still matter.</text>
+
+  <text x="1312" y="592" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

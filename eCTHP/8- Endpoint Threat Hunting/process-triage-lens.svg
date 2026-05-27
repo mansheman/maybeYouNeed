@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="880" viewBox="0 0 1400 880">
+  <rect width="1400" height="880" fill="#f6f8fc"/>
+  <rect x="60" y="50" width="1280" height="780" rx="28" fill="#ffffff" stroke="#d7dfef" stroke-width="3"/>
+  <text x="110" y="115" fill="#14213d" font-size="34" font-family="Arial, Helvetica, sans-serif" font-weight="700">How to triage a suspicious process</text>
+  <text x="110" y="155" fill="#52627a" font-size="20" font-family="Arial, Helvetica, sans-serif">A process becomes understandable when you place it inside its execution chain.</text>
+
+  <defs>
+    <marker id="arrow4" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#355c7d"/>
+    </marker>
+  </defs>
+
+  <rect x="120" y="260" width="240" height="120" rx="20" fill="#e7f7ef" stroke="#67b984" stroke-width="3"/>
+  <text x="195" y="312" fill="#123524" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700">Parent</text>
+  <text x="150" y="347" fill="#274c3a" font-size="18" font-family="Arial, Helvetica, sans-serif">Who launched it?</text>
+
+  <rect x="440" y="240" width="280" height="160" rx="22" fill="#dce8ff" stroke="#7aa2e3" stroke-width="4"/>
+  <text x="515" y="302" fill="#102542" font-size="30" font-family="Arial, Helvetica, sans-serif" font-weight="700">Process</text>
+  <text x="485" y="340" fill="#29435c" font-size="20" font-family="Arial, Helvetica, sans-serif">Name is not enough.</text>
+  <text x="477" y="370" fill="#29435c" font-size="20" font-family="Arial, Helvetica, sans-serif">Path + args + signer matter.</text>
+
+  <rect x="820" y="260" width="240" height="120" rx="20" fill="#fff4d8" stroke="#d9a441" stroke-width="3"/>
+  <text x="900" y="312" fill="#4b3200" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700">Child</text>
+  <text x="855" y="347" fill="#6c4b12" font-size="18" font-family="Arial, Helvetica, sans-serif">What did it spawn?</text>
+
+  <rect x="1080" y="230" width="190" height="180" rx="20" fill="#ffe1e1" stroke="#cf6a6a" stroke-width="3"/>
+  <text x="1128" y="290" fill="#5a1e1e" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Network</text>
+  <text x="1108" y="325" fill="#6f2a2a" font-size="18" font-family="Arial, Helvetica, sans-serif">Did it resolve DNS?</text>
+  <text x="1108" y="350" fill="#6f2a2a" font-size="18" font-family="Arial, Helvetica, sans-serif">Did it call out?</text>
+  <text x="1108" y="375" fill="#6f2a2a" font-size="18" font-family="Arial, Helvetica, sans-serif">`3`, `22`</text>
+
+  <rect x="150" y="560" width="210" height="150" rx="20" fill="#efe4ff" stroke="#8d72c9" stroke-width="3"/>
+  <text x="205" y="620" fill="#2f2057" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Path</text>
+  <text x="180" y="655" fill="#48326f" font-size="18" font-family="Arial, Helvetica, sans-serif">System path or</text>
+  <text x="180" y="680" fill="#48326f" font-size="18" font-family="Arial, Helvetica, sans-serif">odd user folder?</text>
+
+  <rect x="410" y="560" width="210" height="150" rx="20" fill="#dff7f5" stroke="#58a7a0" stroke-width="3"/>
+  <text x="452" y="620" fill="#124645" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Command line</text>
+  <text x="440" y="655" fill="#1e6461" font-size="18" font-family="Arial, Helvetica, sans-serif">Encoded, hidden,</text>
+  <text x="440" y="680" fill="#1e6461" font-size="18" font-family="Arial, Helvetica, sans-serif">or obviously admin?</text>
+
+  <rect x="670" y="560" width="210" height="150" rx="20" fill="#f3f0ea" stroke="#97866a" stroke-width="3"/>
+  <text x="725" y="620" fill="#433729" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Signer</text>
+  <text x="705" y="655" fill="#5d4d3a" font-size="18" font-family="Arial, Helvetica, sans-serif">Expected vendor</text>
+  <text x="705" y="680" fill="#5d4d3a" font-size="18" font-family="Arial, Helvetica, sans-serif">or unsigned?</text>
+
+  <rect x="930" y="560" width="260" height="150" rx="20" fill="#e9eefc" stroke="#6d82c7" stroke-width="3"/>
+  <text x="985" y="620" fill="#1f2f5a" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">Persistence</text>
+  <text x="965" y="655" fill="#344b84" font-size="18" font-family="Arial, Helvetica, sans-serif">Service, task, Run key,</text>
+  <text x="965" y="680" fill="#344b84" font-size="18" font-family="Arial, Helvetica, sans-serif">WMI subscription?</text>
+
+  <line x1="360" y1="320" x2="440" y2="320" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow4)"/>
+  <line x1="720" y1="320" x2="820" y2="320" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow4)"/>
+  <line x1="1060" y1="320" x2="1080" y2="320" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow4)"/>
+  <line x1="560" y1="400" x2="250" y2="560" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow4)"/>
+  <line x1="580" y1="400" x2="515" y2="560" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow4)"/>
+  <line x1="620" y1="400" x2="775" y2="560" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow4)"/>
+  <line x1="650" y1="395" x2="1030" y2="560" stroke="#355c7d" stroke-width="5" marker-end="url(#arrow4)"/>
+
+  <text x="120" y="775" fill="#52627a" font-size="18" font-family="Arial, Helvetica, sans-serif">The question is never just “is this process bad?” The better question is “does this chain make sense in this environment?”</text>
+</svg>

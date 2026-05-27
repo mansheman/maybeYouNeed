@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 400">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .mono { font-family: 'Fira Code', 'Courier New', monospace; }
+    </style>
+    <marker id="ar" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#ff0040"/>
+    </marker>
+    <marker id="ag" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#4a5568"/>
+    </marker>
+  </defs>
+
+  <rect width="760" height="400" fill="#0a0e17" rx="4"/>
+
+  <!-- Title -->
+  <text x="380" y="30" style="font-size:14px;fill:#e2e8f0;text-anchor:middle;letter-spacing:1px;">Insecure Deserialization — Attack Flow</text>
+  <line x1="120" y1="40" x2="640" y2="40" stroke="#1e293b" stroke-width="0.5"/>
+
+  <!-- Step 1: Attacker -->
+  <rect x="30" y="65" width="140" height="55" rx="3" fill="#111827" stroke="#ff0040" stroke-width="1"/>
+  <text x="100" y="90" style="font-size:11px;fill:#ff0040;text-anchor:middle;">Attacker</text>
+  <text x="100" y="107" style="font-size:8px;fill:#4a5568;text-anchor:middle;">crafts payload</text>
+
+  <!-- Arrow -->
+  <line x1="175" y1="92" x2="215" y2="92" stroke="#ff0040" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 2: Malicious Data -->
+  <rect x="220" y="65" width="140" height="55" rx="3" fill="#111827" stroke="#ff0040" stroke-width="1" opacity="0.7"/>
+  <text x="290" y="90" style="font-size:11px;fill:#e2e8f0;text-anchor:middle;">Malicious Data</text>
+  <text x="290" y="107" style="font-size:8px;fill:#4a5568;text-anchor:middle;">ac ed 00 05 ...</text>
+
+  <!-- Arrow -->
+  <line x1="365" y1="92" x2="405" y2="92" stroke="#ff0040" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 3: Victim -->
+  <rect x="410" y="65" width="140" height="55" rx="3" fill="#111827" stroke="#4a5568" stroke-width="1"/>
+  <text x="480" y="90" style="font-size:11px;fill:#e2e8f0;text-anchor:middle;">Victim App</text>
+  <text x="480" y="107" style="font-size:8px;fill:#4a5568;text-anchor:middle;">receives input</text>
+
+  <!-- Arrow down -->
+  <line x1="480" y1="125" x2="480" y2="165" stroke="#ff0040" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 4: Deserialization -->
+  <rect x="410" y="170" width="140" height="55" rx="3" fill="#111827" stroke="#ff0040" stroke-width="1.5"/>
+  <text x="480" y="195" style="font-size:11px;fill:#ff0040;text-anchor:middle;">Deserialization</text>
+  <text x="480" y="212" style="font-size:8px;fill:#ff0040;text-anchor:middle;">no validation</text>
+
+  <!-- Arrow down -->
+  <line x1="480" y1="230" x2="480" y2="270" stroke="#ff0040" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Step 5: RCE -->
+  <rect x="410" y="275" width="140" height="55" rx="3" fill="#1a0a10" stroke="#ff0040" stroke-width="1.5"/>
+  <text x="480" y="300" style="font-size:12px;fill:#ff0040;text-anchor:middle;">RCE</text>
+  <text x="480" y="317" style="font-size:8px;fill:#4a5568;text-anchor:middle;">code execution</text>
+
+  <!-- Steps panel -->
+  <rect x="30" y="155" width="350" height="210" rx="3" fill="#111827" stroke="#1e293b" stroke-width="0.5"/>
+  <text x="205" y="178" style="font-size:10px;fill:#e2e8f0;text-anchor:middle;">Attack Steps</text>
+  <line x1="45" y1="186" x2="365" y2="186" stroke="#1e293b" stroke-width="0.5"/>
+
+  <circle cx="55" cy="206" r="8" fill="#ff0040" opacity="0.8"/>
+  <text x="55" y="210" style="font-size:9px;fill:#0a0e17;text-anchor:middle;">1</text>
+  <text x="75" y="210" style="font-size:9px;fill:#4a5568;">Attacker crafts malicious serialized object</text>
+
+  <circle cx="55" cy="232" r="8" fill="#ff0040" opacity="0.6"/>
+  <text x="55" y="236" style="font-size:9px;fill:#0a0e17;text-anchor:middle;">2</text>
+  <text x="75" y="236" style="font-size:9px;fill:#4a5568;">Payload sent to victim application</text>
+
+  <circle cx="55" cy="258" r="8" fill="#ff0040" opacity="0.5"/>
+  <text x="55" y="262" style="font-size:9px;fill:#0a0e17;text-anchor:middle;">3</text>
+  <text x="75" y="262" style="font-size:9px;fill:#4a5568;">Application deserializes without checks</text>
+
+  <circle cx="55" cy="284" r="8" fill="#ff0040" opacity="0.4"/>
+  <text x="55" y="288" style="font-size:9px;fill:#0a0e17;text-anchor:middle;">4</text>
+  <text x="75" y="288" style="font-size:9px;fill:#4a5568;">Gadget chain triggers during reconstruction</text>
+
+  <circle cx="55" cy="310" r="8" fill="#ff0040" opacity="0.3"/>
+  <text x="55" y="314" style="font-size:9px;fill:#0a0e17;text-anchor:middle;">5</text>
+  <text x="75" y="314" style="font-size:9px;fill:#4a5568;">Arbitrary code execution on server</text>
+
+  <line x1="45" y1="328" x2="365" y2="328" stroke="#1e293b" stroke-width="0.5"/>
+  <text x="50" y="346" style="font-size:8px;fill:#4a5568;">Impact: RCE | Privilege Escalation | Data Tampering | DoS</text>
+  <text x="50" y="358" style="font-size:8px;fill:#4a5568;">Ref: OWASP A08:2021 | CWE-502</text>
+
+  <!-- Warning -->
+  <rect x="590" y="275" width="150" height="55" rx="3" fill="#111827" stroke="#1e293b" stroke-width="0.5"/>
+  <text x="665" y="298" style="font-size:9px;fill:#ff0040;text-anchor:middle;">Never deserialize</text>
+  <text x="665" y="314" style="font-size:9px;fill:#4a5568;text-anchor:middle;">untrusted data</text>
+
+  <!-- Copyright -->
+  <text x="740" y="392" style="font-size:8px;fill:#4a5568;text-anchor:end;opacity:0.6;">&#169; Abdulrahman Majid</text>
+</svg>

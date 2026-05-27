@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1220 560">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .title { font-size: 18px; font-weight: 700; fill: #e2e8f0; }
+      .label { font-size: 16px; font-weight: 700; fill: #f8fafc; }
+      .small { font-size: 11px; fill: #cbd5e1; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#fb923c"/>
+    </marker>
+  </defs>
+
+  <rect width="1220" height="560" fill="#0a0e17"/>
+  <text x="610" y="34" text-anchor="middle" class="title">Traffic Patterns and Directionality</text>
+  <text x="610" y="54" text-anchor="middle" class="small">Suspicious traffic is often defined by where it goes, when it happens, and how often it repeats.</text>
+
+  <rect x="470" y="100" width="280" height="124" rx="26" fill="#111827" stroke="#334155" stroke-width="1.5"/>
+  <text x="610" y="142" text-anchor="middle" fill="#e2e8f0" font-size="18" font-weight="700">Baseline Questions</text>
+  <text x="610" y="172" text-anchor="middle" class="small">Is the volume normal?</text>
+  <text x="610" y="192" text-anchor="middle" class="small">Is the timing normal?</text>
+  <text x="610" y="212" text-anchor="middle" class="small">Is the destination normal?</text>
+
+  <rect x="122" y="320" width="250" height="110" rx="24" fill="#2563eb"/>
+  <text x="247" y="358" text-anchor="middle" class="label">Internal -> Internal</text>
+  <text x="247" y="382" text-anchor="middle" class="small">Look for lateral movement</text>
+  <text x="247" y="400" text-anchor="middle" class="small">and privilege escalation paths</text>
+
+  <rect x="485" y="320" width="250" height="110" rx="24" fill="#22c55e"/>
+  <text x="610" y="358" text-anchor="middle" class="label">Internal -> External</text>
+  <text x="610" y="382" text-anchor="middle" class="small">Look for exfiltration, beaconing,</text>
+  <text x="610" y="400" text-anchor="middle" class="small">and unusual workstation uploads</text>
+
+  <rect x="848" y="320" width="250" height="110" rx="24" fill="#ef4444"/>
+  <text x="973" y="358" text-anchor="middle" class="label">External -> Internal</text>
+  <text x="973" y="382" text-anchor="middle" class="small">Look for payload delivery</text>
+  <text x="973" y="400" text-anchor="middle" class="small">and remote control setup</text>
+
+  <line x1="610" y1="224" x2="247" y2="320" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="610" y1="224" x2="610" y2="320" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="610" y1="224" x2="973" y2="320" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="300" y="468" width="620" height="56" rx="16" fill="#a855f7"/>
+  <text x="610" y="502" text-anchor="middle" class="small">Do not focus only on large transfers. Small, regular, off-hours traffic is often higher-signal than noisy bulk movement.</text>
+
+  <text x="1212" y="552" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 420">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .title { font-size: 18px; font-weight: 700; fill: #e2e8f0; }
+      .label { font-size: 14px; font-weight: 700; fill: #f8fafc; }
+      .small { font-size: 11px; fill: #cbd5e1; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#fb923c"/>
+    </marker>
+  </defs>
+
+  <rect width="1280" height="420" fill="#0a0e17"/>
+  <text x="640" y="34" text-anchor="middle" class="title">Building a Hunt Hypothesis</text>
+  <text x="640" y="54" text-anchor="middle" class="small">Good hypotheses are specific enough to test and broad enough to guide the right search.</text>
+
+  <rect x="34" y="146" width="210" height="92" rx="22" fill="#2563eb"/>
+  <text x="139" y="180" text-anchor="middle" class="label">1. Choose the clue</text>
+  <text x="139" y="202" text-anchor="middle" class="small">tactic, technique, or IOC</text>
+
+  <rect x="284" y="146" width="210" height="92" rx="22" fill="#22c55e"/>
+  <text x="389" y="180" text-anchor="middle" class="label">2. Research procedures</text>
+  <text x="389" y="202" text-anchor="middle" class="small">prereqs, outcomes, artifacts</text>
+
+  <rect x="534" y="146" width="210" height="92" rx="22" fill="#d97706"/>
+  <text x="639" y="180" text-anchor="middle" class="label">3. Map evidence</text>
+  <text x="639" y="202" text-anchor="middle" class="small">files, registry, memory, network</text>
+
+  <rect x="784" y="146" width="210" height="92" rx="22" fill="#a855f7"/>
+  <text x="889" y="180" text-anchor="middle" class="label">4. Set scope</text>
+  <text x="889" y="202" text-anchor="middle" class="small">systems, users, timeframe</text>
+
+  <rect x="1034" y="146" width="212" height="92" rx="22" fill="#ef4444"/>
+  <text x="1140" y="180" text-anchor="middle" class="label">5. Write hypothesis</text>
+  <text x="1140" y="202" text-anchor="middle" class="small">a clear, testable statement</text>
+
+  <line x1="244" y1="192" x2="284" y2="192" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="494" y1="192" x2="534" y2="192" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="744" y1="192" x2="784" y2="192" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="994" y1="192" x2="1034" y2="192" stroke="#fb923c" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="300" y="292" width="680" height="68" rx="18" fill="#111827" stroke="#334155" stroke-width="1.5"/>
+  <text x="640" y="322" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="700">Formula: If the attacker is using X, I should observe Y in Z data across S scope during T time.</text>
+
+  <text x="1272" y="412" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

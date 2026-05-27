@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .title { font-size: 18px; font-weight: 700; fill: #e2e8f0; }
+      .label { font-size: 16px; font-weight: 700; fill: #f8fafc; }
+      .small { font-size: 11px; fill: #cbd5e1; }
+    </style>
+  </defs>
+
+  <rect width="1100" height="620" fill="#0a0e17"/>
+  <text x="550" y="34" text-anchor="middle" class="title">Threat Intelligence Sources and Sharing</text>
+  <text x="550" y="54" text-anchor="middle" fill="#64748b" font-size="10">The best intelligence usually comes from blending source types and then sharing it through trusted communities.</text>
+
+  <polygon points="550,100 190,450 910,450" fill="#111827" stroke="#1e293b" stroke-width="2"/>
+
+  <circle cx="550" cy="100" r="72" fill="#2563eb"/>
+  <text x="550" y="94" text-anchor="middle" class="label">OSINT</text>
+  <text x="550" y="116" text-anchor="middle" class="small">Fast and broad</text>
+
+  <circle cx="190" cy="450" r="78" fill="#22c55e"/>
+  <text x="190" y="444" text-anchor="middle" class="label">Commercial</text>
+  <text x="190" y="466" text-anchor="middle" class="small">Curated and supported</text>
+
+  <circle cx="910" cy="450" r="78" fill="#a855f7"/>
+  <text x="910" y="444" text-anchor="middle" class="label">Closed</text>
+  <text x="910" y="466" text-anchor="middle" class="small">Exclusive and high confidence</text>
+
+  <rect x="365" y="236" width="370" height="120" rx="26" fill="#f59e0b"/>
+  <text x="550" y="274" text-anchor="middle" fill="#0a0e17" font-size="20" font-weight="700">Validated Intelligence</text>
+  <text x="550" y="298" text-anchor="middle" fill="#0a0e17" font-size="11">Correlate sources, check collection methods,</text>
+  <text x="550" y="314" text-anchor="middle" fill="#0a0e17" font-size="11">and decide whether it is unique and actionable.</text>
+
+  <rect x="382" y="506" width="336" height="72" rx="20" fill="#ef4444"/>
+  <text x="550" y="536" text-anchor="middle" class="label">Sharing Layer</text>
+  <text x="550" y="558" text-anchor="middle" class="small">ISACs, government partners, TIPs, MISP, and sector communities</text>
+
+  <text x="1092" y="612" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

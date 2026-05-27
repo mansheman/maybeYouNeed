@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 460">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .title { font-size: 18px; font-weight: 700; fill: #e2e8f0; }
+      .label { font-size: 18px; font-weight: 700; fill: #f8fafc; }
+      .small { font-size: 11px; fill: #cbd5e1; }
+    </style>
+  </defs>
+
+  <rect width="1180" height="460" fill="#0a0e17"/>
+  <text x="590" y="34" text-anchor="middle" class="title">NotPetya: Classification vs Intent</text>
+  <text x="590" y="54" text-anchor="middle" fill="#64748b" font-size="10">The technical picture looked like ransomware at first, but the broader intent pointed to destructive disruption.</text>
+
+  <rect x="86" y="110" width="420" height="230" rx="26" fill="#ef4444"/>
+  <text x="296" y="150" text-anchor="middle" class="label">Initial Belief</text>
+  <text x="296" y="176" text-anchor="middle" class="small">Ransomware</text>
+  <text x="296" y="208" text-anchor="middle" class="small">BTC demand created early confusion</text>
+  <text x="296" y="228" text-anchor="middle" class="small">Technical focus slowed strategic understanding</text>
+  <text x="296" y="248" text-anchor="middle" class="small">Cross-sector sharing lagged</text>
+
+  <rect x="674" y="110" width="420" height="230" rx="26" fill="#2563eb"/>
+  <text x="884" y="150" text-anchor="middle" class="label">Later Assessment</text>
+  <text x="884" y="176" text-anchor="middle" class="small">Wiper with nation-state intent</text>
+  <text x="884" y="208" text-anchor="middle" class="small">MeDoc supply chain, EternalBlue, Mimikatz, PsExec</text>
+  <text x="884" y="228" text-anchor="middle" class="small">Goal was disruption and economic damage</text>
+  <text x="884" y="248" text-anchor="middle" class="small">Strategic and operational context mattered as much as IoCs</text>
+
+  <rect x="360" y="368" width="460" height="54" rx="16" fill="#111827" stroke="#334155" stroke-width="1.5"/>
+  <text x="590" y="401" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="700">Attribution is not only who did it. It is also why the attack was carried out.</text>
+
+  <text x="1172" y="452" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">(c) Abdulrahman Majid</text>
+</svg>

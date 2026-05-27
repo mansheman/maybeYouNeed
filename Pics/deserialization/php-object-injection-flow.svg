@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 420" width="850" height="420" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#ff0040"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#ffb000"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#bf00ff"/>
+    </marker>
+    <marker id="arrow-cyan-sm" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
+      <path d="M0,0 L6,2.5 L0,5" fill="#00d4ff"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="850" height="420" fill="#0a0e17" rx="3"/>
+
+  <!-- Title -->
+  <text x="425" y="28" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="600">PHP Object Injection Attack Flow</text>
+
+  <!-- ========== BOX 1: Attacker ========== -->
+  <rect x="20" y="55" width="145" height="130" rx="3" fill="#111827" stroke="#ff0040" stroke-width="1"/>
+  <text x="92" y="78" text-anchor="middle" fill="#ff0040" font-size="12" font-weight="600">Attacker</text>
+  <text x="92" y="96" text-anchor="middle" fill="#4a5568" font-size="9">Crafts serialized payload</text>
+  <rect x="30" y="108" width="125" height="28" rx="3" fill="#0a0e17" stroke="#1e293b" stroke-width="1"/>
+  <text x="92" y="126" text-anchor="middle" fill="#00ff41" font-size="8" font-family="'Fira Code', 'Courier New', monospace">O:11:"FileManager"</text>
+  <text x="92" y="140" text-anchor="middle" fill="#00ff41" font-size="8" font-family="'Fira Code', 'Courier New', monospace">:1:{...}</text>
+  <rect x="30" y="148" width="125" height="28" rx="3" fill="#0a0e17" stroke="#1e293b" stroke-width="1"/>
+  <text x="92" y="166" text-anchor="middle" fill="#4a5568" font-size="8" font-family="'Fira Code', 'Courier New', monospace">s:4:"cmd";s:2:"ls"</text>
+
+  <!-- ========== ARROW 1: Attacker → Vulnerable Code ========== -->
+  <line x1="165" y1="120" x2="245" y2="120" stroke="#ff0040" stroke-width="1" marker-end="url(#arrow-red)"/>
+  <text x="205" y="112" text-anchor="middle" fill="#ff0040" font-size="9" font-weight="600">User Input</text>
+  <text x="205" y="138" text-anchor="middle" fill="#4a5568" font-size="8">cookie / POST / GET</text>
+
+  <!-- ========== BOX 2: Vulnerable Code ========== -->
+  <rect x="253" y="55" width="155" height="130" rx="3" fill="#111827" stroke="#ffb000" stroke-width="1"/>
+  <!-- Amber warning triangle -->
+  <polygon points="330,72 336,82 324,82" fill="none" stroke="#ffb000" stroke-width="1"/>
+  <text x="330" y="80.5" text-anchor="middle" fill="#ffb000" font-size="6" font-weight="700">!</text>
+  <rect x="268" y="92" width="125" height="22" rx="3" fill="#0a0e17" stroke="#1e293b" stroke-width="1"/>
+  <text x="330" y="107" text-anchor="middle" fill="#ffb000" font-size="10" font-family="'Fira Code', 'Courier New', monospace">unserialize($input)</text>
+  <text x="330" y="130" text-anchor="middle" fill="#4a5568" font-size="9">No validation</text>
+  <line x1="293" y1="142" x2="367" y2="142" stroke="#1e293b" stroke-width="1"/>
+  <text x="330" y="156" text-anchor="middle" fill="#ffb000" font-size="8">User data trusted</text>
+  <text x="330" y="170" text-anchor="middle" fill="#ffb000" font-size="8">as serialized object</text>
+
+  <!-- ========== ARROW 2: Vulnerable Code → Magic Methods ========== -->
+  <line x1="408" y1="120" x2="488" y2="120" stroke="#ffb000" stroke-width="1" marker-end="url(#arrow-amber)"/>
+  <text x="448" y="112" text-anchor="middle" fill="#ffb000" font-size="8" font-weight="600">Object</text>
+  <text x="448" y="122" text-anchor="middle" fill="#ffb000" font-size="8" font-weight="600">Reconstructed</text>
+
+  <!-- ========== BOX 3: Magic Methods ========== -->
+  <rect x="496" y="55" width="150" height="130" rx="3" fill="#111827" stroke="#00d4ff" stroke-width="1"/>
+  <text x="571" y="78" text-anchor="middle" fill="#00d4ff" font-size="12" font-weight="600">Magic Methods Fire</text>
+  <text x="571" y="100" text-anchor="middle" fill="#00ff41" font-size="10" font-family="'Fira Code', 'Courier New', monospace">__wakeup()</text>
+  <text x="571" y="116" text-anchor="middle" fill="#00ff41" font-size="10" font-family="'Fira Code', 'Courier New', monospace">__destruct()</text>
+  <text x="571" y="132" text-anchor="middle" fill="#00ff41" font-size="10" font-family="'Fira Code', 'Courier New', monospace">__toString()</text>
+  <line x1="516" y1="146" x2="626" y2="146" stroke="#1e293b" stroke-width="1"/>
+  <text x="571" y="162" text-anchor="middle" fill="#4a5568" font-size="9">Automatic execution</text>
+  <text x="571" y="176" text-anchor="middle" fill="#4a5568" font-size="8">on lifecycle events</text>
+
+  <!-- ========== ARROW 3: Magic Methods → Impact ========== -->
+  <line x1="646" y1="120" x2="690" y2="120" stroke="#bf00ff" stroke-width="1" marker-end="url(#arrow-purple)"/>
+  <text x="668" y="112" text-anchor="middle" fill="#bf00ff" font-size="7" font-weight="600">Dangerous</text>
+  <text x="668" y="122" text-anchor="middle" fill="#bf00ff" font-size="7" font-weight="600">operation</text>
+
+  <!-- ========== BOX 4: Impact ========== -->
+  <rect x="698" y="55" width="132" height="130" rx="3" fill="#111827" stroke="#bf00ff" stroke-width="1"/>
+  <text x="764" y="78" text-anchor="middle" fill="#bf00ff" font-size="12" font-weight="600">Code Execution</text>
+  <line x1="713" y1="86" x2="815" y2="86" stroke="#1e293b" stroke-width="1"/>
+  <circle cx="718" cy="102" r="2" fill="#ff0040"/>
+  <text x="726" y="106" fill="#00ff41" font-size="10" font-family="'Fira Code', 'Courier New', monospace">system()</text>
+  <circle cx="718" cy="122" r="2" fill="#ff0040"/>
+  <text x="726" y="126" fill="#00ff41" font-size="10" font-family="'Fira Code', 'Courier New', monospace">file_put_contents()</text>
+  <circle cx="718" cy="142" r="2" fill="#ff0040"/>
+  <text x="726" y="146" fill="#00ff41" font-size="10" font-family="'Fira Code', 'Courier New', monospace">unlink()</text>
+  <text x="764" y="172" text-anchor="middle" fill="#ff0040" font-size="9" font-weight="600">RCE Achieved</text>
+
+  <!-- ========== POP Chain Sub-section ========== -->
+  <rect x="195" y="235" width="460" height="130" rx="3" fill="#111827" stroke="#1e293b" stroke-width="1"/>
+  <text x="425" y="258" text-anchor="middle" fill="#00d4ff" font-size="11" font-weight="600">POP Chain (Property-Oriented Programming)</text>
+  <text x="425" y="274" text-anchor="middle" fill="#4a5568" font-size="9">Multi-class gadget chain -- each method triggers the next</text>
+
+  <!-- POP Box 1: __destruct() -->
+  <rect x="225" y="290" width="110" height="46" rx="3" fill="#0a0e17" stroke="#00d4ff" stroke-width="1"/>
+  <text x="280" y="310" text-anchor="middle" fill="#00d4ff" font-size="9" font-weight="600">Class A</text>
+  <text x="280" y="326" text-anchor="middle" fill="#00ff41" font-size="10" font-family="'Fira Code', 'Courier New', monospace">__destruct()</text>
+
+  <!-- POP Arrow 1 -->
+  <line x1="335" y1="313" x2="370" y2="313" stroke="#00d4ff" stroke-width="1" marker-end="url(#arrow-cyan-sm)"/>
+  <text x="352" y="307" text-anchor="middle" fill="#4a5568" font-size="7">calls</text>
+
+  <!-- POP Box 2: __call() -->
+  <rect x="378" y="290" width="95" height="46" rx="3" fill="#0a0e17" stroke="#00d4ff" stroke-width="1"/>
+  <text x="425" y="310" text-anchor="middle" fill="#00d4ff" font-size="9" font-weight="600">Class B</text>
+  <text x="425" y="326" text-anchor="middle" fill="#00ff41" font-size="10" font-family="'Fira Code', 'Courier New', monospace">__call()</text>
+
+  <!-- POP Arrow 2 -->
+  <line x1="473" y1="313" x2="508" y2="313" stroke="#00d4ff" stroke-width="1" marker-end="url(#arrow-cyan-sm)"/>
+  <text x="490" y="307" text-anchor="middle" fill="#4a5568" font-size="7">calls</text>
+
+  <!-- POP Box 3: system() -->
+  <rect x="516" y="290" width="110" height="46" rx="3" fill="#0a0e17" stroke="#ff0040" stroke-width="1"/>
+  <text x="571" y="310" text-anchor="middle" fill="#ff0040" font-size="9" font-weight="600">Class C (Sink)</text>
+  <text x="571" y="326" text-anchor="middle" fill="#00ff41" font-size="10" font-family="'Fira Code', 'Courier New', monospace">system()</text>
+
+  <!-- Dashed connector from main flow to POP chain -->
+  <line x1="330" y1="185" x2="330" y2="235" stroke="#1e293b" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="571" y1="185" x2="571" y2="235" stroke="#1e293b" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- POP Chain label: multi-class -->
+  <text x="425" y="353" text-anchor="middle" fill="#4a5568" font-size="8">Each class contributes one gadget -- chained via object properties</text>
+
+  <!-- Copyright -->
+  <text x="838" y="412" text-anchor="end" fill="#4a5568" font-size="8" opacity="0.6">&#169; Abdulrahman Majid</text>
+</svg>
