@@ -3,23 +3,23 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: [[XML Injection - Overview]]
-# XML Tag Injection - Overview
+###### Prasyarat: [[XML Injection - Overview]]
+# XML Tag Injection - Gambaran
 
 ## Definition
 
-**XML Tag Injection** is a type of XML injection where the attacker injects or modifies **XML tags**, changing the structure of the document.
+**XML Tag Injection** adalah jenis XML injection ketika penyerang menyisipkan atau memodifikasi **tag XML**, sehingga struktur dokumen berubah.
 
 ---
 
 ## Key characteristics
 
-- focuses on tags more than plain text values
-- can disrupt parsing or trigger unexpected logic
-- may lead to privilege escalation if the server trusts injected tags
+- fokusnya pada tag (bukan hanya value teks)
+- dapat mengganggu parsing atau memicu logika tak terduga
+- bisa berujung privilege escalation jika server memercayai tag yang disisipkan
 
 ---
 
 ## Example (concept)
 
-If an app accepts user-controlled XML and later decides permissions based on tag content, injected tags can change the decision.
+Kalau aplikasi menerima XML yang bisa dikontrol user, lalu memutuskan permission berdasarkan isi tag, tag yang disisipkan dapat mengubah keputusan tersebut.

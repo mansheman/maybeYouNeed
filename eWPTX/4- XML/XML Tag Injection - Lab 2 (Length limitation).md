@@ -3,14 +3,14 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: [[XML Tag Injection - Lab 1 (Warm-up)]]
-# XML Tag Injection - Lab 2 (Length limitation)
+###### Prasyarat: [[XML Tag Injection - Lab 1 (Warm-up)]]
+# XML Tag Injection - Lab 2 (Batas panjang)
 
-Context: training/lab environment.
+Konteks: environment training/lab.
 
-Notes captured from lab write-up:
+Catatan dari write-up lab:
 
-- name and username had length limitations (~35)
-- payload had to be split across multiple fields to bypass truncation
+- name dan username punya batas panjang (~35)
+- payload perlu dipecah ke beberapa field untuk menghindari truncation
 
-(Keep as a reference note for that specific lab.)
+(Simpan sebagai referensi untuk lab tersebut.)

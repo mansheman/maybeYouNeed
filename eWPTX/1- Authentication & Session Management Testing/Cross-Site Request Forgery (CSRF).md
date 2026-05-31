@@ -3,40 +3,42 @@
 Status:
 
 Tags:[[eWPTX]] [[Authentication]] [[Session Management]] [[CSRF]]
-###### Prerequisites: [[Session Management Testing]]
+###### Prasyarat: [[Session Management Testing]]
 # Cross-Site Request Forgery (CSRF)
 
-## Overview
+## Gambaran Singkat
 
-CSRF occurs when an attacker tricks a user's browser into sending a state-changing request to a target application while the user is authenticated. It abuses the fact that browsers automatically attach cookies (including session cookies) to every request made to a domain, regardless of the origin that initiated the request.
+CSRF terjadi ketika penyerang membuat browser korban mengirim request **yang mengubah state** (ubah email/password, transfer, dsb) ke aplikasi target **saat korban masih login**.
 
----
-
-## Typical Attack Flow
-
-1. The attacker identifies a state-changing endpoint with no CSRF protection (e.g., `POST /account/change-email`).
-2. The attacker crafts a malicious page containing a request to that endpoint.
-3. The attacker lures an authenticated victim to visit the malicious page (phishing, forum post, ad, etc.).
-4. The victim's browser sends the request with the victim's session cookies attached.
-5. The server processes the request as legitimate because the session is valid.
+Yang dieksploitasi: browser akan otomatis menyertakan **cookie** (termasuk session cookie) setiap kali request menuju domain target, walaupun request itu dipicu dari situs lain.
 
 ---
 
-## Impact Examples
+## Alur Serangan Umum
 
-- Change email or password (account takeover chain).
-- Perform financial transactions or transfers.
-- Modify account settings or permissions.
-- Add an attacker-controlled admin account.
-- Trigger API actions on behalf of the user.
+1. Penyerang menemukan endpoint yang mengubah state dan tidak punya proteksi CSRF (mis. `POST /account/change-email`).
+2. Penyerang membuat halaman berbahaya yang otomatis menembakkan request ke endpoint tersebut.
+3. Korban yang sudah login dipancing membuka halaman berbahaya (phishing, iklan, posting forum, dll).
+4. Browser korban mengirim request sambil membawa cookie sesi milik korban.
+5. Server memprosesnya sebagai aksi sah karena sesi korban valid.
 
 ---
 
-## HTML POC Templates
+## Contoh Dampak
 
-### Auto-Submit Form (POST-based CSRF)
+- Ubah email/password (bisa jadi rantai account takeover).
+- Transaksi/transfer finansial.
+- Mengubah setting akun/permission.
+- Menambah akun admin yang dikontrol penyerang.
+- Menjalankan aksi API “atas nama” user.
 
-The most common CSRF POC. The hidden form auto-submits on page load:
+---
+
+## Template HTML POC
+
+### Auto-Submit Form (CSRF via POST)
+
+POC CSRF paling umum: form tersembunyi yang auto-submit saat page load.
 
 ```html
 <html>
@@ -50,15 +52,15 @@ The most common CSRF POC. The hidden form auto-submits on page load:
 </html>
 ```
 
-### Image Tag (GET-based CSRF)
+### Image Tag (CSRF via GET)
 
-For endpoints that accept state-changing GET requests:
+Kalau aplikasi (keliru) mengizinkan aksi mengubah state lewat GET, request bisa dipicu pakai tag gambar.
 
 ```html
 <img src="https://target.com/api/change-email?email=evil@attacker.com" style="display:none" />
 ```
 
-This fires automatically when the page loads. No JavaScript is needed.
+Ini otomatis terpanggil saat halaman dibuka, tanpa JavaScript.
 
 ### XHR-Based CSRF (XMLHttpRequest)
 
@@ -85,17 +87,17 @@ fetch("https://target.com/api/change-password", {
 </script>
 ```
 
-> **Note:** XHR and Fetch POCs are subject to CORS preflight checks when using non-simple content types. If the server does not allow the attacker's origin, the browser blocks the request.
+> Catatan: POC XHR/Fetch bisa kena **CORS preflight** untuk content type tertentu. Jika origin penyerang tidak di-allow, browser akan memblok request.
 
 ---
 
-## JSON CSRF (Content-Type Bypass)
+## JSON CSRF (Bypass Content-Type)
 
-Many modern APIs expect `Content-Type: application/json`. Browsers send a CORS preflight (`OPTIONS`) for this content type, which usually blocks CSRF. However, there are bypass techniques:
+Banyak API modern meminta `Content-Type: application/json`. Biasanya ini memicu CORS preflight (`OPTIONS`) dan membuat CSRF lebih sulit. Tapi ada beberapa skenario bypass yang patut dites.
 
-### Using Form enctype
+### Abuse `enctype` pada Form
 
-HTML forms support three `enctype` values. By abusing `text/plain`, you can smuggle JSON-like payloads:
+Form HTML mendukung tiga nilai `enctype`. Dengan `text/plain`, payload bisa “diselundupkan” mirip JSON.
 
 ```html
 <form action="https://target.com/api/update-profile" method="POST" enctype="text/plain">
@@ -104,15 +106,15 @@ HTML forms support three `enctype` values. By abusing `text/plain`, you can smug
 <script>document.forms[0].submit();</script>
 ```
 
-The resulting body sent by the browser is:
+Body yang terkirim:
 
 ```
 {"email":"evil@attacker.com","ignore":"="}
 ```
 
-This works if the server parses the body as JSON regardless of the `Content-Type` header, or if it accepts `text/plain` as a valid content type for JSON parsing.
+Ini bisa berhasil jika server tetap mem-parsing body sebagai JSON walaupun `Content-Type` tidak sesuai, atau mengizinkan `text/plain` untuk JSON parsing.
 
-### Using Navigator.sendBeacon
+### Menggunakan `Navigator.sendBeacon`
 
 ```html
 <script>
@@ -121,23 +123,23 @@ navigator.sendBeacon("https://target.com/api/update-profile", blob);
 </script>
 ```
 
-`sendBeacon` sends a POST request with the specified content type. It does not trigger a preflight in some browser implementations, though modern browsers have largely patched this behavior.
+`sendBeacon` mengirim POST dengan content type tertentu. Beberapa implementasi browser historis tidak selalu memicu preflight, tapi perilaku ini sudah banyak dipatch.
 
 ---
 
-## SameSite Cookie Bypass Scenarios
+## Skenario Bypass SameSite Cookie
 
-The `SameSite` cookie attribute is the primary browser-level defense against CSRF:
+`SameSite` adalah pertahanan level browser untuk CSRF.
 
 | Value    | Behavior                                                                 |
 | -------- | ------------------------------------------------------------------------ |
-| `Strict` | Cookie is never sent on cross-site requests.                             |
-| `Lax`    | Cookie is sent on top-level navigations (GET only). Default in modern browsers. |
-| `None`   | Cookie is always sent cross-site (requires `Secure` flag).               |
+| `Strict` | Cookie tidak pernah dikirim pada request cross-site.                     |
+| `Lax`    | Cookie dikirim pada navigasi top-level (GET). Default di browser modern. |
+| `None`   | Cookie selalu dikirim cross-site (wajib `Secure`).                       |
 
-### Bypassing SameSite=Lax
+### Bypass SameSite=Lax
 
-`Lax` allows cookies on **top-level GET navigations**. If the target accepts state-changing GET requests, CSRF is still possible:
+`Lax` masih mengizinkan cookie ikut pada **top-level GET navigation**. Kalau aplikasi menerima aksi state-changing via GET, CSRF masih mungkin.
 
 ```html
 <!-- Top-level navigation triggers Lax cookie inclusion -->
@@ -145,63 +147,63 @@ The `SameSite` cookie attribute is the primary browser-level defense against CSR
 <script>document.getElementById('csrf-link').click();</script>
 ```
 
-Or using a full-page redirect:
+Atau redirect full page:
 
 ```html
 <script>window.location = "https://target.com/account/change-role?role=admin";</script>
 ```
 
-### Other SameSite Bypass Scenarios
+### Skenario Bypass Lain
 
-- **Subdomain takeover:** If the attacker controls a subdomain of the target (e.g., `evil.target.com`), requests from the subdomain are considered same-site.
-- **Method override:** Some frameworks accept `POST` actions via `GET` if a `_method=POST` parameter is present, allowing Lax bypass via top-level GET navigation.
-- **2-minute Lax window:** Chromium browsers allow top-level POST with cookies for 2 minutes after a cookie is set without an explicit SameSite attribute (to avoid breaking SSO flows).
+- **Subdomain takeover:** jika penyerang menguasai subdomain target (mis. `evil.target.com`), request bisa dianggap same-site.
+- **Method override:** beberapa framework menerima aksi POST lewat GET jika ada parameter `_method=POST`.
+- **2-minute Lax window:** Chromium pernah mengizinkan top-level POST dengan cookies untuk window tertentu ketika cookie diset tanpa SameSite eksplisit (kompatibilitas SSO).
 
 ---
 
-## CSRF Token Bypass Techniques
+## Teknik Bypass CSRF Token (Saat Token Ada)
 
-When a CSRF token is present, test these bypasses:
+Saat ada CSRF token, bukan berarti aman. Tes variasi bypass umum berikut.
 
-### 1. Empty Token Value
+### 1) Token kosong
 
-Submit the request with an empty `csrf_token=` parameter. Some implementations only check if the parameter exists, not its value.
+Kirim request dengan `csrf_token=` kosong. Kadang server hanya cek parameter “ada”, bukan nilainya.
 
-### 2. Remove the Token Parameter Entirely
+### 2) Hilangkan parameter token
 
-Delete the `csrf_token` parameter from the request. Some servers skip validation if the parameter is absent.
+Hapus parameter `csrf_token` sepenuhnya. Implementasi tertentu salah kaprah: kalau parameter tidak ada, validasi dilewati.
 
-### 3. Token from Another Session
+### 3) Token dari sesi lain
 
-Use a CSRF token generated from a different user session. If tokens are not bound to the session, any valid token works.
+Pakai token dari sesi user berbeda. Kalau token tidak terikat sesi, token manapun bisa dipakai.
 
-### 4. Reuse a Previous Token
+### 4) Replay token lama
 
-Submit a token that was valid in a previous request. If the server does not invalidate tokens after use, replay is possible.
+Gunakan token yang pernah valid sebelumnya. Kalau tidak ada rotasi/invalidation, replay bisa berhasil.
 
-### 5. Swap HTTP Method
+### 5) Tukar HTTP method
 
-If the POST endpoint validates CSRF tokens but the same action is available via GET (which may not validate tokens), switch the method:
+Kalau POST memvalidasi token tapi action yang sama ada versi GET (yang tidak memvalidasi token), coba ubah method.
 
 ```
 POST /change-email  (CSRF token required)
 GET  /change-email?email=evil@attacker.com  (no CSRF token check)
 ```
 
-### 6. Token in Cookie vs. Body Mismatch
+### 6) Mismatch token cookie vs body
 
-When the server compares a cookie token against a body token (double-submit pattern), test if you can set the cookie via a subdomain or header injection and match it with an arbitrary body value.
+Kalau server membandingkan token cookie vs token body (double-submit), uji apakah cookie bisa dimanipulasi (mis. via subdomain) lalu dicocokkan dengan value body arbitrer.
 
 ---
 
-## What to Test
+## Checklist Pengujian
 
-- **CSRF token presence:** Is a token included in every state-changing request?
-- **CSRF token validation:** Is the token actually validated server-side, or just checked for existence?
-- **Token binding:** Is the token tied to the user's session? Can a token from session A be used in session B?
-- **Token rotation:** Is the token rotated after each use, or is it static for the entire session?
-- **SameSite attribute:** What SameSite value is set on session cookies? Is it `Strict`, `Lax`, or `None`?
-- **State-changing GET requests:** Are any state-changing actions reachable via GET?
-- **Content-Type enforcement:** Does the API strictly enforce `application/json`, or does it accept `text/plain` and `application/x-www-form-urlencoded`?
-- **Referer / Origin validation:** Does the server validate the `Origin` or `Referer` header? Can it be bypassed by omitting the header (e.g., `<meta name="referrer" content="no-referrer">`)?
-- **Custom headers:** Does the server require a custom header (e.g., `X-Requested-With`) that cannot be set cross-origin without CORS approval?
+- **Token ada di setiap request state-changing?**
+- **Token benar-benar divalidasi?** (bukan sekadar “parameter ada”)
+- **Token terikat ke sesi?** (token sesi A tidak boleh berlaku di sesi B)
+- **Rotasi token?** (per request/per sesi) dan apakah token bisa direplay
+- **SameSite di cookie sesi?** (`Strict`/`Lax`/`None`)
+- **Ada aksi state-changing via GET?** (ini red flag)
+- **Enforcement Content-Type?** (ketat vs menerima `text/plain`/form-urlencoded)
+- **Validasi Origin/Referer?** dan apakah bisa dibypass dengan menghilangkan header (mis. `<meta name="referrer" content="no-referrer">`)
+- **Kebutuhan custom header?** (mis. `X-Requested-With`) yang sulit diset cross-origin tanpa CORS

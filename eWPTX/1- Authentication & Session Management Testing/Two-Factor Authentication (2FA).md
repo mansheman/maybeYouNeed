@@ -3,23 +3,23 @@
 Status:
 
 Tags:[[eWPTX]] [[Authentication]] [[2FA]]
-###### Prerequisites: [[Authentication]]
+###### Prasyarat: [[Authentication]]
 # Two-Factor Authentication (2FA)
 
-## Overview
+## Gambaran Singkat
 
-2FA requires users to verify identity with two distinct factors:
+2FA mengharuskan user memverifikasi identitas memakai **dua faktor yang berbeda**:
 
-- something you know (password/PIN)
-- something you have (phone/app/token)
+- sesuatu yang user tahu (password/PIN)
+- sesuatu yang user punya (ponsel/app/token)
 
-It reduces risk of account takeover even if passwords are compromised.
+Ini menurunkan risiko account takeover walaupun password sudah bocor.
 
 ---
 
-## Types of 2FA
+## Jenis 2FA
 
 - SMS OTP
 - Email OTP
-- TOTP (authenticator apps)
-- hardware tokens
+- TOTP (authenticator app)
+- hardware token

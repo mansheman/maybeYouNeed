@@ -3,12 +3,12 @@
 Status:
 
 Tags:[[eWPTX]] [[Authentication]] [[JWT]]
-###### Prerequisites: [[JSON Web Tokens (JWT)]]
+###### Prasyarat: [[JSON Web Tokens (JWT)]]
 # JWT Structure
 
 ## Header
 
-Metadata about algorithm and type:
+Metadata tentang algoritma dan tipe token:
 
 ```json
 {"alg":"HS256","typ":"JWT"}
@@ -16,7 +16,7 @@ Metadata about algorithm and type:
 
 ## Payload
 
-Claims about the subject/session:
+Claims tentang subject/session:
 
 ```json
 {"sub":"123","name":"John Doe","admin":true,"exp":1716454560}
@@ -24,11 +24,11 @@ Claims about the subject/session:
 
 ## Signature
 
-Prevents tampering (created by signing header+payload with a key).
+Mencegah token diubah (dibuat dengan menandatangani header+payload menggunakan key).
 
-Key point:
+Poin penting:
 
-- if header/payload change, signature must fail validation
+- kalau header/payload berubah, verifikasi signature harus gagal
 
 ---
 

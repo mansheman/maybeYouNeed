@@ -3,34 +3,34 @@
 Status:
 
 Tags:[[eWPTX]] [[Authentication]] [[2FA]]
-###### Prerequisites: [[Two-Factor Authentication (2FA)]]
+###### Prasyarat: [[Two-Factor Authentication (2FA)]]
 # 2FA Testing Methodology
 
-## Information gathering
+## Pengumpulan informasi
 
-- identify 2FA mechanism (SMS/email/TOTP/app/hardware)
-- understand enrollment and recovery
-- review config: token length, expiry, rate limiting
-
----
-
-## Test the authentication flow
-
-- OTP strength (length/entropy)
-- OTP expiry (time-based + invalid after use)
-- replay attempts (same OTP twice)
-- verify transport security (HTTPS)
+- identifikasi mekanisme 2FA (SMS/email/TOTP/app/hardware)
+- pahami proses enrollment dan recovery
+- review konfigurasi: panjang token, masa berlaku, rate limiting
 
 ---
 
-## Rate limiting and lockout
+## Uji flow autentikasi
 
-- brute-force resistance (rate limit / temporary lock)
-- response differences that leak validity (status/errors)
+- kekuatan OTP (panjang/entropy)
+- expiry OTP (time-based + invalid setelah dipakai)
+- replay attempt (OTP yang sama dipakai dua kali)
+- pastikan transport aman (HTTPS)
 
 ---
 
-## Advanced areas
+## Rate limiting dan lockout
 
-- OAuth/OpenID integration bypasses
-- token validation location (server-side)
+- ketahanan brute force (rate limit / temporary lock)
+- perbedaan response yang membocorkan validitas (status/error message)
+
+---
+
+## Area lanjutan
+
+- bypass di integrasi OAuth/OpenID
+- lokasi validasi token (harus server-side)

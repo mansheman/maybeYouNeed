@@ -3,10 +3,10 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: [[What is XML?]]
+###### Prasyarat: [[What is XML?]]
 # XML Injection
 
-## Notes (MOC)
+## Catatan (MOC)
 
 - [[XML Injection - Overview]]
 - [[XML Injection - Attack Types]]
@@ -21,15 +21,15 @@ Tags: [[eWPTX]] [[XML]]
 
 ---
 
-## Overview
+## Gambaran singkat
 
-XML is heavily used for data exchange and configuration, so XML parsers and XML-processing logic can introduce injection-style vulnerabilities.
+XML sering dipakai untuk pertukaran data dan konfigurasi, sehingga XML parser dan logika pemrosesan XML berpotensi memunculkan kerentanan model “injection”.
 
-Common categories include XML tag injection, XPath injection, XXE, and parser DoS patterns.
+Kategori umum: XML tag injection, XPath injection, XXE, dan pola DoS terhadap parser.
 
 ---
 
-## Notes
+## Catatan
 
-- Many XML issues are about how the app **parses** and **trusts** XML input.
-- Misconfigured parsers can enable dangerous behaviors (like external entity expansion).
+- Banyak isu XML itu bukan “bug tag”-nya, tapi cara aplikasi **mem-parse** dan **memercayai** input XML.
+- Parser yang salah konfigurasi bisa mengaktifkan perilaku berbahaya (mis. external entity expansion).

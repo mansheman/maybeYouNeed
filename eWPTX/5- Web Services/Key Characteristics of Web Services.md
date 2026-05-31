@@ -3,10 +3,10 @@
 Status:
 
 Tags: [[eWPTX]] [[Web Services]]
-###### Prerequisites: [[What Are Web Services?]]
-# Key Characteristics of Web Services
+###### Prasyarat: [[What Are Web Services?]]
+# Karakteristik Utama Web Service
 
-- **Interoperability**: rely on open standards (HTTP, XML, SOAP, REST, JSON) so different systems can communicate.
-- **Platform-agnostic**: not tied to an OS or language.
-- **Loose coupling**: changes in one system don’t necessarily break others.
-- **Location independence**: services can be hosted anywhere and accessed over the internet.
+- **Interoperability**: mengandalkan standar terbuka (HTTP, XML, SOAP, REST, JSON) agar sistem beda-beda bisa saling komunikasi.
+- **Platform-agnostic**: tidak terikat OS atau bahasa pemrograman tertentu.
+- **Loose coupling**: perubahan di satu komponen tidak otomatis merusak komponen lain (kalau kontraknya dijaga).
+- **Location independence**: service bisa di-host di mana saja dan diakses lewat jaringan.

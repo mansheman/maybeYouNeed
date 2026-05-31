@@ -3,66 +3,58 @@
 Status:
 
 Tags: [[eWPTX]] [[Authentication]]
-###### Prerequisites: 
-# Authentication Testing Methodology## Authentication Testing 
+###### Prasyarat:
+# Metodologi Pengujian Autentikasi
 
-Authentication testing is the process of probing and exploiting weaknesses in a web application’s identity verification mechanisms.  
-This involves testing various authentication controls such as:
+## Pengujian Autentikasi
 
-- Login forms
-    
-- Password reset functionality
-    
+Pengujian autentikasi adalah proses untuk **menguji dan memvalidasi kelemahan** pada mekanisme verifikasi identitas di aplikasi web. Fokusnya bukan cuma “bisa login atau tidak”, tapi apakah penyerang bisa **membypass**, **mengambil alih akun**, atau **menggunakan identitas orang lain**.
+
+Kontrol yang biasanya diuji:
+
+- Form login
+- Fitur reset password / lupa password
 - Multi-factor authentication (MFA)
-    
-- Account lockout mechanisms
-    
+- Mekanisme lockout / rate limiting
 
-The goal is to identify vulnerabilities that could allow unauthorized access or account compromise.
+Jenis kelemahan yang sering dicari:
 
-Authentication testing targets flaws that may permit bypassing of login controls, including:
+- Policy password lemah (mudah ditebak/pendek/tanpa kompleksitas)
+- Rentan brute force / credential stuffing
+- Alur autentikasi yang bisa dibypass (logika/endpoint alternatif)
+- Token/cookie ditangani tidak aman
+- Session fixation (dibahas di materi session)
 
-- Weak password policies
-    
-- Susceptibility to brute force or credential stuffing attacks
-    
-- Session fixation
-    
-- Inadequate token handling
-    
+### Tujuan
 
-### Objective
-
-The objective is to identify and exploit weaknesses in authentication to gain unauthorized access, elevate privileges, or hijack legitimate user sessions, thus demonstrating the real-world impact of compromised authentication security.
+Tujuannya adalah menunjukkan dampak nyata: **akses tidak sah**, **eskalasi privilege**, atau **pembajakan sesi** jika autentikasi gagal melindungi identitas user.
 
 ---
 
 ## OWASP WSTG (Web Security Testing Guide)
 
-For web application penetration testers, the **OWASP WSTG** serves as both a training resource and a methodological guide—especially in the critical area of authentication testing.
+Untuk pentest web, **OWASP WSTG** berguna sebagai checklist/metodologi supaya langkah pengujian autentikasi lebih konsisten dan tidak ada area penting yang terlewat.
 
-By providing standardized and comprehensive guidance on testing steps, it enables testers to conduct effective, consistent, and impactful assessments of authentication controls and other security mechanisms within web applications.
-
-**Reference:** [OWASP WSTG Project Page](https://owasp.org/www-project-web-security-testing-guide/)
+Referensi: [OWASP WSTG Project Page](https://owasp.org/www-project-web-security-testing-guide/)
 
 ---
 
-## OWASP WSTG - Authentication Tests
+## OWASP WSTG - Tes Autentikasi
 
-|Test Name|ID|Description|
+|Nama Tes|ID|Ringkasannya|
 |---|---|---|
-|**Testing for Credentials Transported over an Encrypted Channel**|WSTG-ATHN-01|Verifies that user credentials are transmitted securely over HTTPS to prevent interception or tampering.|
-|**Testing for Default Credentials**|WSTG-ATHN-02|Checks if any default credentials are still in use, which attackers could exploit to gain unauthorized access.|
-|**Testing for Weak Lock Out Mechanism**|WSTG-ATHN-03|Assesses the application’s lockout mechanisms to prevent brute-force attacks on user accounts.|
-|**Testing for Bypassing Authentication Schema**|WSTG-ATHN-04|Identifies flaws in the authentication process that allow attackers to bypass authentication altogether.|
-|**Testing for Vulnerable Remember Password Function**|WSTG-ATHN-05|Evaluates if the "Remember Me" functionality is implemented securely without exposing sensitive data that could aid in unauthorized access.|
+|**Kredensial lewat channel terenkripsi**|WSTG-ATHN-01|Pastikan kredensial dikirim via HTTPS (mencegah penyadapan/tampering).|
+|**Default credentials**|WSTG-ATHN-02|Cek apakah masih ada akun default (sering jadi pintu masuk cepat).|
+|**Lockout mechanism lemah**|WSTG-ATHN-03|Evaluasi lockout/rate limit untuk menahan brute force.|
+|**Bypass skema autentikasi**|WSTG-ATHN-04|Cari celah logika/alur yang membuat login bisa dilewati.|
+|**"Remember me" rentan**|WSTG-ATHN-05|Pastikan implementasi tidak membocorkan data sensitif atau token yang mudah dicuri/replay.|
 
 ---
 
-## Additional Authentication Tests
+## Tambahan Tes Autentikasi
 
-| Test Name                                                   | ID           | Description                                                                                                                                              |
-| ----------------------------------------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Testing for Browser Cache Weaknesses**                    | WSTG-ATHN-06 | Ensures sensitive information is not stored insecurely in the browser cache, where attackers could retrieve it.                                          |
-| **Testing for Weak Password Policy**                        | WSTG-ATHN-07 | Examines the application’s password policy to determine if it enforces sufficient password complexity and expiration requirements.                       |
-| **Testing for Weak Authentication in Alternative Channels** | WSTG-ATHN-08 | Tests alternative authentication channels (e.g., APIs, mobile applications) for weaker or inconsistent security practices that could lead to compromise. |
+|Nama Tes|ID|Ringkasannya|
+|---|---|---|
+|**Kelemahan browser cache**|WSTG-ATHN-06|Pastikan data sensitif tidak tersimpan di cache (mis. halaman setelah login).|
+|**Policy password lemah**|WSTG-ATHN-07|Tinjau kompleksitas, panjang minimal, dan aturan lain yang relevan.|
+|**Autentikasi lemah di channel alternatif**|WSTG-ATHN-08|Bandingkan kontrol keamanan web vs API/mobile (sering tidak konsisten).|

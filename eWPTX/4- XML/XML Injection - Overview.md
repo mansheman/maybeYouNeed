@@ -3,30 +3,30 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: [[What is XML?]]
-# XML Injection - Overview
+###### Prasyarat: [[What is XML?]]
+# XML Injection - Gambaran
 
 ## Definition
 
-**XML Injection** occurs when an attacker manipulates user input to inject malicious XML content into a system that processes XML.
+**XML Injection** terjadi ketika penyerang memanipulasi input user untuk menyisipkan konten XML berbahaya ke sistem yang memproses XML.
 
-It’s a broad term covering issues where untrusted input changes XML structure or XML-driven logic.
+Ini istilah payung untuk masalah ketika input tak tepercaya mengubah struktur XML atau logika yang digerakkan oleh XML.
 
 ---
 
-## How XML injection works (high level)
+## Cara kerja (level tinggi)
 
-- Input point: app accepts XML (API, form, file upload) or builds XML from user input
-- Payload: attacker injects elements/attributes/metacharacters
-- Impact: XML structure changes → app behavior changes
+- Titik masuk: aplikasi menerima XML (API, form, upload file) atau membangun XML dari input user
+- Payload: penyerang menyisipkan elemen/atribut/metacharacter
+- Dampak: struktur XML berubah → perilaku aplikasi ikut berubah
 
 ---
 
 ## Key characteristics
 
-- Targets XML input fields or XML queries
-- Can inject new elements, attributes, or data
-- Often used to bypass authentication, manipulate data, or trigger unexpected behavior
+- Menarget field input XML atau query berbasis XML
+- Bisa menambah/mengubah elemen, atribut, atau data
+- Sering dipakai untuk bypass auth, manipulasi data, atau memicu perilaku tak terduga
 
 ---
 
@@ -41,4 +41,4 @@ Vulnerable XML (app expects one `<user>` structure):
 </user>
 ```
 
-If the app concatenates user input into XML without proper encoding/validation, injected metacharacters/tags can break the intended structure.
+Jika aplikasi menggabungkan input user ke XML tanpa encoding/validasi yang benar, metacharacter/tag yang disisipkan bisa merusak struktur yang diharapkan.

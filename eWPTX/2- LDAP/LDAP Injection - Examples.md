@@ -3,114 +3,114 @@
 Status:
 
 Tags: [[eWPTX]] [[LDAP]] [[LDAP Injection]]
-###### Prerequisites: [[LDAP Injection - Overview]] [[LDAP Injection - Filter Syntax & Escaping]]
-# LDAP Injection - Examples
+###### Prasyarat: [[LDAP Injection - Overview]] [[LDAP Injection - Filter Syntax & Escaping]]
+# LDAP Injection - Contoh
 
-## Example 1: Search feature (broadening results)
+## Contoh 1: Fitur search (hasil melebar)
 
-Scenario: an app lets users search the directory by name:
+Skenario: aplikasi mengizinkan user mencari directory berdasarkan nama:
 
 ```text
 (&(objectClass=person)(cn={input}))
 ```
 
-If `{input}` isn’t escaped, LDAP metacharacters can change the filter so it matches **more than intended**.
+Jika `{input}` tidak di-escape, metacharacter LDAP bisa mengubah filter sehingga match **lebih luas dari yang dimaksud**.
 
-What you observe:
+Yang biasanya terlihat:
 
-- normal input returns a few matches
+- input normal menghasilkan beberapa match
     
-- special characters cause “too many” matches or different behavior
+- karakter spesial menyebabkan match “terlalu banyak” atau perilaku berubah
     
 
-Why it matters:
+Kenapa penting:
 
-- the app may display extra users and their attributes (email, department, phone)
+- aplikasi bisa menampilkan user tambahan beserta atributnya (email, departemen, telepon)
     
 
 ---
 
-## Example 2: Printer listing (true/false behavior)
+## Contoh 2: Listing printer (perilaku true/false)
 
-Scenario: show Canon printers if they exist:
+Skenario: menampilkan printer Canon jika ada:
 
 ```text
 (&(objectClass=printer)(type=Canon*))
 ```
 
-If `type` comes from user input and isn’t escaped, a wildcard can shift “specific match” into “match many”.
+Jika `type` berasal dari input user dan tidak di-escape, wildcard bisa mengubah “match spesifik” menjadi “match banyak”.
 
-What you observe:
+Yang biasanya terlihat:
 
-- icons appear/disappear based on input (blind-style signal)
+- ikon muncul/hilang tergantung input (sinyal blind)
     
 
 ---
 
-## Example 3: Authentication flow (logic manipulation)
+## Contoh 3: Alur autentikasi (manipulasi logika)
 
-Scenario: app searches LDAP for a user entry during login:
+Skenario: aplikasi melakukan search LDAP untuk entry user saat login:
 
 ```text
 (&(uid={username})(password={password}))
 ```
 
-Risk pattern:
+Pola berisiko:
 
-- the app **builds the filter string** using raw `{username}` / `{password}`
+- aplikasi **merakit string filter** memakai `{username}` / `{password}` mentah
     
-- and treats “LDAP returned at least one entry” as a successful login
+- lalu menganggap “LDAP mengembalikan minimal 1 entry” sebagai login sukses
     
 
-Impact:
+Dampak:
 
-- a crafted input that changes filter structure can cause the search to return an entry even when credentials are wrong.
+- input yang memodifikasi struktur filter bisa membuat search mengembalikan entry walau kredensial salah.
 
 ---
 
-## Example 4: Authorization check via groups
+## Contoh 4: Check otorisasi via group
 
-Scenario: app checks membership before showing an admin page:
+Skenario: aplikasi mengecek membership sebelum menampilkan halaman admin:
 
 ```text
 (&(objectClass=group)(cn=Admins)(member={userDn}))
 ```
 
-If `{userDn}` (or a username that becomes `{userDn}`) is not handled safely, a filter manipulation can break the assumption “only Admins pass”.
+Jika `{userDn}` (atau username yang dipetakan menjadi `{userDn}`) tidak ditangani dengan aman, manipulasi filter dapat merusak asumsi “hanya Admins yang lolos”.
 
-Why this is important:
+Kenapa ini penting:
 
-- authorization checks are usually higher impact than data search pages
+- check otorisasi biasanya berdampak lebih tinggi daripada sekadar halaman pencarian data
     
 
 ---
 
-## Example 5: Account recovery / “does user exist?”
+## Contoh 5: Account recovery / “apakah user ada?”
 
-Scenario: password reset checks whether the email exists:
+Skenario: password reset mengecek apakah email ada:
 
 ```text
 (&(objectClass=person)(mail={email}))
 ```
 
-If the UI behaves differently for “match” vs “no match”, injection can become a **user enumeration** channel:
+Jika UI bereaksi berbeda antara “match” vs “no match”, injection bisa jadi kanal **user enumeration**:
 
-- different response content
+- konten response berbeda
     
-- different status code
+- status code berbeda
     
-- different timing
+- timing berbeda
     
 ---
 
-## Notes for safe testing
+## Catatan untuk testing yang aman
 
-- Only test on systems you own/are authorized to test.
-- Treat LDAP injection like blind SQLi: confirm with **behavior differences**, not with "dump everything".
+- Hanya test pada sistem yang kamu miliki / kamu berwenang mengujinya.
+- Perlakukan LDAP injection seperti blind SQLi: konfirmasi lewat **perbedaan perilaku**, bukan dengan “dump semuanya”.
 
 ---
 
-## Actual Injection Payloads
+## Payload Injection (contoh)
 
 ### Authentication Bypass
 ```
@@ -129,7 +129,7 @@ password: anything
 ### Blind LDAP Enumeration
 ```
 # Character-by-character extraction of admin password
-# If response differs (true vs false):
+# Jika respons berbeda (true vs false):
 password=a*    → false
 password=b*    → false
 password=s*    → true (first char is 's')
@@ -144,7 +144,7 @@ uid=adm* → exists
 uid=admin → found
 ```
 
-### ldapsearch CLI Examples
+### Contoh `ldapsearch` (CLI)
 ```bash
 # Basic search
 ldapsearch -x -H ldap://target:389 -b "dc=example,dc=com" "(uid=admin)"
@@ -159,7 +159,7 @@ ldapsearch -x -H ldap://target:389 -D "cn=admin,dc=example,dc=com" -w password -
 ldapsearch -x -H ldap://target:389 -b "dc=example,dc=com" "(uid=*)" uid cn mail
 ```
 
-### Python ldap3 Library
+### Library `ldap3` (Python)
 ```python
 from ldap3 import Server, Connection, ALL
 
@@ -176,7 +176,7 @@ for entry in conn.entries:
 conn.search('dc=example,dc=com', '(objectClass=person)', attributes=['uid', 'cn'])
 ```
 
-### Boolean Oracle Script
+### Script boolean oracle
 ```python
 import requests
 

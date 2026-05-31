@@ -3,47 +3,47 @@
 Status:
 
 Tags: [[eWPTX]] [[Web Services]] [[XML]]
-###### Prerequisites: [[SOAP]]
+###### Prasyarat: [[SOAP]]
 # WSDL (Web Services Description Language)
 
-## Overview
+## Gambaran singkat
 
-WSDL is an XML-based language used to describe the functionality and interface of a web service.
+WSDL adalah bahasa berbasis XML untuk mendeskripsikan fungsi dan interface sebuah web service.
 
-It acts as a **contract** between provider and consumer, specifying:
+Ia berperan sebagai **kontrak** antara provider dan consumer, yang menjelaskan:
 
-- operations
-- input/output structures
-- bindings (how messages are sent)
-- endpoints (where the service is)
+- operasi
+- struktur input/output
+- binding (cara pesan dikirim)
+- endpoint (alamat service)
 
-WSDL is commonly used with SOAP services.
+WSDL paling sering ditemui di service SOAP.
 
 ---
 
-## WSDL versions
+## Versi WSDL
 
 - WSDL 1.1
-- WSDL 2.0 (newer, but 1.1 still widely used)
+- WSDL 2.0 (lebih baru, tapi 1.1 masih sangat umum)
 
 ---
 
-## Abstract vs concrete definitions
+## Definisi abstrak vs konkret
 
-- **Abstract**: what the service does (operations + messages)
-- **Concrete**: how/where it is offered (bindings + endpoints)
+- **Abstract**: apa yang dilakukan service (operasi + message)
+- **Concrete**: bagaimana/di mana service disediakan (binding + endpoint)
 
 ---
 
-## Components (high level)
+## Komponen (gambaran umum)
 
-- **Types**: defines data types (usually XSD schemas)
-- **Message**: message structures (WSDL 1.1)
-- **PortType**: operations supported (WSDL 1.1)
-- **Binding**: protocol/encoding details
-- **Service**: endpoint information (URL)
+- **Types**: mendefinisikan tipe data (biasanya schema XSD)
+- **Message**: struktur pesan (WSDL 1.1)
+- **PortType**: daftar operasi yang didukung (WSDL 1.1)
+- **Binding**: detail protokol/encoding
+- **Service**: info endpoint (URL)
 
-WSDL 2.0 note:
+Catatan WSDL 2.0:
 
-- uses **Interface** instead of `portType`
-- does not use `message` the same way; it points more directly to schema elements
+- memakai **Interface** sebagai pengganti `portType`
+- tidak memakai `message` dengan cara yang sama; lebih langsung merujuk ke elemen schema

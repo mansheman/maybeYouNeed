@@ -3,18 +3,18 @@
 Status:
 
 Tags: [[eWPTX]] [[ORM]]
-###### Prerequisites: [[ORM Injection]]
-# ORM Injection — Hibernate (Java)
+###### Prasyarat: [[ORM Injection]]
+# Injeksi ORM — Hibernate (Java)
 
-## Overview
+## Gambaran singkat
 
-Hibernate uses HQL (Hibernate Query Language) and the Criteria API. While Criteria API is generally safe, HQL string concatenation leads to injection similar to SQL injection.
+Hibernate memakai HQL (Hibernate Query Language) dan Criteria API. Criteria API umumnya aman, tetapi HQL yang dirakit via string concatenation bisa memicu injection mirip SQL injection.
 
 ---
 
-## HQL Injection
+## HQL injection
 
-### Vulnerable pattern
+### Pola rentan
 
 ```java
 // VULNERABLE — string concatenation
@@ -27,7 +27,7 @@ List results = query.list();
 // Returns all users
 ```
 
-### Safe pattern
+### Pola aman
 
 ```java
 // SAFE — named parameters
@@ -44,23 +44,23 @@ query.setParameter(1, userInput);
 
 ---
 
-## HQL vs SQL Differences
+## Perbedaan HQL vs SQL
 
-HQL operates on entity objects, not tables. This affects what an attacker can do:
+HQL bekerja pada entity object, bukan tabel fisik. Ini mempengaruhi kemampuan yang bisa dilakukan lewat injection:
 
-| Feature | SQL | HQL |
+| Fitur | SQL | HQL |
 |---------|-----|-----|
-| Table/column names | Physical | Entity/property names |
-| UNION | Supported | Not supported (usually) |
-| Subqueries | Full support | Limited |
-| Stored procedures | Yes | No |
-| `information_schema` | Yes | No |
+| Nama table/column | Fisik | Entity/property |
+| UNION | Didukung | Umumnya tidak didukung |
+| Subquery | Dukungan penuh | Terbatas |
+| Stored procedure | Ya | Tidak |
+| `information_schema` | Ya | Tidak |
 
-**Key limitation**: HQL doesn't support `UNION`, so typical UNION-based extraction doesn't work. Attackers rely on boolean-based or error-based techniques.
+**Batasan kunci**: HQL tidak mendukung `UNION`, jadi teknik ekstraksi berbasis UNION biasanya tidak jalan. Pola yang sering muncul adalah boolean-based atau error-based.
 
 ---
 
-## JPQL Injection
+## JPQL injection
 
 JPA (Java Persistence API) uses JPQL, which is similar to HQL:
 
@@ -77,7 +77,7 @@ query.setParameter("email", email);
 
 ---
 
-## Criteria API (Generally Safe)
+## Criteria API (umumnya aman)
 
 ```java
 // Safe — type-safe query building
@@ -87,7 +87,7 @@ Root<User> root = cr.from(User.class);
 cr.select(root).where(cb.equal(root.get("username"), userInput));
 ```
 
-The Criteria API parameterizes values internally. However, if column names are user-controlled, it can still be abused:
+Criteria API melakukan parameterisasi value secara internal. Namun, kalau nama field/property dikontrol user, tetap bisa disalahgunakan:
 
 ```java
 // VULNERABLE — user controls the field name
@@ -97,9 +97,9 @@ root.get(field);  // Can access any entity property
 
 ---
 
-## Native SQL Queries
+## Native SQL queries
 
-Hibernate allows raw SQL queries, which are fully vulnerable:
+Hibernate memungkinkan raw SQL, yang akan rentan jika input disisipkan tanpa parameterisasi:
 
 ```java
 // VULNERABLE
@@ -113,7 +113,7 @@ query.setParameter("name", input);
 
 ---
 
-## Testing for HQL Injection
+## Pengujian HQL injection
 
 ```
 # Error-based detection
@@ -130,10 +130,10 @@ FROM, WHERE, AND, OR, SELECT, ORDER BY, GROUP BY
 
 ---
 
-## Mitigation
+## Mitigasi
 
-- Always use parameterized queries (named parameters `:param` or positional `?1`)
-- Prefer Criteria API over string-based HQL
-- Never concatenate user input into HQL/JPQL/SQL strings
-- Validate and whitelist field names if user controls sort/filter fields
-- Use input validation as defense-in-depth
+- Selalu pakai query ter-parameterisasi (named params `:param` atau positional `?1`)
+- Lebih baik pakai Criteria API daripada HQL berbasis string
+- Jangan pernah concatenate input user ke string HQL/JPQL/SQL
+- Validasi + whitelist nama field kalau user mengontrol sort/filter
+- Validasi input sebagai defense-in-depth

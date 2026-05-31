@@ -3,33 +3,33 @@
 Status:
 
 Tags: [[eWPTX]] [[eWPTX/3- ORM/ORM]]
-###### Prerequisites: [[What is ORM?]]
-# ORM in Web Apps
+###### Prasyarat: [[What is ORM?]]
+# ORM di Aplikasi Web
 
-## Simplified database access
+## Akses database jadi lebih simpel
 
-ORM frameworks provide an API to interact with the database using objects/methods.
+Framework ORM menyediakan API untuk berinteraksi dengan database lewat object/method.
 
-This reduces the need for manual SQL in typical flows like:
+Ini mengurangi kebutuhan menulis SQL manual untuk flow umum seperti:
 
-- login/user management
+- login / manajemen user
 - content management
-- storing app configuration
-- logging/auditing
+- menyimpan konfigurasi aplikasi
+- logging / auditing
 
 ---
 
-## Mapping objects to tables
+## Mapping object ke tabel
 
-Example:
+Contoh:
 
 - `User` class → `users` table
-- `username`, `email` → columns
+- `username`, `email` → kolom
 
 ---
 
-## Typical benefit
+## Benefit yang paling terasa
 
-- faster development
-- less boilerplate
-- clearer data model
+- development lebih cepat
+- boilerplate lebih sedikit
+- data model lebih jelas

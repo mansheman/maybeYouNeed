@@ -3,14 +3,14 @@
 Status:
 
 Tags: [[eWPTX]]
-###### Prerequisites: [[Bypassing Filters & Evasion]]
-# Regex (Regular Expressions)
+###### Prasyarat: [[Bypassing Filters & Evasion]]
+# Regex (Regular Expression)
 
-## Overview
+## Gambaran singkat
 
-**Regex** is a pattern language used to match (and sometimes replace) text.
+**Regex** adalah “bahasa pola” untuk mencocokkan (dan kadang mengganti) teks.
 
-In security, regex shows up in:
+Di security, regex sering muncul di:
 
 - WAF rules
 - input validation filters
@@ -19,53 +19,53 @@ In security, regex shows up in:
 
 ---
 
-## Why it matters for bypassing filters
+## Kenapa penting untuk bypass filter
 
-A lot of “filters” are just regex patterns.
+Banyak “filter” pada praktiknya hanyalah regex.
 
-If you understand the regex, you can predict:
+Kalau kamu paham regex-nya, kamu bisa memprediksi:
 
-- what it blocks
-- what it allows
-- where the gaps are (anchors, greediness, case sensitivity, Unicode, etc.)
+- apa yang diblok
+- apa yang diizinkan
+- di mana celahnya (anchor, greedy, case sensitivity, Unicode, dll.)
 
 ---
 
-## Quick basics
+## Dasar cepat
 
 ### Common tokens
 
-- `.` any character (except newline in many engines)
-- `*` zero or more
-- `+` one or more
-- `?` optional (zero or one)
-- `{m,n}` repetition range
-- `^` start of string/line
-- `$` end of string/line
-- `|` OR
+- `.` karakter apa pun (kecuali newline di banyak engine)
+- `*` nol atau lebih
+- `+` satu atau lebih
+- `?` opsional (nol atau satu)
+- `{m,n}` rentang pengulangan
+- `^` awal string/baris
+- `$` akhir string/baris
+- `|` OR (atau)
 - `()` group / capture
 - `(?:...)` non-capturing group
 - `[]` character class
   - `[abc]` one of a/b/c
   - `[a-z]` range
   - `[^a-z]` NOT range
-- `\d` digit, `\w` word char, `\s` whitespace (engine-dependent details)
+- `\d` digit, `\w` word char, `\s` whitespace (detail bisa beda antar engine)
 
-### Examples
+### Contoh
 
-Match an email-ish pattern (simplified):
+Cocokkan pola email (sederhana):
 
 ```regex
 ^[^@\s]+@[^@\s]+\.[^@\s]+$
 ```
 
-Match `admin` or `root` (case-insensitive flag is usually external):
+Cocokkan `admin` atau `root` (flag case-insensitive biasanya di-set di luar pattern):
 
 ```regex
 ^(admin|root)$
 ```
 
-Match anything that contains `select` (naive SQLi keyword filter):
+Cocokkan teks yang mengandung `select` (contoh filter keyword SQLi yang naif):
 
 ```regex
 select
@@ -73,23 +73,23 @@ select
 
 ---
 
-## Testing a filter quickly (recommended)
+## Cara cepat ngetes filter (disarankan)
 
-Copy the regex and paste it into regex101, then it will explain the pattern and show matches.
+Copy regex-nya ke regex101 untuk melihat penjelasan pattern dan hasil match.
 
 - Site: https://regex101.com
 
-Tips when using it:
+Tips saat pakai regex101:
 
-- choose the correct regex “flavor” (PCRE / Python / JavaScript)
-- test both allowed and blocked inputs
-- look for missing anchors (`^`/`$`) and overly broad patterns
+- pilih “flavor” regex yang benar (PCRE / Python / JavaScript)
+- uji input yang lolos dan yang diblok
+- cari anchor yang hilang (`^`/`$`) dan pattern yang terlalu longgar
 
 ---
 
-## Common regex mistakes that create bypasses
+## Kesalahan regex yang sering bikin bypass
 
-- no anchors: pattern matches a substring, not the whole input
-- catastrophic backtracking: regex DoS risk
-- using deny-lists instead of allow-lists
-- inconsistent normalization (URL decode, Unicode, case folding) between filter and backend
+- tanpa anchor: pattern match substring, bukan seluruh input
+- catastrophic backtracking: risiko regex DoS
+- memakai deny-list alih-alih allow-list
+- normalisasi tidak konsisten (URL decode, Unicode, case folding) antara filter dan backend

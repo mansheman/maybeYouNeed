@@ -3,15 +3,15 @@
 Status:
 
 Tags:[[eWPTX]][[LDAP]]
-###### Prerequisites: 
+###### Prasyarat:
 # LDAP Injection - Lab
-today we are going to solve LDAP injection LAB from INE https://github.com/digininja/vuLnDAP
+Di lab ini kita latihan LDAP Injection dari INE (vuLnDAP): https://github.com/digininja/vuLnDAP
 
-**Step 1:** Open the lab link to access the Kali GUI instance.
+**Step 1:** Buka link lab untuk mengakses instance Kali (GUI).
 
 ![[Pics/INE/1_a6e2d311eb.png]]
 
-**Step 2:** Check if the provided machine/domain is reachable.
+**Step 2:** Cek apakah mesin/domain target bisa dijangkau.
 
 **Command:**
 
@@ -21,9 +21,9 @@ ping -c3 demo.ine.local
 
 ![[Pics/INE/2_241ccacae9.png]]
 
-The provided machine is reachable.
+Mesin target dapat dijangkau.
 
-**Step 3:** Check open ports on the provided machine.
+**Step 3:** Cek port yang terbuka di mesin target.
 
 **Command:**
 
@@ -33,92 +33,92 @@ nmap -p- demo.ine.local
 
 ![[Pics/INE/3_9654e95641.png]]
 
-Ports 22 (SSH) and 9090 are open on the target machine. As mentioned in the challenge description, the vulnerable web application is available on port 9090.
+Port 22 (SSH) dan 9090 terbuka. Sesuai deskripsi challenge, web app yang rentan ada di port 9090.
 
-**Step 4:** Check the web application available on port 9090.
+**Step 4:** Akses web application di port 9090.
 
-Open the following URL in the browser:
+Buka URL berikut di browser:
 
 **URL:** http://demo.ine.local:9090
 
 ![[Pics/INE/4_ec31e9cce0.png]]
 
-A [vuLnDAP](https://github.com/digininja/vuLnDAP) instance is present on the target machine.
+Terlihat instance [vuLnDAP](https://github.com/digininja/vuLnDAP) pada mesin target.
 
-**Step 5:** Explore the web application.
+**Step 5:** Eksplor web application.
 
-Click on the **Stock Control** link:
+Klik menu **Stock Control**:
 
 ![[Pics/INE/5_b7fb641609.png]]
 
-Select the **Fruit** category:
+Pilih kategori **Fruit**:
 
 ![[Pics/INE/5_1_48e1fdc208.png]]
 
-Notice the URL:
+Perhatikan URL:
 
 ![[Pics/INE/5_2_c2c5fa99f7.png]]
 
-The value **fruits** is reflected in the **objectClass** parameter.
+Nilai **fruits** direfleksikan pada parameter **objectClass**.
 
-# Exploiting LDAP injection vulnerability in the web application.
+# Eksploitasi LDAP injection pada web application
 
-**Step 6:** Perform LDAP injection.
+**Step 6:** Lakukan LDAP injection.
 
-Set the value `*` in the **objectClass** parameter:
+Set nilai `*` pada parameter **objectClass**:
 
-**Note:** `*` is a special character that would end up returning all the `objectClass` items.
+**Catatan:** `*` adalah karakter spesial (wildcard) yang bisa membuat query mengembalikan semua item yang cocok.
 
 ![[Pics/INE/6_792a957cbd.png]]
 
 ![[Pics/INE/6_1_7f99fc73f2.png]]
 
-Notice the output contains the names of the system users as well.
+Output juga memuat nama user sistem.
 
-Click on **More Info** link for the administrator (user david):
+Klik **More Info** untuk administrator (user `david`):
 
 ![[Pics/INE/6_2_581ef67495.png]]
 
-Click **Back**:
+Klik **Back**:
 
 ![[Pics/INE/6_3_199859aa8e.png]]
 
-Notice the URL parameter **objectClass** contains the value **posixAccount**.
+Perhatikan parameter **objectClass** sekarang berisi nilai **posixAccount**.
 
-The page contains the list of system users present in the LDAP database.
+Halaman ini berisi daftar user sistem yang tersimpan di LDAP database.
 
-**Step 7:** Extract SSH password for user david from the LDAP database.
+**Step 7:** Ambil password SSH untuk user `david` dari LDAP database.
 
 Click on **More Info** link for the administrator (user david):
 
 ![[Pics/INE/7_237fdc7bbe.png]]
 
-The resulting page doesn't contain any interesting information:
+Halaman hasilnya belum menampilkan informasi yang menarik:
 
 ![[Pics/INE/7_1_f3accc2944.png]]
 
-Check the LDAP schema information from the following URL:
+Cek referensi schema LDAP di URL berikut:
 
 **URL:** https://tldp.org/HOWTO/archived/LDAP-Implementation-HOWTO/schemas.html
 
 ![[Pics/INE/7_2_7b070b5984.png]]
 
-Notice the **posixaccount** object class. Some of the attributes it contains are:
+Perhatikan object class **posixaccount**. Beberapa atribut yang umum ada:
 
 - uidNumber
 - gidNumber
 - homedirectory
 - userpassword
 
-Open the home page of the vulnerable web application:
+Buka home page web app yang rentan:
 
 **URL:** http://demo.ine.local:9090
 
 ![[Pics/INE/7_3_2194d31f43.png]]
 
-The admins store the SSH keys in the database.
+Admin menyimpan SSH keys di database.
 
-Search for the ssh keys in the posixaccount object class:
+Cari info terkait SSH keys pada object class posixaccount:
 
 **Search Query:**  
 
@@ -128,25 +128,25 @@ ldap posixaccount ssh keys
 
 ![[Pics/INE/7_4_e968c72d29.png]]
 
-Check the [StackOverflow](https://serverfault.com/questions/653792/ssh-key-authentication-using-ldap) link from the results:
+Buka link [StackOverflow](https://serverfault.com/questions/653792/ssh-key-authentication-using-ldap) dari hasil pencarian:
 
 ![[Pics/INE/7_5_6f1abe5ae8.png]]
 
-We can use the `sshPublicKey` attribute to get the SSH keys.
+Kita bisa memakai atribut `sshPublicKey` untuk mengambil SSH keys.
 
-Use the following URL to get the uid, gid, home directory, user password, and SSH public key for the user david:
+Pakai URL berikut untuk mengambil `uidNumber`, `gidNumber`, `homedirectory`, `userpassword`, dan `sshPublicKey` untuk user `david`:
 
 **URL:** http://demo.ine.local:9090/item?cn=david&disp=uidNumber,gidNumber,homedirectory,userpassword,sshPublicKey
 
 ![[Pics/INE/7_6_3ac1be1d0e.png]]
 
-Notice the `sshPublicKey` returned a password instead of SSH keys. Probably this is the SSH password of the user.
+Perhatikan `sshPublicKey` justru mengembalikan password (bukan SSH key). Kemungkinan ini adalah password SSH user tersebut.
 
-**Potential SSH password for user david:** r0ck_s0l1d_p4ssw0rd
+**Kemungkinan password SSH untuk user david:** r0ck_s0l1d_p4ssw0rd
 
-**Step 8:** Retrieve the flag from the target machine using the recovered SSH credentials.
+**Step 8:** Ambil flag dari mesin target memakai kredensial SSH yang didapat.
 
-Try connecting to the target machine over SSH using the following credentials:
+Coba konek ke target via SSH dengan kredensial berikut:
 
 **Username:** david  
 **Password:** r0ck_s0l1d_p4ssw0rd
@@ -159,9 +159,9 @@ ssh david@demo.ine.local
 
 ![[Pics/INE/8_adc3da8e0d.png]]
 
-Login was successful!
+Login berhasil.
 
-Retrieve the flag:
+Ambil flag:
 
 **Commands:**  
 
@@ -174,4 +174,4 @@ cat flag
 
 **Flag:** 5520dd2d85e5003db92048c629bb5072
 
-That was all for LDAP injections!
+Selesai untuk lab LDAP injection ini.

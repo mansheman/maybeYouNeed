@@ -3,12 +3,12 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: [[What is XML?]]
-# XML Syntax
+###### Prasyarat: [[What is XML?]]
+# Sintaks XML
 
-## Start and end tags
+## Tag pembuka dan penutup
 
-Every element has an opening and closing tag:
+Setiap elemen punya tag pembuka dan penutup:
 
 ```xml
 <name>John Doe</name>
@@ -16,27 +16,27 @@ Every element has an opening and closing tag:
 
 ---
 
-## Attributes
+## Atribut
 
-Elements can have attributes:
+Elemen bisa punya atribut:
 
 ```xml
 <user id="123">John Doe</user>
 ```
 
-An XML element is everything from the start tag to the end tag.
-An element can contain:
+Satu elemen XML adalah semua yang berada dari start tag sampai end tag.
+Satu elemen dapat berisi:
 
 - text
-- attributes
-- other elements
-- or a mix
+- atribut
+- elemen lain
+- atau campuran semuanya
 
 ---
 
 ## Nesting
 
-Elements can be nested:
+Elemen bisa di-nest:
 
 ```xml
 <user>
@@ -49,4 +49,4 @@ Elements can be nested:
 
 ## Root element
 
-XML documents must have **one root element** that contains all others.
+Dokumen XML wajib memiliki **satu root element** yang membungkus semua elemen lain.

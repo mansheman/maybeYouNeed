@@ -3,12 +3,12 @@
 Status:
 
 Tags: [[eWPTX]] [[Web Services]]
-###### Prerequisites: [[REST (RESTful APIs)]]
-# REST API Security Testing
+###### Prasyarat: [[REST (RESTful APIs)]]
+# Pengujian Keamanan REST API
 
-## Overview
+## Gambaran singkat
 
-REST APIs expose application logic via HTTP endpoints. Testing follows similar principles to web app testing but with API-specific attack vectors.
+REST API mengekspos logic aplikasi via endpoint HTTP. Cara ngetesnya mirip web app testing, tapi biasanya ada vektor yang khas API (mis. IDOR/BOLA, mass assignment, token handling).
 
 ---
 
@@ -43,7 +43,7 @@ done
 
 ## BOLA / IDOR (Broken Object-Level Authorization)
 
-The most common API vulnerability (OWASP API #1).
+Salah satu yang paling sering di API (OWASP API #1).
 
 ```bash
 # Authenticated as user 1, try accessing user 2's data
@@ -57,13 +57,13 @@ done
 # Test with UUID — try predictable patterns or leaked IDs
 ```
 
-**What to look for**: Any endpoint that takes an object ID (user ID, order ID, file ID) and returns data without verifying the requester owns that object.
+**Yang dicari**: endpoint yang menerima object ID (user/order/file) lalu mengembalikan data tanpa verifikasi bahwa requester berhak atas object tersebut.
 
 ---
 
 ## Mass Assignment
 
-Send extra fields the API doesn't expect:
+Kirim field tambahan yang “seharusnya” tidak boleh di-set user:
 
 ```bash
 # Normal user registration
@@ -77,7 +77,7 @@ curl -X POST https://target.com/api/register \
   -d '{"username":"test","password":"test123","role":"admin","isAdmin":true}'
 ```
 
-Try common privilege fields: `role`, `admin`, `isAdmin`, `is_staff`, `privilege`, `group`, `permissions`
+Coba field privilege yang umum: `role`, `admin`, `isAdmin`, `is_staff`, `privilege`, `group`, `permissions`
 
 ---
 
@@ -111,7 +111,7 @@ done
 
 ## Content-Type Juggling
 
-Some APIs accept multiple content types, and validation may differ:
+Sebagian API menerima beberapa content-type, dan validasinya bisa berbeda-beda (ini sering jadi celah):
 
 ```bash
 # JSON (expected)
@@ -146,19 +146,19 @@ curl -X POST https://target.com/api/users \
   -d '{"id": [1,2,3]}'
 ```
 
-Look for: framework names, database types, internal paths, SQL queries in error messages.
+Cari: nama framework, tipe database, path internal, query SQL pada error message.
 
 ---
 
 ## Testing Methodology
 
-1. **Map**: Discover all endpoints, methods, and parameters
-2. **Authenticate**: Test auth mechanisms (tokens, API keys, sessions)
-3. **Authorize**: Test BOLA/IDOR on every object reference
-4. **Input**: Test injection (SQLi, NoSQLi, command injection) on all parameters
-5. **Content-Type**: Test XML injection, mass assignment
-6. **Rate limit**: Test brute-force and resource exhaustion
-7. **Errors**: Extract info from verbose error responses
+1. **Map**: temukan semua endpoint, method, dan parameter
+2. **Authenticate**: uji mekanisme auth (token, API key, session)
+3. **Authorize**: uji BOLA/IDOR pada setiap object reference
+4. **Input**: uji injection (SQLi/NoSQLi/command injection) di semua parameter
+5. **Content-Type**: uji variasi content-type, XML injection, mass assignment
+6. **Rate limit**: uji proteksi brute-force dan resource exhaustion
+7. **Errors**: manfaatkan error verbose untuk info internal
 
 ---
 

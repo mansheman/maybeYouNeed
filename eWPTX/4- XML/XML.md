@@ -3,10 +3,10 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: 
+###### Prasyarat:
 # XML
 
-## Notes (MOC)
+## Catatan (MOC)
 
 [[What is XML?]]
 [[How XML Works]]

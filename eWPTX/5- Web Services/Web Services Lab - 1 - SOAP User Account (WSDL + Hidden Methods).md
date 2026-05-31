@@ -3,22 +3,22 @@
 Status:
 
 Tags: [[eWPTX]] [[Web Services]]
-###### Prerequisites: [[Web Services]] [[SOAP]] [[WSDL (Web Services Description Language)]]
-# Web Services Lab - 1 - SOAP User Account (WSDL + Hidden Methods)
+###### Prasyarat: [[Web Services]] [[SOAP]] [[WSDL (Web Services Description Language)]]
+# Lab Web Service - 1 - SOAP User Account (WSDL + Metode Tersembunyi)
 
-## Source
+## Sumber
 
 - [[Web Services Lab]]
 
 ---
 
-**Step 1:** Open the lab link to access the Kali GUI instance.
+**Langkah 1:** Buka link lab untuk mengakses instance GUI Kali.
 
 ![[Pics/INE/1_1ce97ec19d.png]]
 
-**Step 2:** Check if the provided machine/domain is reachable.
+**Langkah 2:** Cek apakah mesin/domain yang diberikan bisa dijangkau.
 
-**Command:**
+**Perintah:**
 
 ```
 ping -c3 demo.ine.local
@@ -26,11 +26,11 @@ ping -c3 demo.ine.local
 
 ![[Pics/INE/2_ca5d6b61f9.png]]
 
-The provided machine is reachable.
+Mesin yang diberikan bisa dijangkau.
 
-**Step 3:** Check open ports on the provided machine.
+**Langkah 3:** Cek port yang terbuka pada target.
 
-**Command:**
+**Perintah:**
 
 ```
 nmap -sS -sV demo.ine.local
@@ -38,60 +38,60 @@ nmap -sS -sV demo.ine.local
 
 ![[Pics/INE/3_6c71a77e24.png]]
 
-Port 80 (Apache webserver) and 3306 (MySQL server) are open on the target machine.
+Port 80 (Apache web server) dan 3306 (MySQL server) terbuka di target.
 
-**Step 4:** Open the browser to inspect the hosted website.
+**Langkah 4:** Buka browser untuk menginspeksi website yang di-host.
 
 **URL:** http://demo.ine.local
 
 ![[Pics/INE/4_8bd2e93727.png]]
 
-An instance of [**OWASP Mutillidae II**](https://github.com/webpwnized/mutillidae) is hosted on the Apache webserver.
+Ada instance [**OWASP Mutillidae II**](https://github.com/webpwnized/mutillidae) yang berjalan di Apache.
 
-**Step 5:** Open the **Lookup User** web service.
+**Langkah 5:** Buka web service **Lookup User**.
 
-In the challenge description, the link for the web services is already provided.
+Di deskripsi challenge, link web service sudah disediakan.
 
-You could navigate to the web services from the menus available on the web page:
+Kamu bisa menuju web service lewat menu di web:
 
-Visit **Web Services** > **SOAP** > **Username Enumeration** > **Lookup User**:
+Masuk ke **Web Services** > **SOAP** > **Username Enumeration** > **Lookup User**:
 
 ![[Pics/INE/5_bfedbc98d6.png]]
 
-Alternatively, you can visit the web service URL provided in the challenge description:
+Alternatifnya, langsung buka URL web service dari deskripsi challenge:
 
 **URL:** http://demo.ine.local/webservices/soap/ws-user-account.php
 
-And that should take you to the following web page:
+Dan kamu akan masuk ke halaman berikut:
 
 ![[Pics/INE/5_1_232b83e120.png]]
 
-**Step 6:** Enumerate the WSDL file.
+**Langkah 6:** Enumerasi file WSDL.
 
-**Information:**  
-WSDL stands for Web Services Description Language and is used to describe web services. It is written in XML.
+**Info:**
+WSDL adalah singkatan dari Web Services Description Language, digunakan untuk mendeskripsikan web service. WSDL ditulis dalam XML.
 
-A WSDL document describes a web service. It specifies the location of the service, and the methods of the service, using these major elements:
+Dokumen WSDL mendeskripsikan web service: lokasi service dan method/operation, melalui elemen-elemen utama berikut:
 
 ![[Pics/INE/6_3ac6dc4620.png]]
 
-**Reference:** https://www.w3schools.com/xml/xml_wsdl.asp
+**Referensi:** https://www.w3schools.com/xml/xml_wsdl.asp
 
-And that's why this file is quite interesting since it's a description of the web service we will be pentesting.
+Makanya file ini menarik: ini “kontrak” web service yang akan kita pentest.
 
-We would be locating all the defined operations/methods of the service and the parameters they accept to invoke those later.
+Kita akan cari semua operation/method yang didefinisikan beserta parameter yang diterima, untuk nanti kita panggil manual.
 
-On the web service page, click on the **WSDL** file link or append `?wsdl` to the URL:
+Di halaman web service, klik link **WSDL** atau tambahkan `?wsdl` di URL:
 
 ![[Pics/INE/6_1_074df822bd.png]]
 
-That would show the WSDL file for the web service we will be interacting with:
+Itu akan menampilkan file WSDL untuk web service yang akan kita interaksikan:
 
 ![[Pics/INE/6_2_1c5b7370db.png]]
 
-As we already saw on the [W3schools WSDL page](https://www.w3schools.com/xml/xml_wsdl.asp), `<portType>` describes the operations that can be performed by the web service along with the messages (or the parameters) that have to be passed.
+Seperti yang dijelaskan di [W3schools WSDL page](https://www.w3schools.com/xml/xml_wsdl.asp), `<portType>` mendeskripsikan operation yang bisa dilakukan web service beserta message/parameter yang harus dikirim.
 
-If you check the WSDL for the web service, you will find that it supports five operations, namely:
+Kalau kamu cek WSDL-nya, service ini mendukung 5 operation:
 
 - getUser
 - createUser
@@ -103,113 +103,113 @@ If you check the WSDL for the web service, you will find that it supports five o
 
 ![[Pics/INE/6_4_f56f972c18.png]]
 
-The documentation for all of these operations is also available in the WSDL file.
+Dokumentasi untuk semua operation tersebut juga tersedia di file WSDL.
 
-The conclusion is that the web service page only lists 3 out of these 5 operations. So seemingly, these operations are not meant to be invoked by the normal users and are probably reserved for the administrators.
+Kesimpulannya: halaman web service hanya menampilkan 3 dari 5 operation. Kemungkinan 2 sisanya tidak ditujukan untuk user biasa dan “disimpan” untuk admin.
 
-**Step 7:** Check information on `getUser` operation.
+**Langkah 7:** Cek informasi operation `getUser`.
 
-Head back to the web service page and click on the `getUser` link:
+Kembali ke halaman web service lalu klik link `getUser`:
 
 ![[Pics/INE/7_791e278cac.png]]
 
-As you can see, the information on the `getUser` operation is listed. The input, and output parameters are also listed here. All this information is also present in the WSDL file which we explored in the last step.
+Terlihat detail operation `getUser`, termasuk parameter input dan output. Informasi yang sama juga bisa ditemukan di WSDL.
 
-Scroll down to view the complete request to invoke the `getUser` method of the web service:
+Scroll ke bawah untuk melihat request lengkap untuk memanggil method `getUser`:
 
 ![[Pics/INE/7_1_399db4b8f6.png]]
 
-**Step 8:** Launch Burp Suite.
+**Langkah 8:** Jalankan Burp Suite.
 
-Open the start menu and select: **03 - Web Application Analysis** -> **burpsuite**
+Buka start menu lalu pilih: **03 - Web Application Analysis** -> **burpsuite**
 
 ![[Pics/INE/8_259809fec7.png]]
 
-If you get a warning about the JDK version, feel free to ignore it and press the **OK** button:
+Kalau ada warning soal versi JDK, abaikan saja lalu klik **OK**:
 
 ![[Pics/INE/8_1_ecde6f6ec2.png]]
 
-Create a temporary project:
+Buat project sementara:
 
 ![[Pics/INE/8_2_5493a91a93.png]]
 
-We will be using the default Burp Suite configuration:
+Gunakan konfigurasi default Burp Suite:
 
 ![[Pics/INE/8_3_9b607210bd.png]]
 
-After these steps, Burp would start up!
+Setelah itu Burp akan terbuka.
 
 ![[Pics/INE/8_4_ec2d5f7ef4.png]]
 
-**Step 8:** Invoke the `getUser` method.
+**Langkah 8:** Panggil method `getUser`.
 
-Open the Repeater window in Burp Suite:
+Buka tab Repeater di Burp Suite:
 
 ![[Pics/INE/9_fdb559d4df.png]]
 
-Copy the request to invoke the `getUser` method from the web page and paste it in the Repeater window:
+Copy request pemanggilan `getUser` dari halaman web, lalu paste ke Repeater:
 
 ![[Pics/INE/9_1_40633912a0.png]]
 
-Remove the `/mutillidae` part of the URL as the web service is located at `/webservice` and not at `/mutillidae/webservice`.
+Hapus bagian `/mutillidae` dari URL karena web service berada di `/webservice` (bukan `/mutillidae/webservice`).
 
-Once that is done, send the request.
+Setelah itu, kirim request.
 
-That should open a dialog asking for the `Host` and the `Port` of the target machine:
+Biasanya akan muncul dialog untuk mengisi `Host` dan `Port` target:
 
 **Host:** demo.ine.local **Port:** 80
 
 ![[Pics/INE/9_2_5ff00fbb8c.png]]
 
-Now with the target configured, click on the send button again:
+Setelah target di-set, klik send lagi:
 
 ![[Pics/INE/9_3_473cd7cc10.png]]
 
-Now the request worked!
+Request berhasil.
 
-Scroll down the response and you would notice the `username` and `signature` returned by the web service:
+Scroll response dan perhatikan `username` serta `signature` yang dikembalikan:
 
 ![[Pics/INE/9_4_2c4ae63ff1.png]]
 
-**Step 10:** Invoke the `deleteUser` method.
+**Langkah 10:** Panggil method `deleteUser`.
 
-Replace all the occurrences of `getUser` with `deleteUser` and send the request:
+Ganti semua kemunculan `getUser` menjadi `deleteUser`, lalu kirim request:
 
 ![[Pics/INE/10_cf622d02c8.png]]
 
-As you can see in the above image, we got back a 200 response!
+Kita mendapat response 200.
 
-Scrolling down reveals about an error:
+Kalau scroll, terlihat error:
 
 ![[Pics/INE/10_1_6b66ca90e8.png]]
 
-As you can see in the above image, there's a parameter that is missing from the request sent to the web service.
+Error tersebut menunjukkan ada parameter yang kurang pada request.
 
-But more importantly, we were able to invoke the web service that was supposedly hidden.
+Namun yang lebih penting: kita berhasil memanggil operation yang tadinya tidak ditampilkan.
 
-Head over to the web service's WSDL file and locate `deleteUserRequest`:
+Kembali ke WSDL dan cari `deleteUserRequest`:
 
 ![[Pics/INE/10_2_2e0e2266fc.png]]
 
-As you can notice in the above image, there are two parameters accepted by this function, namely: `username` and `password`. Both of them are of the string data type.
+Di situ terlihat function ini menerima dua parameter: `username` dan `password` (keduanya bertipe string).
 
-**Step 11:** Performing SQL Injection attack.
+**Langkah 11:** Melakukan serangan SQL Injection.
 
-Now we know that the `deleteUser` requires two parameters. But we don't know the password of any of the users.
+Sekarang kita tahu `deleteUser` butuh dua parameter, tapi kita tidak tahu password user mana pun.
 
-We could perform a dictionary attack. Alternatively, we could check if the web service is vulnerable to SQL Injection.
+Bisa melakukan dictionary attack, atau cek apakah web service rentan SQL Injection.
 
-Let's go with the latter. First, we will send a single quote (`'`) as the password and see if any errors are returned from the web service:
+Kita coba opsi kedua. Pertama, kirim single quote (`'`) sebagai password untuk melihat apakah muncul error:
 
 ![[Pics/INE/11_16792e5412.png]]
 
-As you can see, we again get back a 200 response.
+Kita tetap dapat response 200.
 
-Scrolling down reveals a SQL error:
+Kalau scroll, muncul SQL error:
 
 ![[Pics/INE/11_1_abceff4303.png]]
 
-The SQL query executed by the web service is also revealed in the error message:
+Error message-nya bahkan membocorkan query SQL yang dieksekusi:
 
 **SQL Query:**
 
@@ -217,17 +217,17 @@ The SQL query executed by the web service is also revealed in the error message:
 SELECT username FROM accounts WHERE username='Jeremy' AND password=''';
 ```
 
-As you can see, there is a single extra quote (`'`) which invalidated the whole SQL query.
+Seperti terlihat, ada satu quote tambahan (`'`) yang membuat query SQL-nya jadi tidak valid.
 
-So we are sure that an SQL Injection vulnerability is present in the web service!
+Jadi cukup jelas ada celah SQL Injection di web service ini.
 
-Now we will send the following SQL injection payload:
+Sekarang kirim payload SQLi berikut:
 
 ```
 ' or '1'='1
 ```
 
-The above payload would result in the following SQL query being executed by the web service:
+Payload di atas akan menghasilkan query berikut:
 
 **SQL Query:**
 
@@ -235,35 +235,35 @@ The above payload would result in the following SQL query being executed by the 
 SELECT username FROM accounts WHERE username='Jeremy' AND password='' or '1'='1';
 ```
 
-The condition on the right side of the `OR` clause would always evaluate to true since `'1'='1'` and therefore, even when the conditions on the left side evaluate to false, the result would still be true!
+Kondisi di sisi kanan `OR` akan selalu true karena `'1'='1'`. Jadi walau kondisi kiri false, hasil akhirnya tetap true.
 
-Therefore, sending the above payload in the password field should delete the account for the user named `Jeremy`:
+Karena itu, payload di field password seharusnya menghapus akun user bernama `Jeremy`:
 
 ![[Pics/INE/11_2_3e0d4988c8.png]]
 
-Scrolling down reveals the account deletion message:
+Scroll untuk melihat pesan penghapusan akun:
 
 ![[Pics/INE/11_3_f0e40af825.png]]
 
-As you can see, we also get back the first flag:
+Kita juga mendapatkan flag pertama:
 
 **flag1:** 6701f2d8bf691da5ee694d3a1786a7e6
 
-**Step 12:** Invoke the `getAdminInfo` method.
+**Langkah 12:** Panggil method `getAdminInfo`.
 
-Check the WSDL file for the parameters required to invoke the `getAdminInfo` method:
+Cek WSDL untuk melihat parameter yang dibutuhkan oleh `getAdminInfo`:
 
 ![[Pics/INE/12_34c910169d.png]]
 
-As you can see in the above image, no parameters are required to invoke the `getAdminInfo` method.
+Terlihat bahwa `getAdminInfo` tidak butuh parameter.
 
-Scroll down to the view the documentation for the `getAdminInfo` method:
+Scroll untuk melihat dokumentasi `getAdminInfo`:
 
 ![[Pics/INE/12_1_680fa4e0b4.png]]
 
-This method retrieves some (non-sensitive) account details for the admin user. A sample request has also been provided.
+Method ini mengambil beberapa detail akun (non-sensitive) milik admin. Contoh request juga disediakan.
 
-Head over to Burp Repeater and send the following request:
+Masuk ke Burp Repeater dan kirim request berikut:
 
 **Request:**
 
@@ -286,26 +286,26 @@ User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
 
 ![[Pics/INE/12_2_8ab6955d27.png]]
 
-Sending the above request results in a 500 response!
+Request tersebut menghasilkan response 500.
 
-Scrolling down reveals that the only admin user could invoke this method:
+Kalau dilihat lebih lanjut, tampaknya hanya admin yang bisa memanggil method ini:
 
 ![[Pics/INE/12_3_a7a9bad9ff.png]]
 
-So it seems like there is some restriction on the invocation of this method.
+Jadi memang ada pembatasan pada pemanggilan method ini.
 
-**Step 13:** Bypass the SOAP body restrictions using the SOAPAction header.
+**Langkah 13:** Bypass pembatasan SOAP body dengan header SOAPAction.
 
-There is possibly a restriction on the invocation of the `getAdminInfo` method.
+Kemungkinan ada restriksi saat memanggil `getAdminInfo`.
 
-An alternative way to invoke a web service method is by using the SOAPAction header.
+Salah satu cara lain memanggil method SOAP adalah dengan header SOAPAction.
 
-**Information:**  
-The SOAPAction header is a transport protocol header (either HTTP or JMS). It is transmitted with SOAP messages, and provides information about the intention of the web service request, to the service. The WSDL interface for a web service defines the SOAPAction header value used for each operation. Some web service implementations use the SOAPAction header to determine behavior.
+**Info:**
+SOAPAction adalah header transport (HTTP atau JMS) yang dikirim bersama pesan SOAP untuk memberi informasi “intent” request ke service. Interface WSDL mendefinisikan nilai SOAPAction untuk tiap operation. Beberapa implementasi menggunakan SOAPAction untuk menentukan behavior.
 
-**Reference:** https://www.ibm.com/docs/en/baw/19.x?topic=binding-protocol-headers
+**Referensi:** https://www.ibm.com/docs/en/baw/19.x?topic=binding-protocol-headers
 
-Head over to the WSDL file for the web service and inspect the `soapaction` attribute for the `getAdminInfo` operation:
+Kembali ke WSDL lalu cek atribut `soapaction` untuk operation `getAdminInfo`:
 
 ![[Pics/INE/13_36ef5150b4.png]]
 
@@ -315,7 +315,7 @@ Head over to the WSDL file for the web service and inspect the `soapaction` at
 urn:ws-user-account#getAdminInfo
 ```
 
-Now head over to the Burp Repeater window and send the following request:
+Sekarang di Burp Repeater, kirim request berikut:
 
 **Request:**
 
@@ -332,17 +332,17 @@ SOAPAction: urn:ws-user-account#getAdminInfo
 </soapenv:Envelope>
 ```
 
-As you can notice, we are sending the SOAPAction header and have removed the SOAP request header and body.
+Perhatikan: kita mengirim header SOAPAction dan menghapus SOAP header/body pada request XML.
 
 ![[Pics/INE/13_1_fdef6b42cf.png]]
 
-Sending the above request results in a 200 response!
+Request tersebut menghasilkan response 200.
 
-Scrolling down the response shows the details for the admin user and the second flag:
+Scroll response untuk melihat detail user admin dan flag kedua:
 
 ![[Pics/INE/13_2_f0dd8e6229.png]]
 
 **flag2:** 4315749f21a66fad53895daccbebf309
 
-**So that was all about WSDL enumeration, invoking hidden methods, performing SQL injection and bypassing SOAP body restrictions.**
+**Sampai sini: kita sudah enumerasi WSDL, memanggil method tersembunyi, melakukan SQL injection, dan bypass pembatasan SOAP body.**
 

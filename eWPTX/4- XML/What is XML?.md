@@ -3,36 +3,36 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: 
-# What is XML?
+###### Prasyarat:
+# Apa itu XML?
 
-**XML (eXtensible Markup Language)** is a markup language used to **structure, store, and transport data** in a readable and platform-independent format.
+**XML (eXtensible Markup Language)** adalah markup language untuk **menstrukturkan, menyimpan, dan mentransport data** dalam format yang readable dan platform-independent.
 
-It defines rules for encoding documents in a way that is both:
+XML mendefinisikan aturan encoding dokumen sehingga:
 
-- human-readable
-- machine-readable
+- mudah dibaca manusia
+- mudah diproses mesin
 
-XML is still widely used in many IT systems, even with newer formats like JSON/YAML.
+XML masih banyak dipakai di sistem IT, walaupun sekarang ada format yang lebih baru seperti JSON/YAML.
 
 ---
 
 ## XML vs HTML
 
-XML is a markup language like HTML, but:
+XML sama-sama markup language seperti HTML, tapi:
 
-- XML is designed to **transport/represent data**, while HTML is designed to **display/render data**.
-- XML tags are **not predefined** like HTML tags.
+- XML dibuat untuk **merepresentasikan/mentransport data**, sedangkan HTML fokus ke **tampilan/rendering**.
+- Tag XML **tidak pre-defined** seperti tag HTML.
 
 ---
 
-## Common XML use cases
+## Use case XML yang umum
 
-XML shows up in:
+XML sering muncul di:
 
 - RSS feeds
 - SVG
-- OOXML formats (`.docx`, `.pptx`, etc.)
+- format OOXML (`.docx`, `.pptx`, dll)
 - SOAP / XML-RPC
 - WebDAV
-- PDF-related workflows
+- workflow terkait PDF

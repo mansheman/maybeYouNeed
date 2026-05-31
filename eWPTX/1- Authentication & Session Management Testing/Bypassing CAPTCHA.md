@@ -6,125 +6,125 @@ tags2: "[[Authentication]]"
 Tag3: "[[eWPTX]]"
 ---
 
-# Bypassing CAPTCHA
+# Bypass CAPTCHA
 
-## Overview
-This test focuses on identifying **weak lockout mechanisms**, specifically **CAPTCHA implementations** that aim to prevent automated login attempts but are poorly designed or improperly enforced.
+## Gambaran Singkat
+Tes ini fokus untuk mengidentifikasi **mekanisme lockout yang lemah**, khususnya implementasi **CAPTCHA** yang tujuannya mencegah login otomatis (bot) tapi desainnya buruk atau enforcement-nya tidak konsisten.
 
 ---
 
-## What is CAPTCHA?
-**CAPTCHA** (Completely Automated Public Turing test to tell Computers and Humans Apart) is a security control that requires a user to solve a challenge to prove they are human, thereby preventing automated bot attacks.
+## Apa itu CAPTCHA?
+**CAPTCHA** (Completely Automated Public Turing test to tell Computers and Humans Apart) adalah kontrol keamanan yang meminta user menyelesaikan challenge untuk membuktikan bahwa dia manusia, sehingga mengurangi serangan bot.
 
 ---
 
 ## Prerequisites
-- Understanding of authentication workflows
-- Familiarity with brute-force attacks
-- Basic scripting or automation knowledge
-- Awareness of OCR and ML-based attacks
+- Paham alur autentikasi
+- Familiar dengan brute force / automation
+- Dasar scripting
+- Paham konsep OCR dan serangan berbasis ML
 
 ---
 
-## Types of CAPTCHA
+## Jenis CAPTCHA
 
 ---
 
 ## 1. Arithmetic-Based CAPTCHA (Weak)
 
-**Description:**
-- Asks the user to solve a simple arithmetic problem (e.g., *“What is 3 + 7?”*).
+**Deskripsi:**
+- Meminta user menjawab soal aritmatika sederhana (mis. *“3 + 7 = ?”*).
 
-**Strength:**
-- Very low
+**Kekuatan:**
+- Sangat lemah
 
-**Bypass Techniques:**
-- Brute-force automation
-- CAPTCHA-solving services (e.g., 2Captcha)
+**Teknik bypass:**
+- Otomasi/brute force
+- Layanan pemecah CAPTCHA (mis. 2Captcha)
 
-**Why It Fails:**
-- Extremely low complexity
-- Easily solvable by scripts or bots
-- No real human verification
+**Kenapa gagal:**
+- Kompleksitas sangat rendah
+- Mudah dipecahkan script/bot
+- Tidak benar-benar membedakan manusia vs bot
 
 
 ---
 
 ## 2. Text-Based CAPTCHA (Basic)
 
-**Description:**
-- Displays distorted or jumbled text that the user must type correctly.
+**Deskripsi:**
+- Menampilkan teks yang didistorsi/diacak dan user harus mengetiknya dengan benar.
 
-**Strength:**
+**Kekuatan:**
 - Basic
 
-**Observations:**
-- Slightly more complex than arithmetic CAPTCHAs
-- Often includes distorted letters or background noise
+**Observasi:**
+- Sedikit lebih kompleks dibanding aritmatika
+- Sering ada noise/background atau huruf terdistorsi
 
-**Vulnerabilities:**
-- Bots using OCR or pre-trained ML models can recognize text
-- Simple distortions are trivial for modern automated tools
-- Frequently bypassed at scale
+**Kerentanan:**
+- Bot dengan OCR / model ML bisa membaca teks
+- Distorsi sederhana mudah ditaklukkan tool modern
+- Sering dibypass massal
 
 
 ---
 
 ## 3. Image-Based CAPTCHA (Moderate)
 
-**Description:**
-- Users must identify or select images matching a condition  
+**Deskripsi:**
+- User memilih gambar yang sesuai kondisi  
   (e.g., *“Select all images with traffic lights”*).
 
-**Strength:**
+**Kekuatan:**
 - Moderate
 
-**Why It’s Better:**
-- Requires more advanced AI models
-- Harder to automate than text-based CAPTCHAs
+**Kenapa lebih baik:**
+- Butuh model AI yang lebih canggih
+- Lebih sulit diautomasi dibanding text-based
 
-**Vulnerabilities:**
-- Still susceptible to machine learning
-- Object-recognition models can bypass with sufficient training
-- Not fully bot-proof
+**Kerentanan:**
+- Tetap bisa dilawan dengan machine learning
+- Model object recognition bisa bypass jika training cukup
+- Tidak 100% bot-proof
 
 
 ---
 
 ## 4. reCAPTCHA v2 (Moderate → Strong)
 
-**Description:**
-- Developed by Google
-- Typically involves clicking **“I’m not a robot”**
-- May trigger image-based challenges depending on risk
+**Deskripsi:**
+- Dikembangkan oleh Google
+- Umumnya berupa klik **“I’m not a robot”**
+- Bisa memunculkan challenge gambar tergantung risk
 
-**Security Notes:**
-- Combines user interaction with behavioral analysis
-- Much harder to bypass than custom CAPTCHAs
+**Catatan keamanan:**
+- Menggabungkan interaksi user + analisis perilaku
+- Umumnya lebih sulit dibypass dibanding CAPTCHA buatan sendiri
 
 ---
 
 ## 5. reCAPTCHA v3 (Very Strong)
 
-**Description:**
-- Fully invisible CAPTCHA
-- Runs in the background without user interaction
-- Assigns a **risk score** based on user behavior
+**Deskripsi:**
+- CAPTCHA “invisible”
+- Berjalan di background tanpa interaksi user
+- Memberi **risk score** berdasarkan perilaku
 
-**Why It’s Strong:**
-- No challenge to solve
-- Difficult to automate convincingly
-- Relies on behavioral signals rather than puzzles
+**Kenapa kuat:**
+- Tidak ada puzzle yang bisa “dipecahkan”
+- Sulit diautomasi dengan meyakinkan
+- Bertumpu pada sinyal perilaku, bukan teka-teki
 
 ---
 
 ## Key Takeaway
 > CAPTCHA alone is **not sufficient** as a lockout mechanism.  
-> Weak implementations can be bypassed easily, especially without:
+> Implementasi yang lemah bisa dibypass dengan mudah, terutama jika tidak ada:
 - Rate limiting
-- Account lockout policies
-- Behavioral analysis
-- Proper server-side validation
+- Kebijakan lockout akun
+- Analisis perilaku
+- Validasi server-side yang benar
 
 ---
 # Lab Documentation

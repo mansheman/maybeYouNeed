@@ -3,20 +3,20 @@
 Status:
 
 Tags: [[eWPTX]] [[Bypassing Filters & Evasion]]
-###### Prerequisites: [[Bypassing Filters & Evasion]]
-# WAF Fingerprinting & Detection
+###### Prasyarat: [[Bypassing Filters & Evasion]]
+# Fingerprinting & Deteksi WAF
 
-## Why Fingerprint a WAF
+## Kenapa perlu fingerprint WAF?
 
-Before attempting bypass techniques, identify what you're up against. Different WAFs have different detection logic, default rules, and known weaknesses.
+Sebelum mencoba teknik bypass, identifikasi dulu WAF apa yang kamu hadapi. Tiap WAF punya logika deteksi, default rule, dan kelemahan yang berbeda.
 
 ---
 
-## Automated Detection
+## Deteksi otomatis
 
 ### wafw00f
 
-The standard tool for WAF identification:
+Tool standar untuk identifikasi WAF:
 
 ```bash
 # Basic scan
@@ -44,11 +44,11 @@ nmap -p 443 --script http-waf-fingerprint target.com
 
 ---
 
-## Manual Fingerprinting
+## Fingerprinting manual
 
 ### Response header analysis
 
-Look for these headers in responses:
+Cari header berikut di response:
 
 | Header | WAF |
 |--------|-----|
@@ -61,7 +61,7 @@ Look for these headers in responses:
 
 ### Cookie-based identification
 
-| Cookie name | WAF |
+| Nama cookie | WAF |
 |-------------|-----|
 | `__cfduid`, `cf_clearance` | Cloudflare |
 | `visid_incap_*`, `incap_ses_*` | Imperva |
@@ -70,23 +70,23 @@ Look for these headers in responses:
 
 ### Behavioral fingerprinting
 
-Send an obvious attack payload and observe:
+Kirim payload yang jelas “mencurigakan” lalu amati responnya:
 
 ```bash
 curl -v "https://target.com/?id=1' OR 1=1--"
 ```
 
-Observe the response:
+Amati responnya:
 
-- **Cloudflare**: 403 with "Attention Required!" or "Ray ID" in body
-- **ModSecurity**: 403 with "ModSecurity" or "OWASP CRS" in error message
-- **AWS WAF**: 403 with `{"message":"Forbidden"}`
-- **Akamai**: "Access Denied" with reference number
-- **Imperva**: "Request unsuccessful" with incident ID
+- **Cloudflare**: 403 dengan "Attention Required!" atau "Ray ID" di body
+- **ModSecurity**: 403 dengan "ModSecurity" atau "OWASP CRS" di error message
+- **AWS WAF**: 403 dengan `{"message":"Forbidden"}`
+- **Akamai**: "Access Denied" dengan reference number
+- **Imperva**: "Request unsuccessful" dengan incident ID
 
 ### Error page analysis
 
-Trigger different error codes and compare responses:
+Picu berbagai tipe error dan bandingkan responnya:
 
 ```bash
 # Try a long URL
@@ -101,22 +101,24 @@ curl "https://target.com/../../etc/passwd"
 
 ---
 
-## Common WAFs and Their Characteristics
+## WAF umum dan karakteristiknya
 
-| WAF | Detection Logic | Known Weaknesses |
+| WAF | Logika deteksi | Kelemahan umum |
 |-----|----------------|------------------|
-| **ModSecurity + CRS** | Regex-based rule matching, anomaly scoring | Rule-specific bypasses, encoding tricks |
-| **Cloudflare** | ML + signature-based hybrid | Unicode normalization, chunked encoding |
-| **AWS WAF** | Configurable rules (managed + custom) | Depends on ruleset configuration |
-| **Akamai** | Behavioral analysis + signatures | Request fragmentation |
-| **Imperva** | ML + signatures + behavioral | Multipart/form-data tricks |
-| **F5 BIG-IP ASM** | Positive/negative security model | Parameter pollution |
+| **ModSecurity + CRS** | Rule matching berbasis regex, anomaly scoring | Bypass spesifik rule, trik encoding |
+| **Cloudflare** | Hybrid ML + signature | Unicode normalization, chunked encoding |
+| **AWS WAF** | Rule dapat dikonfigurasi (managed + custom) | Tergantung konfigurasi ruleset |
+| **Akamai** | Behavioral analysis + signature | Fragmentasi request |
+| **Imperva** | ML + signature + behavioral | Trik multipart/form-data |
+| **F5 BIG-IP ASM** | Model keamanan positif/negatif | Parameter pollution |
 
 ---
 
-## Next Steps After Identification
+## Langkah lanjut setelah teridentifikasi
 
-1. Research known bypasses for the specific WAF version
-2. Test [[Encoding & Transformation Bypasses]]
-3. Apply WAF-specific [[WAF Bypass Payloads & Techniques]]
-4. Check [[Filter Bypass Case Studies]] for real-world examples
+1. Riset bypass yang dikenal untuk versi WAF terkait
+2. Uji [[Encoding & Transformation Bypasses]]
+3. Terapkan teknik spesifik WAF di [[WAF Bypass Payloads & Techniques]]
+4. Cek [[Filter Bypass Case Studies]] untuk contoh dunia nyata
+
+Praktik yang baik: dokumentasikan hasilnya (payload mana yang diblok, HTTP status, body/error string), karena itu akan jadi baseline saat iterasi bypass.

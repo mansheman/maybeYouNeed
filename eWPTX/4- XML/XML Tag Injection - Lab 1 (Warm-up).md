@@ -3,17 +3,17 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: [[XML Tag Injection - Overview]]
-# XML Tag Injection - Lab 1 (Warm-up)
+###### Prasyarat: [[XML Tag Injection - Overview]]
+# XML Tag Injection - Lab 1 (Pemanasan)
 
-Context: training/lab environment.
+Konteks: environment training/lab.
 
-Goal: become a “leet” member when default users are “looser”.
+Tujuan: jadi member “leet” ketika user default adalah “looser”.
 
-Notes captured from lab write-up:
+Catatan dari write-up lab:
 
-- the XML structure is visible in a client-side function (e.g., `WSregister__old`)
-- testing showed `username` was the injectable parameter
-- crafted input allowed inserting a new `<user>` element with a different role
+- struktur XML terlihat di fungsi sisi client (mis. `WSregister__old`)
+- testing menunjukkan `username` adalah parameter injectable
+- input yang disusun memungkinkan menyisipkan elemen `<user>` baru dengan role berbeda
 
-(Keep this note as a lab reference; expand with screenshots/requests only for your authorized lab.)
+(Simpan note ini sebagai referensi lab; tambahkan screenshot/request hanya pada lab yang memang kamu berwenang uji.)

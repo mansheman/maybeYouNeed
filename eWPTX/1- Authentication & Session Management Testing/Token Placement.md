@@ -3,10 +3,10 @@
 Status:
 
 Tags:[[eWPTX]] [[Authentication]]
-###### Prerequisites: [[Token-Based Authentication]]
-# Token Placement
+###### Prasyarat: [[Token-Based Authentication]]
+# Penempatan Token
 
-## Authorization header (recommended)
+## Header Authorization (disarankan)
 
 ```http
 GET /api/v1/resource HTTP/1.1
@@ -14,52 +14,52 @@ Host: example.com
 Authorization: Bearer <token>
 ```
 
-Benefits:
+Kelebihan:
 
-- standard for APIs
-- avoids URL leakage
+- standar de-facto untuk API
+- menghindari token bocor lewat URL
 
 ---
 
-## Query parameters (avoid)
+## Query parameter (sebaiknya dihindari)
 
 ```http
 GET /api/v1/resource?access_token=<token> HTTP/1.1
 ```
 
-Risks:
+Risiko:
 
-- leaks via history, logs, referrers
-- may be cached
+- mudah bocor via browser history, access log, dan `Referer`
+- bisa ikut ke-cache
 
 ---
 
 ## Request body
 
-Used for POST flows, but avoid placing tokens in GET bodies.
+Bisa dipakai pada flow POST tertentu, tapi hindari “mengakali” dengan menaruh token di body untuk request GET.
 
 ---
 
-## Cookies
+## Cookie
 
 ```http
 Set-Cookie: auth_token=<token>; Secure; HttpOnly; SameSite=Lax
 ```
 
-Pros:
+Kelebihan:
 
-- automatic inclusion for same-site requests
+- otomatis ikut terkirim pada request same-site
 
-Risks:
+Risiko:
 
-- CSRF if not protected
+- rentan CSRF jika tidak ada mitigasi yang benar
 
 ---
 
-## Custom headers
+## Custom header
 
 ```http
 X-Auth-Token: <token>
 ```
 
-Less standard than `Authorization`.
+Lebih tidak standar dibanding `Authorization`.

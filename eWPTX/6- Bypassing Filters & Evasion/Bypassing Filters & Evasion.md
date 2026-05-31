@@ -3,25 +3,27 @@
 Status:
 
 Tags: [[eWPTX]]
-###### Prerequisites: 
-# Bypassing Filters & Evasion
+###### Prasyarat:
+# Melewati Filter & Evasion
 
-## Notes (MOC)
+## Catatan (MOC)
 
-### Foundations
+### Fondasi
 [[Regex (Regular Expressions)]]
 [[OWASP XSS Filter Evasion Cheat Sheet]]
 
-### WAF Detection & Bypass
+### Deteksi & Bypass WAF
 [[WAF Fingerprinting & Detection]]
 [[Encoding & Transformation Bypasses]]
 [[WAF Bypass Payloads & Techniques]]
 [[Filter Bypass Case Studies]]
 
-## What this section is for
+## Bagian ini untuk apa?
 
-- bypassing input filters safely in labs
-- understanding what a filter actually blocks
-- learning common evasion patterns (encoding/escaping/normalization quirks)
+- bypass filter input secara aman di lab
+- memahami apa yang benar-benar diblok filter (bukan asumsi)
+- mengenali pola evasion yang umum (encoding/escaping/quirk normalisasi)
 
-> Keep it ethical: use only in authorized testing/training.
+> Tetap etis: gunakan hanya untuk pengujian/pelatihan yang berizin.
+
+Intinya: fokusnya bukan “nge-hack”, tapi memahami rantai transformasi input dari client → WAF/proxy → aplikasi → backend.

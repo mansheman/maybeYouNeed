@@ -3,77 +3,77 @@
 Status:
 
 Tags: [[eWPTX]] [[Web Services]]
-###### Prerequisites: [[Web Services]] [[SOAP]]
-# Web Services Lab - 2 - DNS Lookup (Command Injection)
+###### Prasyarat: [[Web Services]] [[SOAP]]
+# Lab Web Service - 2 - DNS Lookup (Injeksi Perintah)
 
-## Source
+## Sumber
 
 - [[Web Services Lab]]
 
 ---
-## Performing command injection attacks against the DNS Lookup web service.
+## Melakukan serangan command injection pada web service DNS Lookup
 
-**Step 14:** Open the DNS Lookup web service.
+**Langkah 14:** Buka web service DNS Lookup.
 
-Visit **Web Services** > **SOAP** > **Command Injection** > **DNS Lookup**:
+Masuk ke **Web Services** > **SOAP** > **Command Injection** > **DNS Lookup**:
 
 ![[Pics/INE/14_b5afa313a1.png]]
 
-That would take you to the following web page:
+Kamu akan masuk ke halaman berikut:
 
 ![[Pics/INE/14_1_3206d32edd.png]]
 
-**Step 15:** Check the WSDL file.
+**Langkah 15:** Cek file WSDL.
 
-Click on the WSDL link to view the WSDL file for the provided web service:
+Klik link WSDL untuk melihat file WSDL dari web service ini:
 
 ![[Pics/INE/15_36b1e50737.png]]
 
-As you can see in the above image, `lookupDNS` is the only available operation:
+Terlihat bahwa `lookupDNS` adalah satu-satunya operation yang tersedia:
 
 ![[Pics/INE/15_1_863a52ea01.png]]
 
-Viewing the details for the `lookupDNS` operation:
+Lihat detail operation `lookupDNS`:
 
 ![[Pics/INE/15_2_c04a7dfac1.png]]
 
-The information on the web page reveals the input and output parameters expected by this operation. All this information could be inferred directly from the WSDL file as well.
+Halaman web menampilkan parameter input dan output yang diharapkan. Informasi yang sama juga bisa ditarik langsung dari WSDL.
 
-Scroll down to view the sample request:
+Scroll untuk melihat contoh request:
 
 ![[Pics/INE/15_3_8fbcbad25a.png]]
 
-**Step 16:** Interact with the web service using Burp Suite.
+**Langkah 16:** Interaksi dengan web service memakai Burp Suite.
 
-Copy the sample request for the `lookupDNS` method to the Burp Repeater window:
+Copy sample request untuk method `lookupDNS` ke Burp Repeater:
 
 ![[Pics/INE/16_0c51cce4ac.png]]
 
-Remove the `/mutillidae` part of the URL as the web service is located at `/webservice` and not at `/mutillidae/webservice`.
+Hapus bagian `/mutillidae` dari URL karena web service berada di `/webservice` (bukan `/mutillidae/webservice`).
 
-Once that is done, send the request:
+Setelah itu, kirim request:
 
 ![[Pics/INE/16_1_0a92371c82.png]]
 
-We got back a 200 response!
+Kita mendapat response 200.
 
-Scroll down to view the DNS Lookup results:
+Scroll untuk melihat hasil DNS Lookup:
 
 ![[Pics/INE/16_2_a4ecc73e8f.png]]
 
-**Step 17:** Identifying command injection vulnerability.
+**Langkah 17:** Identifikasi celah command injection.
 
-Send a semicolon (`;`) instead of a hostname:
+Kirim tanda titik-koma (`;`) sebagai ganti hostname:
 
 ![[Pics/INE/17_92e46bbd0d.png]]
 
-Scroll down to view the DNS Lookup results:
+Scroll untuk melihat hasil DNS Lookup:
 
 ![[Pics/INE/17_1_d307a9ee03.png]]
 
-Notice that the provided hostname was used as is and no errors were reported.
+Perhatikan bahwa input dipakai “apa adanya” dan tidak muncul error.
 
-Send the following payload to the web service:
+Kirim payload berikut ke web service:
 
 **Payload:**
 
@@ -81,21 +81,21 @@ Send the following payload to the web service:
 ;ls -al
 ```
 
-Sending the above payload results in a 200 response:
+Payload di atas menghasilkan response 200:
 
 ![[Pics/INE/17_2_28d8e6840c.png]]
 
-Scroll down to view the DNS Lookup results:
+Scroll untuk melihat hasil DNS Lookup:
 
 ![[Pics/INE/17_3_3ae6977164.png]]
 
-Notice that the output for the `ls -al` command is retrieved!
+Perhatikan output dari perintah `ls -al` ikut muncul.
 
-So the web service is indeed vulnerable to command injection vulnerability.
+Artinya web service ini memang rentan command injection.
 
-**Step 18:** Retrieve the flag.
+**Langkah 18:** Ambil flag.
 
-Since the DNS Lookup web service is vulnerable to a command injection vulnerability, send the following command to find the flag file:
+Karena web service DNS Lookup rentan command injection, kirim perintah berikut untuk mencari file flag:
 
 **Payload:**
 
@@ -103,13 +103,13 @@ Since the DNS Lookup web service is vulnerable to a command injection vulnerabil
 ;find / -iname *flag* 2>/dev/null
 ```
 
-Sending the above payload results in a 200 response:
+Payload di atas menghasilkan response 200:
 
 ![[Pics/INE/18_4db1f01410.png]]
 
-The output reveals that the third flag is present in the file `/app/flag3`.
+Output menunjukkan flag ketiga berada di file `/app/flag3`.
 
-Send the following payload to read the flag file:
+Kirim payload berikut untuk membaca file flag:
 
 **Payload:**
 
@@ -121,6 +121,6 @@ Send the following payload to read the flag file:
 
 **flag3:** 6ae5422a0f086335766e1de8f75c16b7
 
-**So that was all about performing command injection attacks against web services.**
+**Sampai sini: kita sudah melakukan serangan command injection pada web service.**
 
-And with that, we conclude this lab on attacking web services. There was a lot of ground to cover in this lab and we learned quite a lot of techniques to pentest SOAP-based web services and bypass SOAP body restrictions.
+Dengan ini lab selesai. Intinya: kita belajar cara enumerasi service SOAP berbasis WSDL, menguji input yang dieksekusi server-side, dan memverifikasi impact lewat respons.

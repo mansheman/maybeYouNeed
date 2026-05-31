@@ -3,11 +3,11 @@
 Status:
 
 Tags: [[eWPTX]] [[eWPTX/3- ORM/ORM]]
-###### Prerequisites: [[What is ORM?]]
-# Advantages of ORM
+###### Prasyarat: [[What is ORM?]]
+# Kelebihan ORM
 
-- Reduces boilerplate code
-- Improves maintainability by centralizing database logic
-- Provides database-agnostic query support (to some extent)
-- Speeds up development time through abstractions
-- Often supports safer parameterization (helps against SQL Injection)
+- Mengurangi boilerplate
+- Lebih mudah dirawat karena logika akses DB lebih terpusat
+- Query relatif lebih “agnostik DB” (sampai batas tertentu)
+- Mempercepat development lewat abstraksi
+- Biasanya mendukung parameterisasi yang lebih aman (membantu melawan SQL Injection)

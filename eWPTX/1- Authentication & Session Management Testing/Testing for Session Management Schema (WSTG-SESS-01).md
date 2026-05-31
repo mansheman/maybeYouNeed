@@ -3,51 +3,51 @@
 Status:
 
 Tags:[[eWPTX]] [[Authentication]] [[Session Management]]
-###### Prerequisites: [[Session Management Testing]]
+###### Prasyarat: [[Session Management Testing]]
 # Testing for Session Management Schema (WSTG-SESS-01)
 
-## Overview
+## Gambaran Singkat
 
-The OWASP WSTG test **WSTG-SESS-01** focuses on assessing the security of session management in web applications.
+Tes OWASP WSTG **WSTG-SESS-01** fokus untuk menilai keamanan **manajemen sesi** pada aplikasi web.
 
-Goal: validate the design and robustness of the session management schema, including **session IDs** and **cookies**.
-
----
-
-## What you’re validating
-
-- how session tokens are **created** (entropy/randomness)
-- how sessions are **maintained** (rotation/regeneration)
-- how sessions are **terminated** (logout/invalidation)
-- whether the app relies on **client-side token data** for authorization
+Tujuan praktisnya: memastikan skema session (termasuk **session ID** dan **cookie**) didesain dengan kuat dan tidak mudah dipalsukan/diambil alih.
 
 ---
 
-## Common attack pattern
+## Apa yang divalidasi
 
-1) cookie collection (capture enough samples)
-2) cookie reverse engineering (understand structure/encoding)
-3) cookie manipulation (forge/tamper)
-
-Depending on how the cookie is created, this may require many attempts (brute force).
-
----
-
-## Test objectives (abridged)
-
-- gather session tokens for the same user and different users
-- analyze randomness (resistance to forging)
-- modify unsigned/modifiable cookies that contain security-relevant data
+- bagaimana token sesi **dibuat** (entropy/acaknya cukup atau tidak)
+- bagaimana sesi **dipelihara** (rotasi/regenerasi di momen penting)
+- bagaimana sesi **diakhiri** (logout benar-benar invalid di server)
+- apakah aplikasi mempercayai **data token di sisi client** untuk keputusan otorisasi
 
 ---
 
-## Key tests / techniques
+## Pola serangan yang sering
 
-|Test/Technique|What you do|Risk if weak|
+1) kumpulkan cookie (ambil sample yang cukup)
+2) reverse engineering cookie (pahami struktur/encoding)
+3) manipulasi cookie (forge/tamper)
+
+Tergantung cara cookie dibuat, proses ini bisa butuh banyak percobaan (mis. brute force) sebelum terlihat pola/kelemahannya.
+
+---
+
+## Objektif pengujian (ringkas)
+
+- kumpulkan token sesi dari user yang sama dan user berbeda
+- analisis randomness (seberapa tahan terhadap forgery)
+- uji modifikasi cookie yang tidak ditandatangani/masih bisa diubah, apalagi yang memuat data keamanan
+
+---
+
+## Tes/teknik kunci
+
+|Tes/Teknik|Yang dilakukan|Risiko jika lemah|
 |---|---|---|
-|Predictable session IDs|analyze token randomness|session guessing/forging|
-|Session fixation|force/keep a known session ID before login|takeover after login|
-|Expiration/termination|verify timeout + logout invalidation|replay/reuse|
-|Session hijacking|replay a stolen token|account takeover|
-|Cookie security flags|check `HttpOnly`, `Secure`, `SameSite`|XSS/CSRF/MitM risk|
-|Token exposure in URLs|ensure no session IDs in URLs|leak via logs/referrers/history|
+|Session ID dapat diprediksi|analisis randomness token|menebak/memalsukan sesi|
+|Session fixation|paksa/pertahankan session ID yang sudah diketahui sebelum login|takeover setelah login|
+|Expiry/termination|verifikasi timeout + invalidasi saat logout|replay/reuse sesi|
+|Session hijacking|replay token yang dicuri|pengambilalihan akun|
+|Flag keamanan cookie|cek `HttpOnly`, `Secure`, `SameSite`|risiko XSS/CSRF/MitM|
+|Token bocor di URL|pastikan tidak ada session ID di URL|bocor via log/referrer/history|

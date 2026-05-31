@@ -3,10 +3,12 @@
 Status:
 
 Tags:[[eWPTX]] [[Authentication]] [[Session Management]]
-###### Prerequisites: [[Authentication Testing Methodology]]
-# Session Management Testing
+###### Prasyarat: [[Authentication Testing Methodology]]
+# Pengujian Manajemen Sesi
 
-## Notes (MOC)
+## Catatan (MOC)
+
+Fokus session management biasanya: **bagaimana aplikasi membuat, menyimpan, memvalidasi, dan mengakhiri sesi**. Banyak ATO terjadi bukan karena password, tapi karena session/token bisa dicuri atau dimanipulasi.
 
 [[Testing for Session Management Schema (WSTG-SESS-01)]]
 [[Cookie Reverse Engineering & Tampering]]
@@ -14,7 +16,7 @@ Tags:[[eWPTX]] [[Authentication]] [[Session Management]]
 [[Session Fixation]]
 [[Cross-Site Request Forgery (CSRF)]]
 
-## Related
+## Terkait
 
 - eWPT: [[Session Hijacking & Session Fixation]]
 - eWPT: [[Session Management Testing]]

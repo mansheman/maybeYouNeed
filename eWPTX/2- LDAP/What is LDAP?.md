@@ -3,57 +3,57 @@
 Status:
 
 Tags: [[eWPTX]] [[LDAP]]
-###### Prerequisites: 
-# What is LDAP?
+###### Prasyarat:
+# Apa itu LDAP?
 
-## Overview
+## Gambaran singkat
 
-**LDAP (Lightweight Directory Access Protocol)** is an application-layer protocol used to **query** and **modify** data in a directory service over **TCP/IP**.
+**LDAP (Lightweight Directory Access Protocol)** adalah protokol layer aplikasi untuk **meng-query** dan **memodifikasi** data pada directory service lewat **TCP/IP**.
 
-LDAP is the **access protocol**. The **directory service** (e.g., Microsoft Active Directory, OpenLDAP) is what stores the data and defines the schema/structure.
-
----
-
-## What LDAP is used for
-
-Web apps and enterprise systems commonly use LDAP to:
-
-- **Authenticate users** (validate credentials against a directory)
-    
-- **Authorize access** (read groups/roles to decide permissions)
-    
-- **Query directory data** (name, email, department, manager, etc.)
-    
-- **Manage identities** (create/disable accounts, update attributes)
-    
+LDAP adalah **protokol aksesnya**. Sedangkan **directory service** (mis. Microsoft Active Directory, OpenLDAP) adalah sistem yang **menyimpan data** dan **mendefinisikan schema/struktur**.
 
 ---
 
-## LDAP ports (common)
+## LDAP dipakai untuk apa?
 
-|Port|Name|Description|
+Aplikasi web dan sistem enterprise umum memakai LDAP untuk:
+
+- **Autentikasi user** (validasi kredensial terhadap directory)
+    
+- **Otorisasi akses** (membaca group/role untuk memutuskan permission)
+    
+- **Query data directory** (nama, email, departemen, manager, dll)
+    
+- **Manajemen identitas** (buat/nonaktifkan akun, update atribut)
+    
+
+---
+
+## Port LDAP (umum)
+
+|Port|Nama|Deskripsi|
 |---|---|---|
-|389|LDAP|Default LDAP port (plaintext; often used with StartTLS).|
-|636|LDAPS|LDAP over TLS/SSL (encrypted from connection start).|
-|3268|Global Catalog|Active Directory Global Catalog over plaintext.|
-|3269|Global Catalog (LDAPS)|Active Directory Global Catalog over TLS/SSL.|
+|389|LDAP|Port default LDAP (plaintext; sering dipakai dengan StartTLS).|
+|636|LDAPS|LDAP over TLS/SSL (terenkripsi sejak awal koneksi).|
+|3268|Global Catalog|Active Directory Global Catalog (plaintext).|
+|3269|Global Catalog (LDAPS)|Active Directory Global Catalog (TLS/SSL).|
 
 ---
 
-## LDAP directory structure (DIT)
+## Struktur directory LDAP (DIT)
 
-LDAP data is organized as a hierarchical **Directory Information Tree (DIT)**:
+Data LDAP disusun hirarkis dalam **Directory Information Tree (DIT)**:
 
-- **Entry**: one object (user, group, device, etc.)
+- **Entry**: satu objek (user, group, device, dll)
     
-- **Attributes**: key/value fields on an entry (e.g., `uid`, `cn`, `mail`)
+- **Attributes**: field key/value pada entry (mis. `uid`, `cn`, `mail`)
     
-- **DN** (Distinguished Name): the full path to an entry in the tree
+- **DN** (Distinguished Name): “path” lengkap ke sebuah entry dalam tree
     
-- **OU** (Organizational Unit): a container for grouping entries
+- **OU** (Organizational Unit): kontainer untuk mengelompokkan entry
     
 
-Example DIT:
+Contoh DIT:
 
 ```text
 dc=example,dc=com
@@ -65,7 +65,7 @@ dc=example,dc=com
     └── cn=Developers
 ```
 
-Example DN:
+Contoh DN:
 
 `cn=John Doe,ou=Users,dc=example,dc=com`
 
@@ -73,9 +73,9 @@ Example DN:
 
 ## Object model (schema / objectClass)
 
-LDAP is **object-oriented** in the sense that each entry follows rules defined by its schema (often via `objectClass`).
+LDAP bersifat “object-oriented” dalam arti tiap entry mengikuti aturan dari schema (sering via `objectClass`).
 
-Example attributes on a user entry:
+Contoh atribut pada entry user:
 
 - `cn` (common name): John Doe
     
@@ -86,11 +86,11 @@ Example attributes on a user entry:
 
 ---
 
-## LDIF format
+## Format LDIF
 
-**LDIF (LDAP Data Interchange Format)** is a standard plain-text format used to represent directory entries and operations (add/modify/delete).
+**LDIF (LDAP Data Interchange Format)** adalah format plain-text standar untuk merepresentasikan entry directory dan operasi (add/modify/delete).
 
-Example LDIF entry:
+Contoh entry LDIF:
 
 ```ldif
 dn: cn=John Doe,ou=Users,dc=example,dc=com
@@ -102,9 +102,9 @@ mail: john.doe@example.com
 
 ---
 
-## LDAP filter syntax (queries)
+## Sintaks filter LDAP (query)
 
-LDAP searches use **filters** with common operators:
+LDAP search memakai **filter** dengan operator umum berikut:
 
 - `=` (equal)
     
@@ -117,34 +117,34 @@ LDAP searches use **filters** with common operators:
 - `!` (NOT)
     
 
-Examples:
+Contoh:
 
-- `(cn=John)` → entries where `cn` is exactly `John`
+- `(cn=John)` → entry di mana `cn` tepat bernilai `John`
     
-- `(cn=J*)` → entries where `cn` starts with `J`
+- `(cn=J*)` → entry di mana `cn` diawali `J`
     
-- `(|(sn=a*)(cn=b*))` → `sn` starts with `a` OR `cn` starts with `b`
-    
-
----
-
-## How web apps use LDAP (example flow)
-
-- User submits username/password to the web app
-    
-- The app checks credentials against LDAP (direct bind or service-account search + verify)
-    
-- The app reads groups/roles from the directory
-    
-- Access is granted/denied based on that directory data
+- `(|(sn=a*)(cn=b*))` → `sn` diawali `a` ATAU `cn` diawali `b`
     
 
 ---
 
-## Key points
+## Cara web app memakai LDAP (contoh alur)
 
-- LDAP is a **protocol** for accessing directory services, not the storage itself.
+- User mengirim username/password ke web app
     
-- The **directory service** defines and enforces the structure (DIT + schema).
+- Aplikasi memeriksa kredensial ke LDAP (direct bind atau service-account search + verify)
     
-- The data is hierarchical (tree), not relational tables.
+- Aplikasi membaca group/role dari directory
+    
+- Akses diberikan/ditolak berdasarkan data directory tersebut
+    
+
+---
+
+## Poin penting
+
+- LDAP adalah **protokol** untuk mengakses directory service, bukan storage-nya.
+    
+- **Directory service** yang mendefinisikan dan menegakkan struktur (DIT + schema).
+    
+- Datanya hirarkis (tree), bukan tabel relasional.

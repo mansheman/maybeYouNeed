@@ -3,28 +3,28 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: [[Well Formed XML]]
+###### Prasyarat: [[Well Formed XML]]
 # XML DTD (Document Type Definition)
 
 ## What is a DTD?
 
-A **DTD** defines the structure, elements, and attributes of an XML document.
+**DTD** mendefinisikan struktur, elemen, dan atribut dari sebuah dokumen XML.
 
-It acts like a blueprint that specifies how the document should be structured, ensuring it is **valid** and follows predefined rules.
+Fungsinya seperti blueprint yang menentukan bentuk dokumen, sehingga XML bisa dinilai **valid** dan mengikuti aturan yang sudah ditetapkan.
 
-A DTD can be:
+DTD bisa berupa:
 
-- internal (embedded in the XML)
-- external (referenced from outside)
+- internal (ditanam di dalam XML)
+- external (direferensikan dari luar)
 
 ---
 
 ## DTD building blocks
 
-- **Elements**: declared with `<!ELEMENT ...>`
-- **Attributes**: declared with `<!ATTLIST ...>`
-- **Entities**: declared with `<!ENTITY ...>`
-- `#PCDATA` (parsed character data) and `CDATA` (raw/unparsed text)
+- **Elements**: dideklarasikan dengan `<!ELEMENT ...>`
+- **Attributes**: dideklarasikan dengan `<!ATTLIST ...>`
+- **Entities**: dideklarasikan dengan `<!ENTITY ...>`
+- `#PCDATA` (parsed character data) dan `CDATA` (raw/unparsed text)
 
 ---
 

@@ -3,20 +3,20 @@
 Status:
 
 Tags: [[eWPTX]] [[ORM]]
-###### Prerequisites: [[ORM Injection]]
-# ORM Injection — Django
+###### Prasyarat: [[ORM Injection]]
+# Injeksi ORM — Django
 
-## Overview
+## Gambaran singkat
 
-Django ORM is generally safe due to parameterized queries. However, certain methods accept raw SQL or allow filter manipulation that can lead to injection.
+Django ORM umumnya aman karena query ter-parameterisasi. Namun, ada method tertentu yang menerima raw SQL atau memungkinkan manipulasi filter sehingga bisa memicu injection.
 
 ---
 
-## Dangerous Methods
+## Method yang berisiko
 
 ### raw()
 
-Executes raw SQL — most obvious injection vector:
+Menjalankan raw SQL — vektor injection paling jelas:
 
 ```python
 # VULNERABLE
@@ -28,7 +28,7 @@ User.objects.raw("SELECT * FROM auth_user WHERE username = %s", [username])
 
 ### extra()
 
-Adds raw SQL fragments to the query (deprecated in Django 4.0+):
+Menambahkan potongan raw SQL ke query (deprecated di Django 4.0+):
 
 ```python
 # VULNERABLE
@@ -54,7 +54,7 @@ queryset.annotate(val=RawSQL("SELECT col FROM table WHERE id = %s", [user_input]
 
 ## QuerySet Filter Injection
 
-Django's ORM uses double-underscore (`__`) lookups. If the field name is user-controlled, an attacker can manipulate the query:
+Django ORM memakai lookup double-underscore (`__`). Kalau nama field dikontrol user, query bisa dimanipulasi:
 
 ```python
 # If field_name comes from user input
@@ -74,11 +74,11 @@ User.objects.filter(**{field_name: value})
 # Can enumerate values character by character
 ```
 
-**Impact**: Boolean-based data extraction via filter manipulation.
+**Dampak**: ekstraksi data berbasis boolean lewat manipulasi filter.
 
 ---
 
-## Mass Assignment
+## Mass assignment
 
 ```python
 # VULNERABLE — accepts all POST data as model fields
@@ -95,10 +95,10 @@ user = User(
 
 ---
 
-## Mitigation
+## Mitigasi
 
-- Never use `raw()`, `extra()`, or `RawSQL` with unsanitized input
-- Always use parameterized queries (`%s` with params list)
-- Never use user input as field names in `filter(**kwargs)`
-- Use Django forms or serializers to validate and whitelist fields
-- Use `only()` or `defer()` to control which fields are queried
+- Jangan pakai `raw()`, `extra()`, atau `RawSQL` dengan input yang tidak disanitasi
+- Selalu gunakan query ter-parameterisasi (`%s` + params list)
+- Jangan pernah memakai input user sebagai nama field di `filter(**kwargs)`
+- Gunakan Django forms/serializers untuk validasi + whitelist field
+- Pakai `only()` atau `defer()` untuk membatasi field yang di-query

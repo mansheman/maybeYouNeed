@@ -3,30 +3,32 @@
 Status:
 
 Tags:[[eWPTX]] [[Authentication]] [[OAuth]]
-###### Prerequisites: [[Token-Based Authentication]]
-# Introduction to OAuth
+###### Prasyarat: [[Token-Based Authentication]]
+# Pengenalan OAuth
 
-## Overview
+## Gambaran Singkat
 
-OAuth2 is the main web standard for **authorization** between services.
+OAuth 2.0 adalah standar web utama untuk **otorisasi** antar layanan.
 
-It allows third-party applications to access resources on a provider on behalf of a user, with user consent.
+Konsepnya: aplikasi pihak ketiga bisa mengakses resource milik user pada provider, **atas persetujuan user**, tanpa aplikasi itu harus memegang password user.
+
+Catatan penting: OAuth fokus di **authorization/delegation**. Untuk “login” (authentication) biasanya dipasangkan dengan **OpenID Connect (OIDC)**.
 
 ---
 
-## OAuth components
+## Komponen OAuth
 
-- Resource Owner: typically the end-user
-- Client: the app requesting access (relying party)
-- Resource Server: API hosting protected resources
-- Authorization Server: authenticates user and issues tokens (IdP)
+- Resource Owner: biasanya end-user
+- Client: aplikasi yang meminta akses (relying party)
+- Resource Server: API yang menyimpan resource terlindungi
+- Authorization Server: mengautentikasi user dan menerbitkan token (sering berperan sebagai IdP)
 - User Agent: browser/mobile app
 
 ---
 
 ## OAuth scopes
 
-Scopes represent requested privileges/actions, e.g.:
+Scope merepresentasikan izin/aksi yang diminta, misalnya:
 
 - read
 - write

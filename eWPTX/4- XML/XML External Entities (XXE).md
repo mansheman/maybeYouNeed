@@ -3,14 +3,14 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: [[XML Injection]] [[XML DTD (Document Type Definition)]]
+###### Prasyarat: [[XML Injection]] [[XML DTD (Document Type Definition)]]
 # XML External Entities (XXE)
 
-## Overview
+## Gambaran singkat
 
-The most dangerous type of XML injection often involves injecting **external entities** into the XML document definition. This is known as **XXE (XML eXternal Entities)**.
+Jenis XML injection yang paling berbahaya sering melibatkan penyisipan **external entity** ke definisi dokumen XML. Ini dikenal sebagai **XXE (XML eXternal Entities)**.
 
-XXE occurs when an XML parser processes external entities referenced in an XML document in an unsafe way. This can lead to:
+XXE terjadi ketika XML parser memproses external entity yang direferensikan oleh dokumen XML secara tidak aman. Dampaknya bisa berupa:
 
 - **Data exposure** (reading sensitive server files)
 - **SSRF** (accessing internal/external resources from the server)
@@ -18,30 +18,28 @@ XXE occurs when an XML parser processes external entities referenced in an XML d
 
 ---
 
-## Core idea
+## Ide inti
 
-In general, the attacker tries to instruct the XML parser to load externally defined entities, making it possible to access sensitive content stored on the host or to make network requests from the server.
+Intinya, penyerang berusaha “menyuruh” parser memuat entity dari luar, sehingga bisa membaca konten sensitif di host atau membuat server melakukan request jaringan.
 
 ---
 
-## External entities: private vs public (concept)
+## External entity: private vs public (konsep)
 
-There are two kinds of external entities:
+Secara konsep, ada dua jenis external entity:
 
-- **Private external entities**: typically restricted in use (single author/group). These are often the most dangerous in exploitation because they can reference local files or internal resources.
-- **Public external entities**: designed for broader usage/sharing, usually referencing publicly available identifiers/resources.
+- **Private external entities**: biasanya terbatas untuk pemakaian tertentu (author/group). Ini sering paling berbahaya karena bisa mereferensikan file lokal atau resource internal.
+- **Public external entities**: untuk pemakaian lebih luas/sharing, biasanya menunjuk identifier/resource publik.
 
-Practical takeaway:
-
-- private entity handling is where file disclosure and SSRF commonly come from.
+Practical takeaway: file disclosure dan SSRF paling sering datang dari pemrosesan private entity.
 
 ![[Pics/Screenshot 2026-02-04 at 8.44.28 PM.png]]
 
 ---
 
-## Technique: resource inclusion (file disclosure)
+## Teknik: resource inclusion (file disclosure)
 
-Scenario: attacker can upload/craft an XML document (or the app builds XML that includes attacker-controlled DTD content), and the parser allows external entity resolution.
+Skenario: penyerang bisa meng-upload/menyusun dokumen XML (atau aplikasi membangun XML yang mengandung DTD yang dikontrol penyerang), dan parser mengizinkan resolusi external entity.
 
 ### 1) Define an external entity (file)
 
@@ -62,12 +60,12 @@ Scenario: attacker can upload/craft an XML document (or the app builds XML that 
 
 ### 3) Observe the output channel
 
-To confirm disclosure, you need an application behavior that returns/reflects the parsed value (e.g., error message, rendered field, logs you can read, API response, etc.).
+Untuk mengonfirmasi disclosure, kamu butuh perilaku aplikasi yang memantulkan nilai hasil parse (mis. error message, field yang dirender, log yang bisa kamu baca, response API, dll).
 
 ![[Pics/Screenshot 2026-02-04 at 8.44.59 PM.png]]
 ---
 
-## Notes (MOC)
+## Catatan (MOC)
 
 - [[XXE - Lab (Apache Solr)]]
 - [[Blind & OOB XXE]]

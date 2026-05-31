@@ -3,20 +3,20 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: [[XML DTD (Document Type Definition)]]
+###### Prasyarat: [[XML DTD (Document Type Definition)]]
 # XML Schema Poisoning
 
-## Overview
+## Gambaran singkat
 
-Schema poisoning refers to manipulating schemas/validation assumptions so that malicious or unexpected XML passes validation.
+Schema poisoning mengacu pada manipulasi schema/asumsi validasi supaya XML yang berbahaya atau tidak terduga tetap lolos validasi.
 
 Impact:
 
-- validation bypass
-- injection of unexpected data that affects app logic
+- bypass validasi
+- penyisipan data tak terduga yang mempengaruhi logika aplikasi
 
-Mitigation (high level):
+Mitigasi (level tinggi):
 
-- use strict, pinned schemas
-- don’t fetch schemas from untrusted locations
-- enforce validation and parser security limits
+- gunakan schema yang strict dan dipin (versi/path jelas)
+- jangan fetch schema dari lokasi yang tidak tepercaya
+- tegakkan validasi + limit keamanan parser

@@ -3,10 +3,10 @@
 Status:
 
 Tags: [[eWPTX]] [[Web Services]]
-###### Prerequisites: [[Web Services]]
-# Web Services Lab
+###### Prasyarat: [[Web Services]]
+# Lab Web Service
 
-## Notes (MOC)
+## Catatan (MOC)
 
 - [[Web Services Lab - 1 - SOAP User Account (WSDL + Hidden Methods)]]
 - [[Web Services Lab - 2 - DNS Lookup (Command Injection)]]

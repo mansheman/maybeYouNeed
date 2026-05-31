@@ -3,10 +3,10 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: [[What is XML?]]
-# XML Tree Structure
+###### Prasyarat: [[What is XML?]]
+# Struktur Tree XML
 
-XML documents form a **tree structure** that starts at the **root** and branches to the **leaves**.
+Dokumen XML membentuk **struktur tree** yang dimulai dari **root**, lalu bercabang sampai ke **leaf**.
 
 ---
 
@@ -24,9 +24,9 @@ XML documents form a **tree structure** that starts at the **root** and branches
 </bookstore>
 ```
 
-Notes:
+Catatan:
 
-- prolog defines XML version and encoding
-- `<bookstore>` is the root element
-- `<book>` is a child element
-- `<title>`, `<author>`, `<year>`, `<price>` are children of `<book>`
+- prolog mendefinisikan versi XML dan encoding
+- `<bookstore>` adalah root element
+- `<book>` adalah child element
+- `<title>`, `<author>`, `<year>`, `<price>` adalah children dari `<book>`

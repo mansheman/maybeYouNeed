@@ -3,24 +3,24 @@
 Status:
 
 Tags: [[eWPTX]] [[Web Services]]
-###### Prerequisites: [[Web Service Implementations]]
+###### Prasyarat: [[Web Service Implementations]]
 # REST (RESTful APIs)
 
-## Overview
+## Gambaran singkat
 
-REST (Representational State Transfer) is an architectural style for designing networked applications.
+REST (Representational State Transfer) adalah gaya arsitektur untuk merancang aplikasi jaringan.
 
-It is not a protocol itself; it’s a set of constraints that guide how APIs/services use HTTP.
+REST bukan protokol; ia kumpulan constraint/prinsip tentang bagaimana API/service memakai HTTP.
 
-REST services often use JSON or XML, but any format can be used.
+REST service sering memakai JSON atau XML, tapi format lain juga bisa.
 
 ---
 
-## HTTP methods (common mapping)
+## HTTP method (mapping yang umum)
 
-|Method|Action|Examples|
+|Method|Aksi|Contoh|
 |---|---|---|
-|GET|Retrieve resource / list collection|`/book` (list), `/book/1` (view)|
-|PUT|Replace / update (or create if absent)|`/book/1` (replace)|
-|POST|Create new resource|`/book` (create)|
-|DELETE|Delete resource|`/book/1` (delete)|
+|GET|Ambil resource / list collection|`/book` (list), `/book/1` (view)|
+|PUT|Replace / update (atau create jika belum ada)|`/book/1` (replace)|
+|POST|Buat resource baru|`/book` (create)|
+|DELETE|Hapus resource|`/book/1` (delete)|

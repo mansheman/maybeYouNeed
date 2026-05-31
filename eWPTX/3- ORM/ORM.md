@@ -3,10 +3,10 @@
 Status:
 
 Tags: [[eWPTX]] [[eWPTX/3- ORM/ORM]]
-###### Prerequisites: [[SQL Injection]]
+###### Prasyarat: [[SQL Injection]]
 # ORM (Object-Relational Mapping)
 
-## Notes (MOC)
+## Catatan (MOC)
 
 [[What is ORM?]]
 [[Why ORM?]]

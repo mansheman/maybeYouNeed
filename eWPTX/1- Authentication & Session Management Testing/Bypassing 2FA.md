@@ -3,32 +3,32 @@
 Status:
 
 Tags:[[eWPTX]] [[Authentication]] [[2FA]]
-###### Prerequisites: [[Two-Factor Authentication (2FA)]]
-# Bypassing 2FA
+###### Prasyarat: [[Two-Factor Authentication (2FA)]]
+# Bypass 2FA
 
-## Common bypass categories (for testing)
+## Kategori bypass yang umum (untuk pengujian)
 
 ### Social engineering
 
-- phishing for password + OTP
+- phishing untuk password + OTP
 - vishing/smishing
 
 ### Implementation flaws
 
-- weak recovery flows (security questions, backup codes)
-- session fixation around the 2FA boundary
-- poor token validation (replay, missing expiry)
+- recovery flow lemah (security question, backup code yang buruk)
+- session fixation di boundary sebelum/sesudah 2FA
+- validasi token buruk (replay, tidak ada expiry)
 
 ### Token interception
 
-- MitM / downgrade issues if not enforcing HTTPS
-- SIM swap risks (SMS)
+- MitM / downgrade kalau tidak memaksa HTTPS
+- risiko SIM swap (untuk SMS)
 
 ---
 
 ## What to test
 
-- OTP expiry and one-time use
-- replay resistance
+- expiry OTP dan one-time use
+- ketahanan terhadap replay
 - rate limiting / lockout
-- server-side validation (avoid client-side only)
+- validasi server-side (hindari “client-side only”)

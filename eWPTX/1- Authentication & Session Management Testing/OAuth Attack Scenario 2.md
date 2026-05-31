@@ -3,21 +3,21 @@
 Status:
 
 Tags:[[eWPTX]] [[Authentication]] [[OAuth]]
-###### Prerequisites: [[Common OAuth Attacks]]
+###### Prasyarat: [[Common OAuth Attacks]]
 # OAuth Attack Scenario 2
 
-This scenario illustrates how OAuth-related weaknesses can be chained with other issues.
+Skenario ini menggambarkan bagaimana kelemahan OAuth bisa di-chain dengan isu lain sampai dampaknya terasa nyata.
 
-Example chain (high level):
+Contoh rantai (high level):
 
 - OAuth parameter reflected XSS
 - weak `X-Frame-Options` configuration
 - browser autocomplete not disabled
 
-Result:
+Hasil:
 
 - attacker can potentially extract credentials or sensitive tokens.
 
-Notes:
+Catatan:
 
-- treat OAuth endpoints like any other web surface: validate/sanitize and harden headers.
+- perlakukan endpoint OAuth seperti permukaan web lain: validasi/sanitasi input dan harden security headers.

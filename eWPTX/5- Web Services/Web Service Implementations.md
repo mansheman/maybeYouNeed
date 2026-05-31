@@ -3,12 +3,12 @@
 Status:
 
 Tags: [[eWPTX]] [[Web Services]]
-###### Prerequisites: [[Web Services]]
-# Web Service Implementations
+###### Prasyarat: [[Web Services]]
+# Implementasi Web Service
 
-Web service implementations refer to different ways web services can be created, deployed, and consumed.
+Implementasi web service merujuk pada berbagai cara web service dibuat, di-deploy, dan dikonsumsi.
 
-Common implementations:
+Implementasi yang umum:
 
 - [[SOAP]]
 - [[XML-RPC]]

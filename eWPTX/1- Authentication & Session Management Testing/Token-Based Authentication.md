@@ -3,31 +3,31 @@
 Status:
 
 Tags:[[eWPTX]] [[Authentication]]
-###### Prerequisites: [[Authentication]]
-# Token-Based Authentication
+###### Prasyarat: [[Authentication]]
+# Autentikasi Berbasis Token
 
-## Overview
+## Gambaran Singkat
 
-Token-based authentication is a method to validate and authorize users/applications using tokens that clients present with requests.
+Autentikasi berbasis token adalah metode untuk memvalidasi identitas dan/atau otorisasi user/aplikasi menggunakan **token** yang selalu dikirim client pada setiap request.
 
-Unlike classic server-stored sessions, token approaches are often more **stateless** (especially for APIs).
+Dibanding session klasik yang disimpan server-side, pendekatan token sering lebih **stateless** (terutama untuk API), sehingga lebih mudah diskalakan—dengan trade-off: token harus dijaga ketat karena “siapa pun yang memegang token” bisa menyamar sebagai user.
 
 ---
 
-## Types of tokens
+## Jenis Token (umum)
 
 ### Bearer tokens
 
-- whoever holds the token can use it
-- common for APIs
-- must be protected and short-lived
+- siapa pun yang memegang token bisa menggunakannya
+- sangat umum di API
+- wajib dilindungi dan idealnya berumur pendek
 
 ### JSON Web Tokens (JWT)
 
-- self-contained token: header + payload (claims) + signature
-- widely used for stateless authentication
+- token “self-contained”: header + payload (claims) + signature
+- banyak dipakai untuk autentikasi stateless
 
 ### OAuth tokens
 
-- access tokens / refresh tokens
-- used in OAuth2 flows for authorization
+- access token / refresh token
+- dipakai di flow OAuth2 untuk otorisasi

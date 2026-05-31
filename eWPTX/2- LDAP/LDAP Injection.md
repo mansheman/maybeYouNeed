@@ -3,10 +3,10 @@
 Status:
 
 Tags: [[eWPTX]] [[LDAP]] [[LDAP Injection]]
-###### Prerequisites: [[What is LDAP?]]
+###### Prasyarat: [[What is LDAP?]]
 # LDAP Injection
 
-## Overview (MOC)
+## Ringkasan (MOC)
 
 - [[LDAP Injection - Overview]]
 - [[LDAP Injection - Examples]]
@@ -16,13 +16,13 @@ Tags: [[eWPTX]] [[LDAP]] [[LDAP Injection]]
 
 ---
 
-## Quick definition
+## Definisi singkat
 
-**LDAP Injection** happens when user input changes the **structure** of an LDAP filter instead of being treated as a **value**.
+**LDAP Injection** terjadi ketika input user mengubah **struktur/logika** filter LDAP, bukan diperlakukan sebagai **nilai (value)**.
 
 ---
 
 ## Notes
 
-- Keep LDAP injection notes modular: overview, examples, methodology, syntax/escaping, prevention.
-- Use this note as the entry point (MOC).
+- Usahakan catatan LDAP injection modular: overview, examples, methodology, syntax/escaping, prevention.
+- Gunakan note ini sebagai entry point (MOC).

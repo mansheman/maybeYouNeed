@@ -3,17 +3,17 @@
 Status:
 
 Tags: [[eWPTX]] [[Web Services]]
-###### Prerequisites: [[Web Services Lab]]
-# Web Services Lab - 3 - Lab Running
+###### Prasyarat: [[Web Services Lab]]
+# Lab Web Service - 3 - Menjalankan Lab
 
-## Source
+## Sumber
 
 - [[Web Services Lab]]
 
 ---
-## Lab Running
+## Menjalankan Lab
 
-TIME REMAINING: 01:41:22
+SISA WAKTU: 01:41:22
 
-Please keep this window open while you're working on the lab. Labs that don't register activity will be automatically stopped.
+Biarkan jendela ini tetap terbuka saat kamu mengerjakan lab. Lab yang tidak mencatat aktivitas akan otomatis dihentikan.
 

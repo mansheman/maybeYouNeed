@@ -3,16 +3,16 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: [[XML Injection - Attack Types]]
+###### Prasyarat: [[XML Injection - Attack Types]]
 # XML Bombs
 
-## Overview
+## Gambaran singkat
 
-XML bombs are denial-of-service payloads that overload parsers through large or deeply nested XML structures. Unlike [[Billion Laughs Attack]], XML bombs are **non-recursive** -- they do not rely on entity expansion chains. Instead, they use brute-force size or repetition.
+XML bombs adalah payload denial-of-service yang membebani parser lewat XML yang sangat besar atau nested terlalu dalam. Berbeda dengan [[Billion Laughs Attack]], XML bombs bersifat **non-recursive** — tidak mengandalkan rantai entity expansion. Mereka lebih mengandalkan ukuran/repetisi (brute force).
 
-## Quadratic Blowup Attack
+## Quadratic blowup attack
 
-Define one large entity, then reference it thousands of times. No recursion, but massive output.
+Mendefinisikan satu entity besar lalu mereferensikannya ribuan kali. Tidak ada rekursi, tapi output tetap membengkak.
 
 ```xml
 <?xml version="1.0"?>
@@ -26,13 +26,13 @@ Define one large entity, then reference it thousands of times. No recursion, but
 </bomb>
 ```
 
-**Math**: A 40-byte entity repeated 50,000 times = ~2 MB of expanded text from a ~500 KB input. The growth is quadratic (O(n^2)) rather than exponential.
+**Math**: entity 40-byte diulang 50.000 kali = ~2 MB teks hasil ekspansi dari input ~500 KB. Pertumbuhannya kuadratik (O(n^2)), bukan eksponensial.
 
-This bypasses Billion Laughs protections that only check for recursive/nested expansion but not repetition count.
+Ini bisa bypass proteksi Billion Laughs yang hanya mengecek ekspansi rekursif/nested, tetapi tidak menghitung jumlah repetisi.
 
-## Attribute Blowup
+## Attribute blowup
 
-Overload the parser with thousands of attributes on a single element:
+Membebani parser dengan ribuan atribut pada satu elemen:
 
 ```xml
 <element
@@ -43,9 +43,9 @@ Overload the parser with thousands of attributes on a single element:
 />
 ```
 
-This forces the parser to allocate hash table entries for every attribute. Some parsers use O(n^2) lookup for duplicate attribute checking, causing CPU exhaustion.
+Ini memaksa parser mengalokasikan entry (mis. di hash table) untuk setiap atribut. Beberapa parser melakukan lookup O(n^2) untuk cek atribut duplikat, sehingga CPU bisa terkuras.
 
-## Deep Nesting Bomb
+## Deep nesting bomb
 
 Deeply nested elements without entity expansion:
 
@@ -55,28 +55,28 @@ Deeply nested elements without entity expansion:
 </a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a>
 ```
 
-Causes stack overflow in recursive descent parsers. Effective against parsers without depth limits.
+Memicu stack overflow pada parser yang parsing-nya rekursif. Efektif pada parser yang tidak punya limit kedalaman.
 
-## Resource Consumption Summary
+## Ringkasan konsumsi resource
 
-| Attack Type       | Input Size | Memory Impact | CPU Impact | Bypasses Recursion Limits |
+| Tipe serangan     | Ukuran input | Dampak memori | Dampak CPU | Bypass limit rekursi |
 |-------------------|-----------|---------------|------------|---------------------------|
 | Quadratic blowup  | ~500 KB   | ~2 MB+        | Moderate   | Yes                       |
 | Attribute blowup  | ~200 KB   | Moderate      | High       | Yes                       |
 | Deep nesting      | ~100 KB   | Stack-based   | High       | Yes                       |
 | Billion Laughs    | ~1 KB     | ~3 GB         | High       | No                        |
 
-## Billion Laughs vs XML Bombs
+## Billion Laughs vs XML bombs
 
-- **Billion Laughs**: exponential, recursive entity references, tiny input, massive expansion
-- **XML Bombs**: linear/quadratic, no recursion, larger input, still effective DoS
-- XML bombs are useful when the parser has entity expansion limits but no size/depth limits
+- **Billion Laughs**: eksponensial, entity rekursif, input kecil, ekspansi masif
+- **XML Bombs**: linear/kuadratik, tanpa rekursi, input lebih besar, tetap efektif untuk DoS
+- XML bombs berguna saat parser punya limit entity expansion tapi tidak punya limit ukuran/kedalaman
 
-## Parser Hardening
+## Hardening parser
 
-1. **Set maximum document size** -- reject XML over a threshold (e.g., 1 MB)
-2. **Set maximum element depth** -- limit nesting to 100-200 levels
-3. **Set maximum attribute count per element** -- cap at 100-200
-4. **Set entity expansion limits** -- covers both bombs and Billion Laughs
-5. **Set parsing timeouts** -- kill parsing after a reasonable time limit
-6. **Use streaming parsers (SAX/StAX)** -- process elements one at a time instead of loading the full DOM
+1. **Batasi ukuran dokumen** — tolak XML di atas ambang (mis. 1 MB)
+2. **Batasi kedalaman elemen** — limit nesting (mis. 100–200 level)
+3. **Batasi jumlah atribut per elemen** — cap (mis. 100–200)
+4. **Batasi entity expansion** — mencakup bombs dan Billion Laughs
+5. **Pasang parsing timeout** — hentikan parsing setelah waktu wajar
+6. **Pakai streaming parser (SAX/StAX)** — proses elemen per elemen (tidak memuat DOM penuh)

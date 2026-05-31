@@ -3,16 +3,16 @@
 Status:
 
 Tags:[[eWPTX]] [[Authentication]] [[Session Management]]
-###### Prerequisites: [[Session Management Testing]]
+###### Prasyarat: [[Session Management Testing]]
 # Session Fixation
 
-## Definition
+## Definisi
 
-Session fixation happens when an attacker forces a victim to use a session ID the attacker already knows, then reuses it after the victim authenticates.
+Session fixation terjadi saat penyerang memaksa korban memakai session ID yang sudah diketahui penyerang, lalu session ID itu “naik level” setelah korban login—dan kemudian dipakai ulang oleh penyerang.
 
 ---
 
-## How it works (high level)
+## Cara kerja (high level)
 
 1) attacker sets/acquires a session ID
 2) victim logs in while using that same session ID
@@ -21,7 +21,7 @@ Session fixation happens when an attacker forces a victim to use a session ID th
 
 ---
 
-## Common causes
+## Penyebab umum
 
 - not regenerating session ID on login
 - allowing session IDs in URLs or client-controlled locations
@@ -31,7 +31,7 @@ Session fixation happens when an attacker forces a victim to use a session ID th
 
 ---
 
-## Testing ideas
+## Ide pengujian
 
 - log in and check whether session ID changes after authentication
 - test whether the app accepts session IDs in URL/query

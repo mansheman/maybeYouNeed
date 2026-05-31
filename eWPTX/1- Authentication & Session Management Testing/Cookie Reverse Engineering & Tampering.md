@@ -3,54 +3,54 @@
 Status:
 
 Tags:[[eWPTX]] [[Authentication]] [[Session Management]]
-###### Prerequisites: [[Testing for Session Management Schema (WSTG-SESS-01)]]
+###### Prasyarat: [[Testing for Session Management Schema (WSTG-SESS-01)]]
 # Cookie Reverse Engineering & Tampering
 
-## Overview
+## Gambaran Singkat
 
-This technique focuses on analyzing and modifying session cookies to identify weaknesses in the application’s session management.
+Teknik ini fokus pada analisis dan modifikasi **session cookie** untuk mencari kelemahan pada manajemen sesi.
 
-Goal: understand how cookies are structured, encoded, and protected, and whether manipulation could bypass controls.
-
----
-
-## Reverse engineering (structure & encoding)
-
-What to look for:
-
-- predictable patterns
-- encoded data (Base64 / URL encoding)
-- user attributes inside cookies (username, userId, role)
-
-If decoding reveals sensitive info and it’s not protected (signed/encrypted), it can enable:
-
-- user enumeration
-- privilege manipulation attempts
+Goal-nya: pahami bagaimana cookie disusun, di-encode, dan diproteksi (signed/encrypted), serta apakah perubahan nilai bisa membypass kontrol.
 
 ---
 
-## Cookie tampering (manipulation)
+## Reverse engineering (struktur & encoding)
 
-Common tampering ideas (validate server-side behavior):
+Yang dicari:
 
-- change `role=guest` → `role=admin`
-- change `userId=1001` → `userId=1002`
-- replay a cookie on a different browser/device
+- pola yang “terlalu rapih”/mudah ditebak
+- data yang di-encode (Base64 / URL encoding)
+- atribut user di dalam cookie (username, userId, role)
 
-Key point:
+Kalau hasil decode mengungkap data sensitif dan tidak ada proteksi (signature/encryption), ini bisa membuka jalan ke:
 
-- server must enforce authorization server-side
-- client-side cookie values must not be trusted unless cryptographically protected
+- enumerasi user
+- percobaan manipulasi privilege
 
 ---
 
-## What to record in notes
+## Cookie tampering (manipulasi)
 
-- cookie name(s) and where they appear
-- encoding used (if any)
-- whether values are signed/encrypted
-- server response differences (content/status/redirect)
-- security impact (auth/authz/data exposure)
+Ide manipulasi umum (tujuannya menguji perilaku server-side):
+
+- ubah `role=guest` → `role=admin`
+- ubah `userId=1001` → `userId=1002`
+- replay cookie di browser/device lain
+
+Poin kunci:
+
+- otorisasi harus dipaksa di server-side
+- nilai cookie dari client tidak boleh dipercaya kecuali benar-benar diproteksi secara kriptografis
+
+---
+
+## Apa yang dicatat di notes
+
+- nama cookie dan muncul di mana (request/response mana)
+- encoding yang dipakai (kalau ada)
+- apakah value ditandatangani/terenkripsi
+- perbedaan response server (konten/status/redirect)
+- dampak keamanan (auth/authz/kebocoran data)
 
 ---
 
@@ -104,10 +104,10 @@ flask-unsign --sign --cookie '{"user":"admin","role":"superuser"}' --secret 'fou
 
 ### Burp Suite Decoder
 ```
-1. Capture cookie in Proxy
-2. Send to Decoder tab
-3. Apply transforms: URL decode → Base64 decode → view plaintext
-4. Modify values → Re-encode → Replace in Repeater
+1. Tangkap cookie di Proxy
+2. Kirim ke tab Decoder
+3. Apply transform: URL decode → Base64 decode → lihat plaintext
+4. Ubah value → re-encode → replace di Repeater
 ```
 
 ### hashid / hash-identifier
@@ -126,11 +126,11 @@ hashid 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3'
 
 ## Cookie Flag Audit
 
-| Flag | What It Does | Test |
+| Flag | Fungsi | Cara uji |
 |------|-------------|------|
-| `Secure` | HTTPS only | Access over HTTP — cookie sent? |
-| `HttpOnly` | No JS access | `document.cookie` — visible? |
-| `SameSite=Strict` | No cross-site | CSRF form submit — cookie sent? |
-| `SameSite=Lax` | GET cross-site OK | POST cross-site — cookie sent? |
-| `Path=/admin` | Scope to path | Request to `/` — cookie sent? |
-| `Domain=.example.com` | Include subdomains | Subdomain request — cookie sent? |
+| `Secure` | HTTPS only | Akses via HTTP — cookie ikut terkirim? |
+| `HttpOnly` | Tidak bisa diakses JS | `document.cookie` — terlihat? |
+| `SameSite=Strict` | Tidak cross-site | CSRF form submit — cookie ikut terkirim? |
+| `SameSite=Lax` | GET cross-site bisa | POST cross-site — cookie ikut terkirim? |
+| `Path=/admin` | Scope dibatasi path | Request ke `/` — cookie ikut terkirim? |
+| `Domain=.example.com` | Termasuk subdomain | Request dari subdomain — cookie ikut terkirim? |

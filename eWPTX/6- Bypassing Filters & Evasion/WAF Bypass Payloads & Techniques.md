@@ -3,10 +3,10 @@
 Status:
 
 Tags: [[eWPTX]] [[Bypassing Filters & Evasion]]
-###### Prerequisites: [[Encoding & Transformation Bypasses]]
-# WAF Bypass Payloads & Techniques
+###### Prasyarat: [[Encoding & Transformation Bypasses]]
+# Payload & Teknik Bypass WAF
 
-## SQL Injection WAF Bypass
+## Bypass WAF untuk SQL Injection
 
 ### Inline comments
 
@@ -37,7 +37,7 @@ UNION(SELECT(1),(2),(3))
 
 ### HTTP Parameter Pollution (HPP)
 
-Send the same parameter multiple times — different servers handle it differently:
+Kirim parameter yang sama berkali-kali — tiap server bisa memprosesnya berbeda:
 
 ```
 # Apache: takes last value
@@ -49,11 +49,11 @@ Send the same parameter multiple times — different servers handle it different
 
 ### Chunked transfer
 
-Split the payload across chunks so no single chunk contains a full keyword. See [[Encoding & Transformation Bypasses]] for example.
+Bagi payload ke beberapa chunk agar tidak ada satu chunk yang memuat keyword utuh. Lihat [[Encoding & Transformation Bypasses]] untuk contohnya.
 
 ---
 
-## XSS WAF Bypass
+## Bypass WAF untuk XSS
 
 ### Alternative event handlers
 
@@ -104,7 +104,7 @@ Split the payload across chunks so no single chunk contains a full keyword. See 
 
 ### XSS polyglot
 
-A single payload that works across multiple contexts:
+Satu payload yang bisa bekerja di banyak konteks:
 
 ```
 jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */oNcliCk=alert() )//%0D%0A%0d%0a//</stYle/</titLe/</teXtarEa/</scRipt/--!>\x3csVg/<sVg/oNloAd=alert()//>\x3e
@@ -112,7 +112,7 @@ jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */oNcliCk=alert() )//%0D%0A%0d%0a//</stYle/</
 
 ---
 
-## Command Injection WAF Bypass
+## Bypass WAF untuk Command Injection
 
 ### Variable expansion (Linux)
 
@@ -171,11 +171,11 @@ $(whoami)
 
 ---
 
-## General Techniques
+## Teknik umum
 
 ### Request method switching
 
-Some WAFs only inspect POST bodies, not GET or PUT:
+Beberapa WAF hanya inspeksi body POST, tidak GET atau PUT:
 
 ```bash
 # If POST is filtered, try PUT
@@ -199,11 +199,13 @@ Content-Type: multipart/form-data; boundary=----; charset=utf-7
 
 ---
 
-## Testing Approach
+## Pendekatan pengujian
 
-1. Identify what's blocked (which keywords, patterns)
-2. Determine where the filter checks (header, body, URL, parameter name)
-3. Start with simple encoding bypasses
-4. Escalate to structural changes (HPP, chunked, method switching)
-5. Combine multiple techniques
-6. Document what works for the specific target
+1. Identifikasi apa yang diblok (keyword/pola apa)
+2. Tentukan filter memeriksa di mana (header, body, URL, nama parameter)
+3. Mulai dari bypass encoding yang sederhana
+4. Naikkan ke perubahan struktur (HPP, chunked, method switching)
+5. Kombinasikan beberapa teknik
+6. Dokumentasikan yang berhasil untuk target tersebut
+
+Catatan: lakukan satu perubahan per percobaan agar mudah mengisolasi penyebab “lolos/blok”.

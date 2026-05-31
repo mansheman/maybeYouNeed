@@ -3,29 +3,29 @@
 Status:
 
 Tags: [[eWPTX]] [[eWPTX/3- ORM/ORM]] [[SQL Injection]]
-###### Prerequisites: [[SQL Injection Testing]] [[What is ORM?]]
-# ORM Injection
+###### Prasyarat: [[SQL Injection Testing]] [[What is ORM?]]
+# Injeksi ORM
 
-## Overview
+## Gambaran singkat
 
-**ORM Injection** targets applications using an ORM to interact with a database.
+**ORM Injection** menarget aplikasi yang memakai ORM untuk berinteraksi dengan database.
 
-It happens when **untrusted input** is used unsafely inside ORM query construction (often by building dynamic query strings), allowing an attacker to influence the underlying SQL.
+Ini terjadi saat **input yang tidak tepercaya** dipakai secara tidak aman saat membangun query ORM (sering karena query string dirakit secara dinamis), sehingga penyerang dapat mempengaruhi SQL di belakang layar.
 
-> ORMs reduce SQLi risk when used correctly, but unsafe patterns can reintroduce injection.
-
----
-
-## What causes ORM injection
-
-- Improper input validation
-- Dynamic query construction (concatenation / string formatting)
-- Using raw SQL through ORM APIs with unsanitized input
-- Developer misuse (bypassing ORM safeguards)
+> ORM membantu menurunkan risiko SQLi jika dipakai benar, tapi pola yang tidak aman bisa “menghidupkan lagi” injection.
 
 ---
 
-## Vulnerable example (dynamic query)
+## Penyebab umum ORM injection
+
+- Validasi input yang buruk
+- Query dinamis (concatenation / string formatting)
+- Pemakaian raw SQL lewat API ORM dengan input tidak disanitasi
+- Misuse oleh developer (melewati guardrail ORM)
+
+---
+
+## Contoh rentan (query dinamis)
 
 ```python
 username = request.args.get("username")
@@ -39,35 +39,35 @@ user = User.query.filter(
 
 ---
 
-## Example impact (authentication bypass)
+## Contoh dampak (bypass autentikasi)
 
-If an attacker controls `username`, input like:
+Jika penyerang bisa mengontrol `username`, input seperti:
 
 ```text
 admin' OR '1'='1
 ```
 
-can cause the WHERE clause logic to become always-true in some vulnerable constructions.
+dapat membuat logika klausa WHERE menjadi selalu true pada konstruksi yang rentan.
 
 ---
 
-## Safer approach (principles)
+## Pendekatan yang lebih aman (prinsip)
 
-- Don’t concatenate strings to build queries.
-- Use parameterized ORM APIs.
-- Validate inputs with allow-lists where possible.
-- Avoid raw SQL unless necessary (and parameterize it).
+- Jangan menggabungkan string untuk membangun query.
+- Pakai API ORM yang ter-parameterisasi.
+- Validasi input dengan allow-list jika memungkinkan.
+- Hindari raw SQL kecuali benar-benar perlu (dan tetap parameterize).
 
-Also:
+Tambahan:
 
-- never store plaintext passwords
-- use password hashing + secure verification
+- jangan simpan password plaintext
+- pakai hashing password + verifikasi yang benar
 
 ---
 
-## Framework-Specific Injection
+## Injection spesifik framework
 
-See deep-dive notes:
+Lihat catatan pendalaman:
 - [[ORM Injection - Django]] — `raw()`, `extra()`, QuerySet filter injection
 - [[ORM Injection - Hibernate]] — HQL injection, JPQL, Criteria API misuse
 
@@ -124,12 +124,12 @@ var users = context.Users
 var user = context.Users.Where(u => u.Name == input).FirstOrDefault();
 ```
 
-## Detection Checklist
+## Checklist deteksi
 
-| Pattern | Risk | Action |
+| Pola | Risiko | Aksi |
 |---------|------|--------|
-| String concatenation in queries | Critical | Replace with parameterized |
-| `raw()` / `rawQuery()` / `fromSqlRaw()` | High | Audit parameters |
-| User input as column/field names | High | Whitelist allowed fields |
-| `extra()` / `annotate(RawSQL())` | High | Use ORM builder methods |
-| Standard ORM methods (filter_by, Where, etc.) | Low | Generally safe |
+| String concatenation di query | Kritis | Ganti dengan parameterized |
+| `raw()` / `rawQuery()` / `fromSqlRaw()` | Tinggi | Audit parameter |
+| Input user sebagai nama kolom/field | Tinggi | Whitelist field yang boleh |
+| `extra()` / `annotate(RawSQL())` | Tinggi | Pakai builder ORM |
+| Method ORM standar (filter_by, Where, dll) | Rendah | Umumnya aman |

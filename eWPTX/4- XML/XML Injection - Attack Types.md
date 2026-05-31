@@ -3,19 +3,19 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: [[XML Injection - Overview]]
-# XML Injection - Attack Types
+###### Prasyarat: [[XML Injection - Overview]]
+# XML Injection - Jenis Serangan
 
-## Common XML-related injection / parser abuse issues
+## Jenis issue injection / abuse parser yang umum di XML
 
-|Attack type|What gets manipulated|Typical impact|
+|Tipe serangan|Apa yang dimanipulasi|Dampak umum|
 |---|---|---|
-|XML data manipulation|XML values/structure|data tampering, auth bypass|
-|XML Tag Injection|new/modified tags|privilege escalation, parsing issues|
-|XML Attribute Injection|attributes|privilege escalation, data tampering|
-|XPath Injection|XPath expressions used to query XML|unauthorized data access, auth bypass|
-|XXE|external entities / DTD features|file disclosure, SSRF, DoS|
-|Billion Laughs|recursive entities|DoS (resource exhaustion)|
-|XML bombs|huge/deep XML|DoS|
-|XInclude Injection|external includes|file inclusion, data disclosure|
-|XML Schema poisoning|schema/validation manipulation|validation bypass, unexpected data|
+|XML data manipulation|nilai/struktur XML|data tampering, auth bypass|
+|XML Tag Injection|tag baru/diubah|privilege escalation, parsing issues|
+|XML Attribute Injection|atribut|privilege escalation, data tampering|
+|XPath Injection|ekspresi XPath untuk query XML|akses data tanpa izin, auth bypass|
+|XXE|external entities / fitur DTD|file disclosure, SSRF, DoS|
+|Billion Laughs|entity rekursif|DoS (resource exhaustion)|
+|XML bombs|XML besar/dalam|DoS|
+|XInclude Injection|include eksternal|file inclusion, data disclosure|
+|XML Schema poisoning|manipulasi schema/validasi|bypass validasi, data tak terduga|

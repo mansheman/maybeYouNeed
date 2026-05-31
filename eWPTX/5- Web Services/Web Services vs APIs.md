@@ -3,25 +3,25 @@
 Status:
 
 Tags: [[eWPTX]] [[Web Services]]
-###### Prerequisites: [[What Are Web Services?]]
-# Web Services vs APIs
+###### Prasyarat: [[What Are Web Services?]]
+# Web Service vs API
 
-## Overview
+## Gambaran singkat
 
-Web services and APIs are related but not identical.
+Web service dan API berhubungan, tapi tidak identik.
 
-- **Web services**: a category of technologies/protocols for web-based system-to-system data exchange.
-- **APIs**: a broader concept: rules/tools/interfaces to access functionality/data of a system.
+- **Web services**: kategori teknologi/protokol untuk pertukaran data antar sistem melalui web/jaringan.
+- **API**: konsep yang lebih luas—interface untuk mengakses fungsi/data suatu sistem.
 
-A web service is often an API, but not all APIs are web services.
+Seringnya web service adalah API, tapi tidak semua API adalah web service.
 
 ---
 
-## Comparison (summary)
+## Perbandingan (ringkas)
 
-|Aspect|Web Services|APIs|
+|Aspek|Web Services|API|
 |---|---|---|
-|Scope|Subset of APIs focused on web-based exchange|Broader concept (any interface)|
-|Protocols|SOAP, REST, XML-RPC, JSON-RPC, etc.|Often HTTP/REST, but can be many|
-|Formats|Commonly XML/JSON|JSON/XML/custom|
-|Standards/docs|WS-* for SOAP, WSDL|OpenAPI/Swagger, GraphQL, etc.|
+|Ruang lingkup|Subset API yang fokus pada pertukaran data via web|Konsep lebih luas (interface apa pun)|
+|Protokol|SOAP, REST, XML-RPC, JSON-RPC, dll.|Sering HTTP/REST, tapi bisa macam-macam|
+|Format|Umumnya XML/JSON|JSON/XML/custom|
+|Standar/dokumentasi|WS-* (SOAP), WSDL|OpenAPI/Swagger, GraphQL, dll.|

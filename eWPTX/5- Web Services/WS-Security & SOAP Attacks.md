@@ -3,26 +3,26 @@
 Status:
 
 Tags: [[eWPTX]] [[Web Services]]
-###### Prerequisites: [[SOAP]]
+###### Prasyarat: [[SOAP]]
 # WS-Security & SOAP Attacks
 
-## WS-Security Overview
+## Gambaran singkat WS-Security
 
-WS-Security is a SOAP extension for message-level security: authentication, integrity, and confidentiality.
+WS-Security adalah ekstensi SOAP untuk keamanan di level pesan (message-level): autentikasi, integritas, dan kerahasiaan.
 
-Key components:
-- **UsernameToken**: username/password in SOAP header
-- **X.509 Certificates**: digital signatures and encryption
-- **SAML Tokens**: federated identity assertions
-- **Timestamps**: prevent replay attacks
+Komponen kunci:
+- **UsernameToken**: username/password di SOAP header
+- **X.509 Certificates**: digital signature dan enkripsi
+- **SAML Tokens**: assertion identitas terfederasi
+- **Timestamps**: mencegah replay attack
 
 ---
 
-## SOAP-Specific Attack Vectors
+## Vektor Serangan yang Khas SOAP
 
 ### 1. SOAPAction Header Spoofing
 
-The `SOAPAction` HTTP header tells the server which operation to invoke. Some implementations trust this header without validating against the SOAP body.
+Header HTTP `SOAPAction` memberi tahu server operasi mana yang “diminta”. Sebagian implementasi terlalu percaya header ini tanpa memvalidasi terhadap isi SOAP body.
 
 ```http
 POST /service HTTP/1.1
@@ -38,19 +38,19 @@ Content-Type: text/xml
 </soapenv:Envelope>
 ```
 
-If the server routes based on SOAPAction header instead of parsing the SOAP body, the `getAdminInfo` operation executes.
+Kalau server melakukan routing berdasarkan header SOAPAction (bukan parsing SOAP body), operasi `getAdminInfo` bisa tereksekusi.
 
 ### 2. XML Signature Wrapping (XSW)
 
-Attacks the XML Digital Signature verification process. The signature validates one part of the XML, but the server processes a different part.
+Menyerang proses verifikasi XML Digital Signature. Signature memvalidasi satu bagian XML, tapi server memproses bagian lain.
 
-**Concept**:
+**Konsep**:
 1. Valid signed message contains `<Operation>getUserInfo</Operation>`
 2. Attacker moves the signed element and adds a new unsigned element
 3. Signature still validates (it references the original signed node by ID)
 4. Server processes the unsigned element: `<Operation>deleteUser</Operation>`
 
-**Variants**: XSW1 through XSW8, each moving elements to different positions in the SOAP envelope.
+**Varian**: XSW1 sampai XSW8, beda-beda cara memindahkan elemen di dalam SOAP envelope.
 
 ### 3. UsernameToken Attack
 
@@ -63,18 +63,18 @@ Attacks the XML Digital Signature verification process. The signature validates 
 </wsse:UsernameToken>
 ```
 
-Attack vectors:
+Vektor serangan:
 - **Brute force**: no account lockout on the WS-Security layer
 - **Replay**: if nonce/timestamp not validated, replay captured tokens
 - **Password type downgrade**: switch from `PasswordDigest` to `PasswordText`
 
 ### 4. WSDL Information Disclosure
 
-WSDL files often expose:
-- All available operations (including admin/internal ones)
-- Parameter names, types, and structures
-- Internal naming conventions
-- Backend service URLs
+File WSDL sering membocorkan:
+- semua operation yang tersedia (termasuk yang admin/internal)
+- nama parameter, tipe, dan struktur
+- pola penamaan internal
+- URL backend service
 
 ```bash
 # Fetch WSDL
@@ -87,7 +87,7 @@ grep -i "admin\|delete\|debug\|internal" service.wsdl
 
 ### 5. XXE in SOAP
 
-SOAP messages are XML — all XXE techniques apply:
+Pesan SOAP adalah XML — jadi semua teknik XXE berlaku:
 
 ```xml
 <?xml version="1.0"?>
@@ -103,11 +103,11 @@ SOAP messages are XML — all XXE techniques apply:
 </soapenv:Envelope>
 ```
 
-See [[XML External Entities (XXE)]] and [[Blind & OOB XXE]] for techniques.
+Lihat [[XML External Entities (XXE)]] dan [[Blind & OOB XXE]] untuk tekniknya.
 
 ### 6. SOAP Injection
 
-Inject XML into SOAP parameters to modify the message structure:
+Menyisipkan XML ke parameter SOAP untuk mengubah struktur pesan:
 
 ```xml
 <!-- Normal input: "John" -->
@@ -117,24 +117,24 @@ Inject XML into SOAP parameters to modify the message structure:
 <name>John</name><role>admin</role><foo>
 ```
 
-If input isn't sanitized, the injected XML becomes part of the SOAP message.
+Kalau input tidak disanitasi, XML yang disisipkan bisa ikut menjadi bagian pesan SOAP.
 
 ---
 
 ## Testing Methodology
 
-1. Obtain the WSDL and enumerate all operations
-2. Test each operation with valid and malformed input
-3. Test SOAPAction header manipulation
-4. Test for XXE in SOAP body
-5. Check UsernameToken validation (replay, brute force)
-6. Test for SOAP injection in input parameters
-7. Check if WSDL exposes hidden/admin operations
+1. Ambil WSDL lalu enumerasi semua operation
+2. Uji tiap operation dengan input valid dan input rusak/malformed
+3. Uji manipulasi header SOAPAction
+4. Uji XXE pada SOAP body
+5. Cek validasi UsernameToken (replay, brute force)
+6. Uji SOAP injection pada parameter input
+7. Cek apakah WSDL mengekspos operation tersembunyi/admin
 
 ---
 
 ## Tools
 
-- **SoapUI**: SOAP testing and fuzzing
-- **Burp Suite**: intercept and modify SOAP requests
-- **WS-Attacker**: automated WS-Security attack tool (XSW, SOAPAction spoofing)
+- **SoapUI**: testing dan fuzzing SOAP
+- **Burp Suite**: intercept dan modifikasi request SOAP
+- **WS-Attacker**: tool otomasi serangan WS-Security (XSW, SOAPAction spoofing)

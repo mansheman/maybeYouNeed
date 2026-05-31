@@ -3,13 +3,13 @@
 Status:
 
 Tags: [[eWPTX]] [[eWPTX/3- ORM/ORM]]
-###### Prerequisites: [[What is ORM?]]
-# Common ORM Frameworks
+###### Prasyarat: [[What is ORM?]]
+# Framework ORM yang Umum
 
 |ORM Framework|Language|Description|
 |---|---|---|
-|SQLAlchemy|Python|Versatile ORM, supports advanced queries and raw SQL.|
-|Django ORM|Python|Built-in ORM for Django, focused on simplicity/productivity.|
-|Hibernate|Java|Popular Java ORM with JPA integration.|
-|Entity Framework|.NET|Microsoft’s ORM integrated in the .NET ecosystem.|
-|Eloquent ORM|PHP (Laravel)|Intuitive ORM emphasizing developer productivity.|
+|SQLAlchemy|Python|ORM fleksibel; mendukung query kompleks dan raw SQL.|
+|Django ORM|Python|ORM bawaan Django; fokus ke simplicity & productivity.|
+|Hibernate|Java|ORM populer di Java, terintegrasi dengan JPA.|
+|Entity Framework|.NET|ORM Microsoft yang terintegrasi di ekosistem .NET.|
+|Eloquent ORM|PHP (Laravel)|ORM yang “developer-friendly”, fokus produktivitas.|

@@ -3,20 +3,20 @@
 Status:
 
 Tags:[[eWPTX]] [[Authentication]] [[OAuth]]
-###### Prerequisites: [[Introduction to OAuth]]
+###### Prasyarat: [[Introduction to OAuth]]
 # OAuth Flows
 
-In OAuth 2.0, clients obtain access tokens using different flows (grant types). Each flow is designed for a specific application type and trust level. Modern apps typically use **Authorization Code** (often with PKCE); bearer tokens are the default token type.
+Di OAuth 2.0, client mendapatkan access token lewat beberapa flow (*grant type*) sesuai tipe aplikasi dan level kepercayaan. Aplikasi modern biasanya pakai **Authorization Code** (sering dengan PKCE). Token paling umum adalah **Bearer token**.
 
 ---
 
 ## 1. Authorization Code Grant
 
-The most secure and widely used flow. Intended for **server-side applications** that can securely store a `client_secret`.
+Flow paling aman dan paling sering dipakai. Cocok untuk **server-side application** yang bisa menyimpan `client_secret` dengan aman.
 
 ### Step 1 — Authorization Request
 
-The client redirects the user's browser to the authorization server:
+Client mengarahkan browser user ke authorization server:
 
 ```
 GET /authorize?response_type=code
@@ -27,12 +27,12 @@ GET /authorize?response_type=code
 Host: auth.example.com
 ```
 
-- `state` — a random value the client generates and validates on callback to prevent CSRF.
-- `scope` — the permissions being requested.
+- `state` — nilai random dari client yang wajib divalidasi saat callback untuk mencegah CSRF.
+- `scope` — izin yang diminta.
 
 ### Step 2 — Authorization Response
 
-After the user authenticates and consents, the authorization server redirects back:
+Setelah user autentikasi dan setuju, authorization server redirect balik:
 
 ```
 HTTP/1.1 302 Found
@@ -41,7 +41,7 @@ Location: https://client.example.com/callback?code=AUTH_CODE&state=RANDOM_CSRF_S
 
 ### Step 3 — Token Exchange (Back-channel)
 
-The client exchanges the authorization code for tokens server-to-server:
+Client menukar authorization code menjadi token lewat komunikasi server-to-server (*back-channel*):
 
 ```
 POST /token HTTP/1.1
@@ -67,16 +67,16 @@ grant_type=authorization_code
 
 ### Security Notes
 
-- The authorization code is short-lived and single-use.
-- `client_secret` never leaves the server — the browser never sees it.
-- Always validate the `state` parameter on callback to prevent CSRF.
-- Restrict `redirect_uri` to pre-registered values; open redirects here lead to code theft.
+- Authorization code umumnya berumur pendek dan hanya sekali pakai.
+- `client_secret` tidak pernah keluar dari server — browser tidak boleh melihatnya.
+- Selalu validasi `state` pada callback untuk mencegah CSRF.
+- Batasi `redirect_uri` ke allow-list yang sudah didaftarkan; kalau ada open redirect di sini, code bisa dicuri.
 
 ---
 
 ## 2. Implicit Grant (DEPRECATED)
 
-Designed for **browser-based (SPA) apps** that cannot securely store a secret. The access token is returned directly in the URL fragment.
+Awalnya untuk **SPA di browser** yang tidak bisa menyimpan secret. Access token dikembalikan langsung lewat URL fragment.
 
 ```
 GET /authorize?response_type=token
@@ -95,18 +95,18 @@ Location: https://spa.example.com/callback#access_token=eyJhbGci...&token_type=B
 
 ### Why Implicit Is Deprecated
 
-- **Token in URL fragment** — exposed to browser history, referer headers, and browser extensions.
-- **No refresh tokens** — the user must re-authenticate when the access token expires.
-- **No back-channel** — there is no secure server-to-server token exchange; everything happens in the browser.
-- **Token injection attacks** — an attacker can replace the fragment token in the redirect.
+- **Token ada di URL fragment** — mudah terekspos ke history, referer, dan extension.
+- **Tidak ada refresh token** — user harus login ulang saat access token expired.
+- **Tanpa back-channel** — tidak ada pertukaran token server-to-server yang aman; semuanya di browser.
+- **Token injection** — penyerang bisa mengganti token di URL fragment saat redirect.
 
-> **Recommendation:** Use Authorization Code with PKCE for SPAs instead. The Implicit grant is removed from the OAuth 2.1 draft specification.
+> Rekomendasi: gunakan Authorization Code + PKCE untuk SPA. Implicit grant sudah dihapus dari draft OAuth 2.1.
 
 ---
 
 ## 3. Resource Owner Password Credentials Grant
 
-The user provides their **username and password directly to the client**. Only appropriate when the client is highly trusted (e.g., the authorization server's own first-party app).
+User memasukkan **username/password langsung ke aplikasi client**. Ini hanya masuk akal untuk client yang sangat dipercaya (mis. first-party app milik provider sendiri).
 
 ```
 POST /token HTTP/1.1
@@ -123,16 +123,16 @@ grant_type=password
 
 ### Security Notes
 
-- The client handles raw credentials — this defeats the purpose of OAuth delegation.
-- No support for MFA or consent screens at the authorization server level.
-- Should **never** be used with third-party clients.
-- Removed from the OAuth 2.1 draft specification.
+- Client memegang kredensial mentah — ini merusak tujuan delegasi OAuth.
+- Biasanya tidak mendukung MFA/consent secara proper di sisi authorization server.
+- Sebaiknya **jangan** dipakai untuk third-party client.
+- Dihapus dari draft OAuth 2.1.
 
 ---
 
 ## 4. Client Credentials Grant
 
-Used for **machine-to-machine** (M2M) communication where no user context is needed — e.g., a microservice calling another microservice.
+Dipakai untuk komunikasi **machine-to-machine** (M2M) tanpa konteks user — misalnya microservice memanggil microservice lain.
 
 ```
 POST /token HTTP/1.1
@@ -146,24 +146,24 @@ grant_type=client_credentials
 
 ### Security Notes
 
-- The access token represents the **application itself**, not a user.
-- No refresh token is issued (the client can simply request a new token).
-- Protect the `client_secret` — rotate it regularly and use vault storage.
+- Access token merepresentasikan **aplikasi**, bukan user.
+- Tidak ada refresh token (client tinggal minta token baru saat perlu).
+- Lindungi `client_secret` — rotasi berkala dan simpan di vault/secret manager.
 
 ---
 
 ## PKCE Extension (Proof Key for Code Exchange)
 
-PKCE (RFC 7636) mitigates authorization code interception attacks. It is **mandatory** for public clients (SPAs, mobile apps) and recommended for all clients in OAuth 2.1.
+PKCE (RFC 7636) memitigasi serangan *authorization code interception*. PKCE **wajib** untuk public client (SPA, mobile) dan direkomendasikan luas di OAuth 2.1.
 
 ### How It Works
 
-1. The client generates a random `code_verifier` (43–128 characters, unreserved URI characters).
-2. The client computes the `code_challenge`:
+1. Client membuat `code_verifier` random (43–128 karakter, karakter URI yang diizinkan).
+2. Client menghitung `code_challenge`:
    ```
    code_challenge = BASE64URL(SHA256(code_verifier))
    ```
-3. The authorization request includes the challenge:
+3. Authorization request menyertakan challenge:
    ```
    GET /authorize?response_type=code
        &client_id=CLIENT_ID
@@ -172,7 +172,7 @@ PKCE (RFC 7636) mitigates authorization code interception attacks. It is **manda
        &code_challenge_method=S256
        &state=RANDOM_CSRF_STRING
    ```
-4. The token request includes the verifier:
+4. Token request menyertakan verifier:
    ```
    POST /token
    grant_type=authorization_code
@@ -181,18 +181,18 @@ PKCE (RFC 7636) mitigates authorization code interception attacks. It is **manda
    &client_id=CLIENT_ID
    &code_verifier=dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk
    ```
-5. The server hashes the verifier and compares it to the stored challenge. If they do not match, the request is rejected.
+5. Server meng-hash verifier lalu membandingkannya dengan challenge yang tersimpan. Jika tidak cocok, request ditolak.
 
 ### Why PKCE Matters
 
-- Even if an attacker intercepts the authorization code (e.g., via a malicious app registered to the same custom URI scheme on mobile), they cannot exchange it without the `code_verifier`.
-- `code_challenge_method=S256` is strongly preferred over `plain` because `plain` offers no protection if the code is intercepted alongside the verifier.
+- Walaupun authorization code berhasil dicegat (mis. lewat aplikasi jahat yang mendaftarkan custom URI scheme yang sama di mobile), penyerang tidak bisa menukarnya tanpa `code_verifier`.
+- `code_challenge_method=S256` jauh lebih disarankan daripada `plain` karena `plain` tidak memberi proteksi jika code+verifier sama-sama bocor.
 
 ---
 
 ## Flow Selection Summary
 
-| Flow                      | Use Case                      | Status in OAuth 2.1 |
+| Flow                      | Use case                      | Status di OAuth 2.1 |
 | ------------------------- | ----------------------------- | -------------------- |
 | Authorization Code + PKCE | Web apps, SPAs, mobile        | Recommended          |
 | Implicit                  | Legacy SPAs                   | **Removed**          |
@@ -209,7 +209,7 @@ PKCE (RFC 7636) mitigates authorization code interception attacks. It is **manda
 
 ## References
 
-- See [[Common OAuth Attacks]] for attack vectors: open redirect abuse, CSRF on callback, token leakage, scope manipulation, and PKCE downgrade attacks.
+- Lihat [[Common OAuth Attacks]] untuk vektor serangan: open redirect abuse, CSRF di callback, kebocoran token, manipulasi scope, dan downgrade PKCE.
 - RFC 6749 — The OAuth 2.0 Authorization Framework
 - RFC 7636 — Proof Key for Code Exchange (PKCE)
 - OAuth 2.1 Draft Specification

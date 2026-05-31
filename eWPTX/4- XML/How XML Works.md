@@ -3,28 +3,28 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: [[What is XML?]]
-# How XML Works
+###### Prasyarat: [[What is XML?]]
+# Cara Kerja XML
 
-## Data representation
+## Representasi data
 
-- XML organizes data hierarchically in a **tree structure**.
-- Each piece of data is enclosed in tags that describe its meaning.
-
----
-
-## Use cases
-
-- data storage and transport between systems
-- configuration files for software
-- web service communication (e.g., SOAP)
+- XML mengorganisir data secara hirarkis dalam **struktur tree**.
+- Tiap potongan data dibungkus dalam tag yang menjelaskan maknanya.
 
 ---
 
-## Processing
+## Use case
 
-- applications parse XML using an **XML parser**
-- the parsed data may be used for:
+- penyimpanan data dan pertukaran data antar sistem
+- file konfigurasi untuk software
+- komunikasi web service (mis. SOAP)
+
+---
+
+## Pemrosesan
+
+- aplikasi akan mem-parse XML menggunakan **XML parser**
+- hasil parse biasanya dipakai untuk:
   - database updates
   - rendering content
   - inter-service communication

@@ -3,24 +3,24 @@
 Status:
 
 Tags: [[eWPTX]] [[Web Services]] [[XML]]
-###### Prerequisites: [[Web Service Implementations]]
+###### Prasyarat: [[Web Service Implementations]]
 # SOAP
 
-## Overview
+## Gambaran singkat
 
-SOAP (Simple Object Access Protocol) is a protocol for exchanging structured information in web services.
+SOAP (Simple Object Access Protocol) adalah protokol untuk pertukaran informasi terstruktur pada web service.
 
-It defines rules for:
+SOAP mendefinisikan aturan untuk:
 
-- structuring messages (XML)
-- defining RPC-style operations
-- handling communication over a network (often HTTP)
+- struktur pesan (XML)
+- operasi model RPC
+- komunikasi via jaringan (seringnya HTTP)
 
-SOAP often comes with an interface contract via [[WSDL (Web Services Description Language)]].
+SOAP biasanya punya “kontrak” interface via [[WSDL (Web Services Description Language)]].
 
 ---
 
-## Request example
+## Contoh request
 
 ```xml
 <soapenv:Envelope
@@ -35,7 +35,7 @@ SOAP often comes with an interface contract via [[WSDL (Web Services Description
 </soapenv:Envelope>
 ```
 
-## Response example
+## Contoh response
 
 ```xml
 <soapenv:Envelope

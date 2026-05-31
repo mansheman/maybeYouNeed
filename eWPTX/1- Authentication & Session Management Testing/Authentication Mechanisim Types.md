@@ -3,14 +3,14 @@
 Status:
 
 Tags:[[eWPTX]] [[Authentication]]
-###### Prerequisites: 
-## Authentication Mechanisms
+###### Prasyarat:
+## Mekanisme Autentikasi
 
-Authentication mechanisms are methods or processes used to verify the identity of a user or system attempting to access a web application or service.
+Mekanisme autentikasi adalah metode/proses untuk memverifikasi identitas user atau sistem yang mencoba mengakses aplikasi web atau service.
 
-These mechanisms ensure that only authorized users can gain access to sensitive resources, enhancing security.
+Tujuannya: memastikan hanya user yang sah yang bisa mengakses resource sensitif.
 
-In the following sections, we explore some of the key types of authentication mechanisms used in web applications.
+Di bawah ini ringkasan tipe-tipe mekanisme autentikasi yang umum di web.
 
 ---
 
@@ -18,7 +18,7 @@ In the following sections, we explore some of the key types of authentication me
 
 ### Password-Based Authentication
 
-Users provide a username and a password to verify their identity.
+User memberikan username dan password untuk memverifikasi identitas.
 
 ---
 
@@ -43,7 +43,7 @@ A specific type of MFA that requires exactly two factors for authentication, oft
 
 ### Token-Based Authentication
 
-Uses tokens (e.g., JSON Web Tokens or OAuth tokens) that are issued upon successful login and used for subsequent requests, reducing the need to repeatedly enter credentials.
+Menggunakan token (mis. JWT atau OAuth token) yang diterbitkan setelah login dan dipakai untuk request berikutnya, sehingga tidak perlu input kredensial berulang.
 
 ---
 
@@ -55,4 +55,4 @@ Allows users to log in once and gain access to multiple applications or services
 
 ### One-Time Passwords (OTP)
 
-A temporary password sent to the user via SMS or email for a single login session, often used in conjunction with other authentication methods.
+Kode sementara yang dikirim via SMS/email untuk satu sesi/aksi tertentu, biasanya dipakai bersama metode autentikasi lain.

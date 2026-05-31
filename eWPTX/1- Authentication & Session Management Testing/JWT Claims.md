@@ -3,20 +3,20 @@
 Status:
 
 Tags:[[eWPTX]] [[Authentication]] [[JWT]]
-###### Prerequisites: [[JSON Web Tokens (JWT)]]
+###### Prasyarat: [[JSON Web Tokens (JWT)]]
 # JWT Claims
 
-## What are claims?
+## Apa itu claims?
 
-Claims are key-value pairs in the JWT payload used to provide context for authentication/authorization.
+Claims adalah pasangan key-value di payload JWT yang memberi konteks untuk autentikasi/otorisasi (mis. siapa user-nya, role apa, kapan token kadaluarsa).
 
-Claims are not encrypted by default.
+Claims **tidak terenkripsi** secara default.
 
 ---
 
-## Types of claims
+## Jenis claims
 
-### Registered claims (standard)
+### Registered claims (standar)
 
 - `iss` issuer
 - `sub` subject
@@ -25,7 +25,7 @@ Claims are not encrypted by default.
 - `iat` issued at
 - `nbf` not before
 
-### Public claims (app-defined)
+### Public claims (ditentukan aplikasi)
 
 Examples:
 
@@ -33,7 +33,7 @@ Examples:
 - `email`
 - `permissions`
 
-### Private claims (agreed between parties)
+### Private claims (disepakati antar pihak)
 
 Examples:
 

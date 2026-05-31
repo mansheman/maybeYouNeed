@@ -3,11 +3,11 @@
 Status:
 
 Tags:[[eWPTX]] [[Authentication]]
-###### Prerequisites: [[Token Placement]]
-# Token Placement - Best Practices
+###### Prasyarat: [[Token Placement]]
+# Penempatan Token - Best Practices
 
-- Prefer `Authorization: Bearer` for APIs.
-- Avoid query parameter tokens unless unavoidable.
-- If using cookies: set `HttpOnly`, `Secure`, and appropriate `SameSite`.
-- Always use HTTPS.
-- Minimize token exposure (avoid places that get logged/cached).
+- Utamakan `Authorization: Bearer` untuk API.
+- Hindari token di query parameter kecuali benar-benar terpaksa.
+- Kalau pakai cookie: set `HttpOnly`, `Secure`, dan `SameSite` yang sesuai.
+- Wajib gunakan HTTPS.
+- Minimalkan paparan token (hindari lokasi yang gampang kelog/ke-cache).

@@ -3,31 +3,31 @@
 Status:
 
 Tags: [[eWPTX]] [[eWPTX/3- ORM/ORM]]
-###### Prerequisites: [[SQL Injection]]
-# What is ORM?
+###### Prasyarat: [[SQL Injection]]
+# Apa itu ORM?
 
-## Overview
+## Gambaran singkat
 
-**ORM (Object-Relational Mapping)** is a programming technique used to **map objects in an application** to **tables/rows in a relational database**.
+**ORM (Object-Relational Mapping)** adalah teknik pemrograman untuk **memetakan object di aplikasi** ke **tabel/baris pada database relasional**.
 
-It abstracts database operations, allowing developers to interact with data using **object-oriented code** instead of writing raw SQL queries for every operation.
+ORM mengabstraksi operasi database, jadi developer bisa berinteraksi dengan data lewat **kode berorientasi objek** tanpa harus menulis raw SQL untuk setiap operasi.
 
 ---
 
-## Bridge between OOP and relational databases
+## Jembatan antara OOP dan database relasional
 
-ORM bridges the gap between:
+ORM menjembatani perbedaan antara:
 
-- Object-oriented programming languages (Python, Java, Ruby, PHP, .NET)
-- Relational databases (MySQL, PostgreSQL, SQLite, MSSQL)
+- Bahasa pemrograman OOP (Python, Java, Ruby, PHP, .NET)
+- Database relasional (MySQL, PostgreSQL, SQLite, MSSQL)
 
-By mapping:
+Dengan pemetaan:
 
 - **Class** → **Table**
 - **Object** → **Row**
 - **Attribute/Field** → **Column**
 
-Example mapping:
+Contoh pemetaan:
 
 ```text
 class User   <->  users table
@@ -37,8 +37,8 @@ User.email   <->  users.email
 
 ---
 
-## What ORM gives you (high level)
+## Apa yang ORM berikan (level tinggi)
 
-- a high-level API for CRUD
-- automatic transformation (row ↔ object)
-- centralized data-access logic
+- API level tinggi untuk CRUD
+- transformasi otomatis (row ↔ object)
+- logika akses data lebih terpusat

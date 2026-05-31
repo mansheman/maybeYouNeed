@@ -3,16 +3,16 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: [[XML External Entities (XXE)]]
+###### Prasyarat: [[XML External Entities (XXE)]]
 # Billion Laughs Attack
 
-## Overview
+## Gambaran singkat
 
-A "Billion Laughs" attack (CVE-2003-1564) abuses recursive entity expansion to exhaust memory/CPU. A tiny XML document (~1KB) expands into gigabytes in memory, crashing the parser.
+Serangan "Billion Laughs" (CVE-2003-1564) menyalahgunakan ekspansi entity yang rekursif untuk menghabiskan memori/CPU. Dokumen XML kecil (~1KB) bisa mengembang jadi ukuran gigabyte di memori dan membuat parser crash.
 
-Also known as: **XML Entity Expansion attack**, **exponential entity expansion**.
+Nama lain: **XML Entity Expansion attack**, **exponential entity expansion**.
 
-## Classic Payload
+## Payload klasik
 
 ```xml
 <?xml version="1.0"?>
@@ -30,11 +30,11 @@ Also known as: **XML Entity Expansion attack**, **exponential entity expansion**
 <lolz>&lol9;</lolz>
 ```
 
-## Expansion Math
+## Perhitungan ekspansi
 
-Each level multiplies the previous by 10:
+Setiap level mengalikan level sebelumnya x10:
 
-| Level | Entities   | Text produced          |
+| Level | Entities   | Teks yang dihasilkan   |
 |-------|------------|------------------------|
 | lol   | 1          | 3 bytes ("lol")        |
 | lol2  | 10         | 30 bytes               |
@@ -46,9 +46,9 @@ Each level multiplies the previous by 10:
 | lol8  | 10,000,000 | 30 MB                  |
 | lol9  | 10^9       | **~3 GB**              |
 
-Input size: ~1 KB. Expanded output: ~3 GB. Amplification factor: **~3,000,000x**.
+Ukuran input: ~1 KB. Output setelah ekspansi: ~3 GB. Amplification factor: **~3,000,000x**.
 
-## Parser-Specific Behavior
+## Perilaku spesifik parser
 
 **libxml2 (Python lxml, PHP)**
 - Default entity expansion limit: 10,000 substitutions (since libxml2 2.7+)
@@ -63,7 +63,7 @@ Input size: ~1 KB. Expanded output: ~3 GB. Amplification factor: **~3,000,000x**
 - .NET 4.5.2+: `MaxCharactersFromEntities` defaults to 10,000,000
 - Older .NET: fully vulnerable, must set `XmlReaderSettings.MaxCharactersFromEntities`
 
-## Mitigation Code
+## Contoh mitigasi (kode)
 
 **Python (defusedxml)**
 ```python
@@ -92,13 +92,13 @@ $doc->loadXML($xml, LIBXML_NOENT | LIBXML_DTDLOAD);  // VULNERABLE
 $doc->loadXML($xml, 0);  // SAFE - no entity substitution
 ```
 
-## Detection Indicators
+## Indikator deteksi
 
-- XML input contains `<!DOCTYPE` with nested `<!ENTITY` definitions
-- Entity definitions reference other entities (recursive pattern)
-- Memory usage spikes sharply during XML parsing
-- Parser logs show entity expansion warnings or limits hit
-- WAF rule: flag XML bodies with more than 3-5 nested entity definitions
+- Input XML mengandung `<!DOCTYPE` dengan `<!ENTITY` yang nested
+- Definisi entity mereferensikan entity lain (pola rekursif)
+- Penggunaan memori naik tajam saat parsing
+- Log parser menunjukkan warning/limit entity expansion
+- Aturan WAF: flag body XML yang punya >3–5 definisi entity yang nested
 
 ---
 

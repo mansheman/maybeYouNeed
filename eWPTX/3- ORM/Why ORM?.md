@@ -3,57 +3,57 @@
 Status:
 
 Tags: [[eWPTX]] [[eWPTX/3- ORM/ORM]]
-###### Prerequisites: [[What is ORM?]]
-# Why ORM?
+###### Prasyarat: [[What is ORM?]]
+# Kenapa ORM?
 
-## Bridge between object code and tables
+## Menjembatani object code dan tabel
 
-- Relational databases store data in **tables**.
-- OOP languages represent data as **objects/classes**.
+- Database relasional menyimpan data dalam **tabel**.
+- Bahasa OOP merepresentasikan data sebagai **object/class**.
 
-ORM translates object structures into table structures and vice versa.
+ORM menerjemahkan struktur object menjadi struktur tabel (dan sebaliknya).
 
 ---
 
-## Simplify database operations (CRUD)
+## Menyederhanakan operasi database (CRUD)
 
-ORM frameworks provide a high-level API for common operations:
+Framework ORM menyediakan API level tinggi untuk operasi umum:
 
 - Create
 - Read
 - Update
 - Delete
 
-So developers can focus on application logic rather than repetitive SQL.
+Jadi developer bisa fokus ke logika aplikasi, bukan SQL berulang.
 
 ---
 
-## Reduce boilerplate code
+## Mengurangi boilerplate
 
-ORM reduces repetitive tasks like:
+ORM mengurangi kerja repetitif seperti:
 
-- mapping rows to objects
-- writing repetitive insert/update/select queries
-- keeping SQL consistent across the app
+- mapping row ke object
+- menulis query insert/update/select yang sama berulang
+- menjaga SQL lebih konsisten di seluruh aplikasi
 
 ---
 
-## Database independence (to some extent)
+## Lebih “portable” antar database (sampai batas tertentu)
 
-ORM frameworks often abstract database-specific syntax, making portability easier.
+ORM sering mengabstraksi perbedaan sintaks antar database, sehingga porting lebih mudah.
 
-Example migrations:
+Contoh migrasi:
 
 - SQLite → PostgreSQL
 - MySQL → PostgreSQL
 
 ---
 
-## Security (when used correctly)
+## Security (kalau dipakai dengan benar)
 
-ORMs often encourage parameterized queries, which helps mitigate **SQL Injection**.
+ORM biasanya mendorong query ter-parameterisasi, yang membantu mitigasi **SQL Injection**.
 
-Important:
+Catatan penting:
 
-- ORM is not a security guarantee.
-- Misuse can still lead to **ORM Injection** or classic SQLi via raw SQL.
+- ORM bukan jaminan aman.
+- Salah pakai tetap bisa memunculkan **ORM Injection** atau SQLi klasik lewat raw SQL.

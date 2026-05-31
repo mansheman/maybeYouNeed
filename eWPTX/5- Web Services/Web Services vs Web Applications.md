@@ -3,31 +3,31 @@
 Status:
 
 Tags: [[eWPTX]] [[Web Services]]
-###### Prerequisites: [[What Are Web Services?]]
-# Web Services vs Web Applications
+###### Prasyarat: [[What Are Web Services?]]
+# Web Service vs Web Application
 
 ## Web Services
 
-- designed for machine-to-machine communication
-- facilitate structured data exchange
-- often use protocols like SOAP or REST
-- not meant for direct human interaction
+- dirancang untuk komunikasi machine-to-machine
+- fokus pertukaran data terstruktur
+- sering memakai SOAP atau REST
+- bukan untuk interaksi manusia secara langsung
 
 ## Web Applications
 
-- accessed through a browser
-- designed for direct human interaction
-- range from simple sites to complex apps (email, social media, e-commerce)
+- diakses lewat browser
+- dirancang untuk interaksi manusia
+- dari situs sederhana sampai aplikasi kompleks (email, medsos, e-commerce)
 
 ---
 
-## Comparison table
+## Tabel perbandingan
 
-|Aspect|Web Services|Web Applications|
+|Aspek|Web Services|Web Application|
 |---|---|---|
-|Purpose|Facilitate data exchange between applications|Provide services/tasks for end-users|
-|User interaction|No UI; machine-to-machine|UI for humans|
-|Data exchange|Structured data exchange|User input + processing + presentation|
-|Protocols|SOAP, REST, XML-RPC, JSON-RPC|Primarily HTTP/HTTPS (browser-driven)|
-|Security focus|Transmission + access control|Auth, authz, validation, web vulns|
-|Examples|Payment gateway API, weather service|Online banking, Amazon, Gmail|
+|Tujuan|Fasilitasi pertukaran data antar aplikasi|Memberikan layanan/tugas untuk end-user|
+|Interaksi pengguna|Tanpa UI; machine-to-machine|Ada UI untuk manusia|
+|Pertukaran data|Data terstruktur|Input user + pemrosesan + tampilan|
+|Protokol|SOAP, REST, XML-RPC, JSON-RPC|Umumnya HTTP/HTTPS (via browser)|
+|Fokus keamanan|Transmisi + kontrol akses|Auth, authz, validasi, web vuln umum|
+|Contoh|Payment gateway API, weather service|Online banking, Amazon, Gmail|

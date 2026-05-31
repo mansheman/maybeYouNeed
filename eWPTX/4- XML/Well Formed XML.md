@@ -3,21 +3,21 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: [[XML Syntax]]
-# Well Formed XML
+###### Prasyarat: [[XML Syntax]]
+# XML yang Well Formed
 
-An XML document with correct syntax is called **Well Formed**.
+Dokumen XML dengan sintaks yang benar disebut **well formed**.
 
-Key considerations:
+Aturan utama:
 
-- one root element
-- tags are case sensitive (`<Letter>` ≠ `<letter>`)
-- closing tags are required (no omitted close tags)
-- XML prolog is optional, but if present it must come first
+- hanya satu root element
+- tag bersifat case sensitive (`<Letter>` ≠ `<letter>`)
+- closing tag wajib ada (tidak boleh “lupa” menutup)
+- XML prolog sifatnya opsional, tapi kalau ada harus berada paling awal
 
 ---
 
 ## Well formed vs valid
 
-- **Well Formed**: syntax rules are correct
-- **Valid**: well formed AND validated against a DTD/schema
+- **Well formed**: aturan sintaks benar
+- **Valid**: well formed DAN tervalidasi terhadap DTD/schema

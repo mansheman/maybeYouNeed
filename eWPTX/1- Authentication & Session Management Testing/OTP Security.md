@@ -3,32 +3,32 @@
 Status:
 
 Tags:[[eWPTX]] [[Authentication]] [[2FA]]
-###### Prerequisites: [[Two-Factor Authentication (2FA)]]
-# OTP Security
+###### Prasyarat: [[Two-Factor Authentication (2FA)]]
+# Keamanan OTP
 
-## Overview
+## Gambaran Singkat
 
-OTPs are temporary, single-use codes used to verify identity during login/transactions.
+OTP adalah kode sementara yang umumnya sekali pakai untuk memverifikasi identitas saat login/aksi sensitif.
 
-Key security properties:
+Properti keamanan yang ideal:
 
-- short-lived
-- single-use
-- rate-limited
+- masa berlaku singkat
+- sekali pakai
+- ada pembatasan percobaan (rate limit)
 
 ---
 
-## OTP methods
+## Metode OTP
 
-- TOTP (time-based)
+- TOTP (berbasis waktu)
 - SMS OTP
 - Email OTP
 
 ---
 
-## Good controls
+## Kontrol yang bagus
 
-- strict expiry window
-- invalidation after use
-- rate limiting and lockout
-- secure delivery (HTTPS, avoid downgrade)
+- window expiry yang ketat
+- invalid setelah dipakai
+- rate limiting dan lockout
+- pengiriman aman (HTTPS, hindari downgrade)

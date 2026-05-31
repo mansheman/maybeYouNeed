@@ -3,14 +3,14 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: [[XML Injection - Attack Types]]
+###### Prasyarat: [[XML Injection - Attack Types]]
 # XInclude Injection
 
-## Overview
+## Gambaran singkat
 
-XInclude injection happens when an XML processor supports XInclude and user-controlled input influences what gets included. This is significant because **you do not need to control the DOCTYPE** -- XInclude works even when you cannot define custom entities.
+XInclude injection terjadi ketika XML processor mendukung XInclude dan input yang bisa dikontrol user mempengaruhi apa yang akan di-include. Ini penting karena **kamu tidak perlu mengontrol DOCTYPE** — XInclude bisa jalan walau kamu tidak bisa mendefinisikan custom entity.
 
-## When XInclude Works vs XXE
+## Kapan XInclude bekerja vs XXE
 
 | Scenario                                    | XXE  | XInclude |
 |---------------------------------------------|------|----------|
@@ -19,9 +19,9 @@ XInclude injection happens when an XML processor supports XInclude and user-cont
 | DTD processing is disabled                  | No   | **Yes**  |
 | Server uses JSON-to-XML conversion          | No   | **Yes**  |
 
-XInclude is the go-to technique when your input is embedded into a server-side XML document and you cannot inject a `<!DOCTYPE>` declaration.
+XInclude sering jadi teknik pilihan ketika input kamu hanya “ditanam” ke dokumen XML server-side dan kamu tidak bisa menyisipkan deklarasi `<!DOCTYPE>`.
 
-## Basic Payload
+## Payload dasar
 
 ```xml
 <foo xmlns:xi="http://www.w3.org/2001/XInclude">
@@ -29,11 +29,11 @@ XInclude is the go-to technique when your input is embedded into a server-side X
 </foo>
 ```
 
-The `xmlns:xi` namespace declaration is mandatory. Without it, the processor ignores the `xi:include` element.
+Deklarasi namespace `xmlns:xi` wajib. Tanpa itu, processor biasanya mengabaikan elemen `xi:include`.
 
 ## parse="text" vs parse="xml"
 
-**parse="text"** (most useful for attacks):
+**parse="text"** (paling berguna untuk attack):
 - Includes the target as plain text
 - No XML parsing of the included content
 - Works for reading `/etc/passwd`, source code, config files
@@ -42,7 +42,7 @@ The `xmlns:xi` namespace declaration is mandatory. Without it, the processor ign
 <xi:include parse="text" href="file:///etc/passwd"/>
 ```
 
-**parse="xml"** (default if omitted):
+**parse="xml"** (default jika dihilangkan):
 - Included content must be well-formed XML
 - Fails on non-XML files (parse error)
 - Useful for including other XML config files
@@ -51,9 +51,9 @@ The `xmlns:xi` namespace declaration is mandatory. Without it, the processor ign
 <xi:include parse="xml" href="file:///etc/spring-config.xml"/>
 ```
 
-## Injection in HTTP Request
+## Injeksi via HTTP request
 
-The attacker injects into a parameter that gets placed inside XML server-side.
+Penyerang menyisipkan payload ke parameter yang kemudian dimasukkan ke XML di sisi server.
 
 **Request:**
 ```http
@@ -82,7 +82,7 @@ daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
 ...
 ```
 
-## Vulnerable Java JAXP Code
+## Contoh kode Java JAXP yang rentan
 
 ```java
 // VULNERABLE: XInclude enabled by default in some configurations
@@ -93,7 +93,7 @@ DocumentBuilder db = dbf.newDocumentBuilder();
 Document doc = db.parse(new InputSource(new StringReader(userInput)));
 ```
 
-## Mitigation
+## Mitigasi
 
 **Java JAXP:**
 ```java
@@ -111,6 +111,6 @@ parser = etree.XMLParser(resolve_entities=False, no_network=True)
 ```
 
 **General rules:**
-- Disable XInclude processing unless explicitly needed
-- If XInclude is required, whitelist allowed `href` schemes and paths
-- Validate that user input cannot inject XML namespace declarations
+- Matikan pemrosesan XInclude kecuali memang dibutuhkan
+- Jika XInclude diperlukan, whitelist skema dan path `href` yang diperbolehkan
+- Pastikan input user tidak bisa menyisipkan deklarasi namespace XML

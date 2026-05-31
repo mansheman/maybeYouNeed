@@ -3,22 +3,22 @@
 Status:
 
 Tags: [[eWPTX]] [[Web Services]]
-###### Prerequisites: 
-# What Are Web Services?
+###### Prasyarat:
+# Apa itu Web Service?
 
-## Overview
+## Gambaran singkat
 
-Web services are software components designed to facilitate **communication** and **data exchange** between different applications/systems over the internet.
+Web service adalah komponen software yang dirancang untuk memfasilitasi **komunikasi** dan **pertukaran data** antar aplikasi/sistem melalui jaringan (umumnya lewat HTTP).
 
-They allow different applications to work together even if they are:
+Tujuannya: aplikasi yang berbeda tetap bisa “ngobrol” walaupun:
 
-- on different platforms
-- written in different languages
-- hosted on different servers
+- beda platform
+- beda bahasa pemrograman
+- beda server/lingkungan
 
 ---
 
-## Why they exist (common goals)
+## Kenapa ada? (tujuan umum)
 
-- **Integration between applications**: App A uses features implemented in App B.
-- **Separation within an application**: a frontend calls backend service endpoints to update content dynamically.
+- **Integrasi antar aplikasi**: App A memanggil fitur yang disediakan App B.
+- **Pemisahan komponen**: frontend memanggil endpoint backend untuk update data secara dinamis.

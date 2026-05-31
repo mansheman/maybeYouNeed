@@ -3,24 +3,24 @@
 Status:
 
 Tags:[[eWPTX]] [[Authentication]] [[JWT]]
-###### Prerequisites: [[Token-Based Authentication]]
-# JSON Web Tokens (JWT)
+###### Prasyarat: [[Token-Based Authentication]]
+# JSON Web Token (JWT)
 
-## Overview
+## Gambaran Singkat
 
-JWTs are compact, URL-safe tokens used for authentication/authorization and information exchange.
+JWT adalah token yang ringkas dan URL-safe untuk kebutuhan **autentikasi/otorisasi** dan pertukaran informasi. JWT sering dipakai di API karena mudah dikirim lewat header.
 
-Structure:
+Struktur umum:
 
 ```text
 HEADER.PAYLOAD.SIGNATURE
 ```
 
-- header: algorithm + token type
-- payload: claims (user/session data)
-- signature: integrity/authenticity
+- **header**: tipe token + algoritma yang dipakai
+- **payload**: kumpulan *claims* (data user/session)
+- **signature**: memastikan token tidak diubah (integrity/authenticity)
 
-Important:
+Hal penting:
 
-- payload is Base64-encoded, not encrypted
-- don’t put secrets (passwords) in JWT claims
+- payload itu **di-Base64-encode**, bukan dienkripsi → orang bisa membaca isinya.
+- jangan taruh rahasia (mis. password/API key) di claims JWT.

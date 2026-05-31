@@ -3,10 +3,10 @@
 Status:
 
 Tags: [[eWPTX]] [[LDAP]] [[LDAP Injection]]
-###### Prerequisites: [[What is LDAP?]] [[LDAP Injection]]
+###### Prasyarat: [[What is LDAP?]] [[LDAP Injection]]
 # LDAP Injection - Filter Syntax & Escaping
 
-## LDAP filters (quick reminder)
+## Filter LDAP (pengingat cepat)
 
 LDAP search uses filters like:
 
@@ -14,7 +14,7 @@ LDAP search uses filters like:
 - `(|(...)(...))` OR
 - `(!(...))` NOT
 
-Example:
+Contoh:
 
 ```text
 (&(objectClass=person)(uid=alice))
@@ -22,24 +22,24 @@ Example:
 
 ---
 
-## Characters that must be treated as unsafe in filter values
+## Karakter berbahaya dalam konteks *filter value*
 
-If user input goes into a **filter value**, these characters are critical:
+Jika input user masuk ke **nilai filter**, karakter berikut kritikal:
 
 - `*` wildcard
 - `(` `)` grouping
 - `\\` escape character
 - NUL byte
 
-`& | !` are also dangerous when the input can break out of value context.
+`& | !` juga berbahaya jika input bisa “keluar” dari konteks nilai (biasanya karena filter dirakit dengan string concatenation).
 
 ---
 
-## RFC4515 escaping (filter values)
+## Escaping RFC4515 (untuk nilai filter)
 
-When you insert a string into a filter value, escape at minimum:
+Saat memasukkan string ke nilai filter, minimal lakukan escaping berikut:
 
-|Character|Escape|
+|Karakter|Escape|
 |---|---|
 |`*`|`\\2a`|
 |`(`|`\\28`|
@@ -47,21 +47,21 @@ When you insert a string into a filter value, escape at minimum:
 |`\\`|`\\5c`|
 |NUL|`\\00`|
 
-Why it matters:
+Kenapa penting:
 
-- Without escaping, input can introduce wildcards or restructure the filter.
-- With escaping, special characters become literal characters in the value.
+- Tanpa escaping, input bisa menambahkan wildcard atau mengubah struktur filter.
+- Dengan escaping, karakter spesial diperlakukan literal sebagai bagian dari value.
 
 ---
 
-## DN escaping is different (RFC4514)
+## Escaping DN itu beda (RFC4514)
 
-If your app constructs a **DN** (Distinguished Name) from input, DN escaping rules differ from filter escaping.
+Kalau aplikasi membangun **DN** (Distinguished Name) dari input user, aturan escaping untuk DN **berbeda** dari escaping filter.
 
-Examples of DN contexts:
+Contoh konteks DN:
 
 - `cn={name},ou=Users,dc=example,dc=com`
 
-Key point:
+Poin kunci:
 
-- Use the correct escaping function for the correct context (filter vs DN).
+- Gunakan fungsi escaping yang benar sesuai konteks (filter vs DN).

@@ -3,15 +3,15 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: [[XML Tag Injection - Lab 2 (Length limitation)]]
-# XML Tag Injection - Lab 3 (Length + filters)
+###### Prasyarat: [[XML Tag Injection - Lab 2 (Length limitation)]]
+# XML Tag Injection - Lab 3 (Batas panjang + filter)
 
-Context: training/lab environment.
+Konteks: environment training/lab.
 
-Notes captured from lab write-up:
+Catatan dari write-up lab:
 
-- length limitations + filters blocked prior payloads
-- metacharacter filtering behavior differed (`<` and `>` were not filtered)
-- specific tag-name filtering was case-insensitive and ignored spaces/tabs
+- batas panjang + filter memblok payload sebelumnya
+- perilaku filtering metacharacter berbeda (`<` dan `>` tidak terfilter)
+- filtering nama tag bersifat case-insensitive dan mengabaikan spasi/tab
 
-(Keep as a reference note for that specific lab.)
+(Simpan sebagai referensi untuk lab tersebut.)

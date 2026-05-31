@@ -3,32 +3,32 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: [[XML Injection - Overview]]
-# XML Injection - Testing Methodology
+###### Prasyarat: [[XML Injection - Overview]]
+# XML Injection - Metodologi Testing
 
-## Goal
+## Tujuan
 
-Confirm whether user input can **break** or **reshape** an XML document and cause meaningful behavior change.
+Konfirmasi apakah input user bisa **memecahkan** (break) atau **membentuk ulang** (reshape) dokumen XML dan menghasilkan perubahan perilaku yang bermakna.
 
 ---
 
 ## 1) Identify XML entry points
 
-- endpoints that accept `application/xml` or SOAP
-- features that import/upload XML
-- parameters that get embedded into server-side XML templates
+- endpoint yang menerima `application/xml` atau SOAP
+- fitur import/upload XML
+- parameter yang disisipkan ke template XML server-side
 
 ---
 
 ## 2) Probe with XML metacharacters
 
-Metacharacters often relevant for XML injection testing:
+Metacharacter yang sering relevan untuk testing XML injection:
 
-- `'` and `"` (often affect attribute values)
-- `<` and `>` (tag boundaries)
-- `&` (entities)
+- `'` dan `"` (sering mempengaruhi value atribut)
+- `<` dan `>` (batas tag)
+- `&` (entity)
 
-If the app is building XML unsafely, these can trigger:
+Kalau aplikasi membangun XML secara tidak aman, karakter ini bisa memicu:
 
 - parsing exceptions
 - different response paths
@@ -38,9 +38,9 @@ If the app is building XML unsafely, these can trigger:
 
 ## 3) Quotes (single/double)
 
-Quotes define attribute values.
+Quote membentuk value atribut.
 
-If user input is placed inside an attribute and not encoded, quote injection can break the attribute and change the document.
+Kalau input user ditempatkan di dalam atribut tanpa encoding, quote injection bisa memutus atribut dan mengubah dokumen.
 
 ---
 
@@ -52,10 +52,10 @@ If user input is placed inside an attribute and not encoded, quote injection can
 &EntityName;
 ```
 
-Testing idea:
+Ide testing:
 
-- inject a fake entity name to see if the parser throws errors
-- try malformed entity formats (missing `;`) to see how parsing fails
+- sisipkan nama entity palsu untuk melihat apakah parser error
+- coba format entity yang rusak (tanpa `;`) untuk melihat cara parsing gagal
 
 ---
 
@@ -69,17 +69,17 @@ Angle brackets define tags/comments/CDATA:
 <![CDATA[value]]>
 ```
 
-Testing idea:
+Ide testing:
 
-- inject `<` or `>` and check for parse errors
-- look for behavior changes that suggest your input ended up in XML context
+- sisipkan `<` atau `>` dan cek parse error
+- cari perubahan perilaku yang mengindikasikan input masuk ke konteks XML
 
 ---
 
-## What to document (like your SQLi notes)
+## Yang perlu didokumentasikan (seperti catatan SQLi)
 
-- where XML is accepted/constructed
+- di mana XML diterima/dibangun
 - expected vs observed behavior
-- error messages (if any)
-- impact category (auth, authz, data exposure, DoS)
-- fix recommendation (contextual encoding + allow-lists + safe parsers)
+- pesan error (jika ada)
+- kategori dampak (auth, authz, data exposure, DoS)
+- rekomendasi fix (contextual encoding + allow-list + parser aman)

@@ -3,17 +3,17 @@
 Status:
 
 Tags:[[eWPTX]] [[Authentication]] [[OAuth]]
-###### Prerequisites: [[Introduction to OAuth]]
+###### Prasyarat: [[Introduction to OAuth]]
 # Common OAuth Attacks
 
 ## Unvalidated `redirect_uri`
 
-If the authorization server does not validate that `redirect_uri` belongs to the client:
+Jika authorization server tidak memvalidasi bahwa `redirect_uri` memang milik client yang benar:
 
 - open redirect
 - authorization code theft → account takeover
 
-What to test:
+Yang diuji:
 
 - strict redirect URI allow-list
 - exact match validation (scheme/host/path)
@@ -22,9 +22,9 @@ What to test:
 
 ## Weak authorization codes
 
-If authorization codes have low entropy or client secret is weak/not validated, attackers may guess codes.
+Jika authorization code entropy-nya rendah atau `client_secret` lemah/tidak divalidasi, penyerang bisa mencoba menebak code.
 
-Test:
+Tes:
 
 - capture multiple codes and analyze randomness/entropy
 
@@ -32,9 +32,9 @@ Test:
 
 ## Everlasting / long-lived authorization codes
 
-If unused codes don’t expire quickly, the window for abuse increases.
+Jika code tidak cepat expired, window penyalahgunaan jadi lebih panjang.
 
-Test:
+Tes:
 
 - verify short expiration for codes and one-time use
 
@@ -42,9 +42,9 @@ Test:
 
 ## Codes not bound to client
 
-If a code can be exchanged by a different client, a malicious client can redeem captured codes.
+Kalau sebuah code bisa ditukar oleh client lain, client jahat bisa me-*redeem* code yang berhasil dicuri.
 
-Test:
+Tes:
 
 - ensure code is bound to `client_id` and redirect URI
 
@@ -52,10 +52,10 @@ Test:
 
 ## Weak access/refresh tokens
 
-If tokens are guessable or stored insecurely:
+Kalau token mudah ditebak atau disimpan tidak aman:
 
-- attackers may brute-force at token endpoint/resource server
-- DB compromise reveals usable tokens if stored unhashed
+- penyerang bisa brute force ke token endpoint/resource server
+- jika DB bocor dan token disimpan tanpa perlindungan yang memadai, token bisa langsung dipakai
 
 ---
 
@@ -141,14 +141,14 @@ GET /authorize?scope=read:profile write:admin delete:users
 ## Client Secret Leakage
 
 ```
-# Check these locations for leaked client_secret:
-- JavaScript source code (SPA apps)
-- Mobile app decompilation (APK/IPA)
-- .git/config or .env files exposed
-- GitHub/GitLab public repositories
-- Browser developer tools (Network tab)
+# Cek lokasi umum kebocoran client_secret:
+- Source code JavaScript (SPA)
+- Hasil decompile mobile app (APK/IPA)
+- File `.git/config`, `.env`, atau backup yang terekspos
+- Repo publik GitHub/GitLab
+- Browser devtools (Network tab)
 
-# With client_secret, attacker can:
-- Exchange stolen authorization codes
-- Request tokens directly (client_credentials flow)
+# Kalau client_secret bocor, penyerang bisa:
+- Menukar authorization code yang dicuri
+- Meminta token langsung (flow client_credentials)
 ```

@@ -3,49 +3,49 @@
 Status:
 
 Tags: [[eWPTX]] [[XSS Attacks]]
-###### Prerequisites: [[Bypassing Filters & Evasion]]
-# OWASP XSS Filter Evasion Cheat Sheet
+###### Prasyarat: [[Bypassing Filters & Evasion]]
+# Cheat Sheet OWASP: XSS Filter Evasion
 
-## Reference
+## Referensi
 
 - OWASP XSS Filter Evasion Cheat Sheet: https://owasp.org/www-community/xss-filter-evasion-cheatsheet
 
-> This OWASP page contains many payload variations. Use only in **authorized labs/assessments**.
+> Halaman OWASP ini berisi banyak variasi payload. Gunakan hanya untuk **lab/assessment yang berizin**.
 
 ---
 
-## Why this exists
+## Kenapa ini ada
 
-Many applications try to stop XSS using **blacklists** (e.g., blocking `<script>`), weak regex filters, or partial encoding.
+Banyak aplikasi mencoba mencegah XSS dengan **blacklist** (mis. memblok `<script>`), regex yang lemah, atau encoding parsial.
 
-Attackers then look for:
+Biasanya bypass terjadi karena:
 
-- a different **context** (HTML, attribute, JS string, URL, CSS)
-- a different **parser behavior** (browser parsing quirks, normalization/decoding order)
-- a different **injection primitive** (event handlers, SVG/XML, URL schemes, etc.)
-
----
-
-## Defensive takeaways (what to do instead of filter games)
-
-- Use **context-aware output encoding** (HTML, attribute, JS, URL, CSS contexts).
-- Prefer **allow-lists** over deny-lists for inputs where possible.
-- Apply **normalization once** (decode/canonicalize), then validate, then encode on output.
-- Use frameworks/templates that auto-escape and don’t disable it.
-- Add a strong **CSP** (Content Security Policy) as a mitigation layer.
-- Avoid dangerous sinks (`innerHTML`, `document.write`, unsafe DOM APIs) unless strictly necessary and safe.
+- **konteks** yang berbeda (HTML, attribute, JS string, URL, CSS)
+- **perilaku parser** yang berbeda (quirk parsing browser, urutan normalisasi/decode)
+- **primitive injeksi** yang berbeda (event handler, SVG/XML, URL scheme, dll.)
 
 ---
 
-## When analyzing a regex “filter”
+## Takeaway defensif (lebih baik daripada “perang filter”)
 
-If a filter is implemented as a regex, copy it and test it in regex101 (pick the right flavor) to understand what it matches:
+- Gunakan **output encoding sesuai konteks** (HTML, attribute, JS, URL, CSS).
+- Jika memungkinkan, pakai **allow-list** daripada deny-list.
+- Lakukan **normalisasi sekali** (decode/canonicalize), lalu validasi, lalu encode saat output.
+- Gunakan framework/template yang auto-escape dan jangan dimatikan.
+- Tambahkan **CSP** (Content Security Policy) yang kuat sebagai layer mitigasi.
+- Hindari sink berbahaya (`innerHTML`, `document.write`, DOM API yang unsafe) kecuali benar-benar perlu dan aman.
+
+---
+
+## Saat menganalisis “filter” berbasis regex
+
+Kalau filter dibuat sebagai regex, copy lalu uji di regex101 (pilih flavor yang benar) untuk memahami apa yang di-match:
 
 - https://regex101.com
 
-Look for common mistakes:
+Cari kesalahan umum:
 
-- missing anchors (`^` / `$`) → substring matches
-- case-sensitivity assumptions
-- inconsistent decoding (URL decode / HTML entities / Unicode normalization)
+- anchor hilang (`^` / `$`) → hanya match substring
+- asumsi case-sensitivity
+- decoding tidak konsisten (URL decode / HTML entity / normalisasi Unicode)
 

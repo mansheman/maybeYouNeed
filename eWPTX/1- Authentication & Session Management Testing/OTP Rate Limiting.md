@@ -3,12 +3,12 @@
 Status:
 
 Tags:[[eWPTX]] [[Authentication]] [[2FA]]
-###### Prerequisites: [[OTP Security]]
+###### Prasyarat: [[OTP Security]]
 # OTP Rate Limiting
 
-OTP rate limiting prevents brute force and abuse by restricting the number of verification attempts in a time window.
+Rate limiting OTP mencegah brute force dan penyalahgunaan dengan membatasi jumlah percobaan verifikasi dalam jendela waktu tertentu.
 
-What to check:
+Yang dicek:
 
 - per-user and per-IP throttling
 - progressive delays

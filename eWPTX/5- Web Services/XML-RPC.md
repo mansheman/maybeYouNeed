@@ -3,22 +3,22 @@
 Status:
 
 Tags: [[eWPTX]] [[Web Services]] [[XML]]
-###### Prerequisites: [[Web Service Implementations]]
+###### Prasyarat: [[Web Service Implementations]]
 # XML-RPC
 
-## Overview
+## Gambaran singkat
 
-XML-RPC (Extensible Markup Language - Remote Procedure Call) is a protocol (created in 1998) that uses XML to encode remote procedure calls over HTTP.
+XML-RPC (Extensible Markup Language - Remote Procedure Call) adalah protokol (1998) yang memakai XML untuk meng-encode remote procedure call lewat HTTP.
 
-Characteristics:
+Karakteristik:
 
-- simple and lightweight
-- precursor to SOAP
-- typically calls a single remote method per request
+- sederhana dan ringan
+- “pendahulu” SOAP
+- umumnya memanggil satu method per request
 
 ---
 
-## Request example (structure)
+## Contoh request (struktur)
 
 ```xml
 <?xml version="1.0"?>
@@ -32,7 +32,7 @@ Characteristics:
 </methodCall>
 ```
 
-## Response example (structure)
+## Contoh response (struktur)
 
 ```xml
 <?xml version="1.0"?>

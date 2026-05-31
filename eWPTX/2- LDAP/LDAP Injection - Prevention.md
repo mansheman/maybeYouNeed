@@ -3,59 +3,59 @@
 Status:
 
 Tags: [[eWPTX]] [[LDAP]] [[LDAP Injection]]
-###### Prerequisites: [[LDAP Injection - Filter Syntax & Escaping]]
+###### Prasyarat: [[LDAP Injection - Filter Syntax & Escaping]]
 # LDAP Injection - Prevention
 
-## 1) Don’t build filters by string concatenation
+## 1) Jangan merakit filter via string concatenation
 
-Bad pattern:
+Pola buruk:
 
 ```text
 "(uid=" + userInput + ")"
 ```
 
-Good principles:
+Prinsip yang benar:
 
-- validate input (allow-list)
-- escape input for **filter value** context (RFC4515)
-- prefer safe APIs that build filters and escape values correctly
+- validasi input (allow-list)
+- escape input untuk konteks **nilai filter** (RFC4515)
+- prioritaskan API yang aman (builder) yang menangani escaping dengan benar
 
 ---
 
-## 2) Validate with allow-lists
+## 2) Validasi dengan allow-list
 
-If the field is a username, enforce a strict format.
+Kalau field-nya username, paksa format yang ketat.
 
-Example allow-list idea:
+Contoh ide allow-list:
 
 - `a-zA-Z0-9._-`
 
-Reject anything containing LDAP metacharacters.
+Tolak apa pun yang mengandung metacharacter LDAP.
 
 ---
 
-## 3) Escape for the correct context
+## 3) Escape sesuai konteks yang benar
 
 - Filter values: RFC4515 escaping
 - DNs: RFC4514 escaping
 
-Don’t mix them.
+Jangan tertukar.
 
 ---
 
-## 4) Reduce blast radius
+## 4) Kecilkan blast radius
 
-- Use a least-privileged bind account
-- Limit search base DN and scopes
-- Return only needed attributes
-- Rate-limit endpoints that query the directory
-- Log suspicious input patterns and alert
+- Pakai bind account dengan hak minimal (least privilege)
+- Batasi base DN dan scope pencarian
+- Kembalikan hanya atribut yang dibutuhkan
+- Rate-limit endpoint yang melakukan query directory
+- Log pola input mencurigakan dan buat alert
 
 ---
 
-## 5) Don’t make auth decisions purely on “search result exists”
+## 5) Jangan ambil keputusan auth hanya dari “search result exists”
 
-Safer authentication patterns:
+Pola autentikasi yang lebih aman:
 
-- verify credentials properly (bind as the user or equivalent secure verification)
-- avoid “search user + compare password attribute” designs
+- verifikasi kredensial dengan benar (bind sebagai user atau mekanisme verifikasi yang setara)
+- hindari desain “search user + compare password attribute”

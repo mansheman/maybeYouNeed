@@ -3,12 +3,12 @@
 Status:
 
 Tags: [[eWPTX]] [[Bypassing Filters & Evasion]]
-###### Prerequisites: [[WAF Fingerprinting & Detection]]
+###### Prasyarat: [[WAF Fingerprinting & Detection]]
 # Encoding & Transformation Bypasses
 
-## Core Idea
+## Ide inti
 
-Filters often check input at one stage, but the backend processes it differently. Encoding mismatches between the WAF and the application create bypass opportunities.
+Filter biasanya memeriksa input di satu tahap, tapi backend memprosesnya di tahap lain (dengan decode/normalisasi yang mungkin berbeda). Selisih cara decode/transform antara WAF dan aplikasi sering jadi celah bypass.
 
 ---
 
@@ -16,7 +16,7 @@ Filters often check input at one stage, but the backend processes it differently
 
 ### Single encoding
 
-Standard percent-encoding. Most WAFs decode this before inspection.
+Percent-encoding standar. Kebanyakan WAF akan decode ini dulu sebelum inspeksi.
 
 ```
 ' → %27
@@ -28,7 +28,7 @@ space → %20 or +
 
 ### Double encoding
 
-Encode the `%` itself. Works when the WAF decodes once, but the app decodes twice.
+Yang di-encode adalah karakter `%` itu sendiri. Efektif jika WAF hanya decode sekali, tapi aplikasi decode dua kali.
 
 ```
 ' → %27 → %2527
@@ -38,7 +38,7 @@ Encode the `%` itself. Works when the WAF decodes once, but the app decodes twic
 
 ### Triple encoding
 
-Rare but effective against layered proxies:
+Jarang, tapi kadang efektif pada proxy berlapis:
 
 ```
 ' → %27 → %2527 → %25252527
@@ -60,7 +60,7 @@ Rare but effective against layered proxies:
 
 ### Overlong UTF-8
 
-Represent characters using more bytes than needed. Some parsers normalize these.
+Merepresentasikan karakter dengan byte lebih banyak dari semestinya. Sebagian parser akan menormalisasi bentuk ini.
 
 ```
 / (U+002F) normal:    2F
@@ -85,13 +85,13 @@ Use fullwidth equivalents (U+FF00 range):
 
 ### Homoglyphs
 
-Visually similar characters from different Unicode blocks. Useful when filters match exact characters but the app normalizes.
+Karakter yang terlihat mirip tapi berasal dari blok Unicode berbeda. Berguna kalau filter match karakter spesifik, tapi aplikasi melakukan normalisasi.
 
 ---
 
 ## HTML Entity Encoding
 
-Useful for XSS filter bypass when input is reflected in HTML context:
+Berguna untuk kasus XSS saat input direfleksikan ke konteks HTML (browser akan decode entity saat render):
 
 ```html
 <!-- Named entities -->
@@ -112,7 +112,7 @@ Useful for XSS filter bypass when input is reflected in HTML context:
 
 ## Null Byte Injection
 
-Insert `%00` to confuse string handling:
+Menyisipkan `%00` untuk mengacaukan penanganan string di layer tertentu:
 
 ```
 # May terminate string at WAF but not at app
@@ -125,9 +125,9 @@ include($_GET['file'] . '.php');
 
 ---
 
-## Case Manipulation
+## Manipulasi huruf besar-kecil
 
-Some filters are case-sensitive while the backend is not:
+Sebagian filter case-sensitive, sementara backend/engine-nya tidak:
 
 ```sql
 -- Blocked
@@ -151,7 +151,7 @@ uNiOn aLl sElEcT * fRoM users
 
 ## Comment Insertion
 
-Break up keywords with comments that the parser ignores:
+Memecah keyword menggunakan komentar yang diabaikan parser:
 
 ```sql
 -- SQL: inline comments
@@ -171,7 +171,7 @@ UN/**/ION SEL/**/ECT * FROM users
 
 ## Whitespace Alternatives
 
-Replace spaces with alternative whitespace characters:
+Mengganti spasi dengan varian whitespace lain:
 
 ```sql
 -- Tab (%09)
@@ -191,7 +191,7 @@ UNION%0bSELECT
 
 ## Content-Type Manipulation
 
-Change the Content-Type to bypass body inspection rules:
+Mengganti Content-Type untuk menghindari aturan inspeksi body tertentu:
 
 ```
 # Standard (inspected)
@@ -207,7 +207,7 @@ Content-Type: application/json
 
 ## Chunked Transfer Encoding
 
-Split the request body into chunks to evade pattern matching:
+Memecah request body menjadi beberapa chunk untuk menghindari pattern matching:
 
 ```http
 POST /page HTTP/1.1
@@ -234,12 +234,14 @@ ELECT
 
 ---
 
-## Testing Strategy
+## Strategi pengujian
 
-1. Start with single URL encoding
-2. Try double encoding if blocked
-3. Test case variations
-4. Insert comments into keywords
-5. Try alternative whitespace
-6. Test Content-Type changes
-7. Combine multiple techniques
+1. Mulai dari URL encoding sekali
+2. Coba double encoding jika diblok
+3. Uji variasi huruf besar-kecil
+4. Sisipkan komentar untuk memecah keyword
+5. Coba alternatif whitespace
+6. Uji perubahan Content-Type
+7. Kombinasikan beberapa teknik
+
+Catatan: selalu uji bertahap (satu perubahan per percobaan) supaya kamu tahu teknik mana yang benar-benar berpengaruh.

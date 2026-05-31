@@ -3,37 +3,43 @@
 Status:
 
 Tags:[[eWPTX]] [[Authentication]]
-###### Prerequisites: [[HTTP]] [[Introduction to Web Application Security Testing]] [[Web Proxies and Web Information Gathering]]
-# Authentication
+###### Prasyarat: [[HTTP]] [[Introduction to Web Application Security Testing]] [[Web Proxies and Web Information Gathering]]
+# Autentikasi
 
-Authentication is a fundamental process in cybersecurity and application security, responsible for verifying the identity of users or systems attempting to access resources. Its primary purpose is to ensure that only legitimate users can access sensitive data, systems, or functionalities.
+Autentikasi adalah proses untuk **memverifikasi identitas** user atau sistem sebelum diberi akses ke resource. Di web app, hasil autentikasi biasanya berupa **session** (cookie) atau **token** (mis. JWT) yang menjadi “bukti” bahwa user sudah login.
 
-More specifically, authentication in web applications is the process of verifying a user's identity to ensure only legitimate users can access protected resources, establishing the foundation for secure interactions.
+Kalimat gampangnya: autentikasi menjawab pertanyaan **“siapa kamu?”**
 
 ---
 
-## Authentication vs. Authorization
+## Autentikasi vs Otorisasi
 
-Authorization in web applications is the process of determining what an authenticated user is allowed to do, such as accessing specific resources or performing certain actions.
+Otorisasi adalah proses untuk menentukan **aksi apa yang boleh dilakukan** oleh user yang sudah terautentikasi (akses endpoint tertentu, role admin, izin edit, dsb).
 
-Authentication is about verifying who the user is, while authorization determines what an authenticated user is allowed to do. These two concepts are often used together but serve distinct functions in security.
+Kalimat gampangnya: otorisasi menjawab **“kamu boleh ngapain?”**
 
-|Authentication|Authorization|
+|Autentikasi|Otorisasi|
 |---|---|
-|**Definition**|Verifies the identity of a user or system.|
-|**Purpose**|Establishes who the user is.|
-|**Process**|Involves checking credentials (e.g., passwords, tokens).|
-|**Outcome**|Results in a confirmed identity (logged in or not).|
-|**Example**|Logging in with a username and password.|
+|**Definisi**|Memverifikasi identitas user/sistem.|Menentukan izin/akses setelah identitas tervalidasi.|
+|**Tujuan**|Menetapkan “siapa” user tersebut.|Menetapkan “boleh apa” user tersebut.|
+|**Proses**|Validasi kredensial (password, OTP, token, sertifikat).|Evaluasi policy/role/permission untuk sebuah aksi/resource.|
+|**Hasil**|User dianggap login/terverifikasi (session/token aktif).|Aksi diizinkan atau ditolak (mis. 403).|
+|**Contoh**|Login dengan username + password.|User biasa tidak boleh akses `/admin`.|
 
 ---
 
-## Importance of Authentication
+## Kenapa Autentikasi Penting
 
-Authentication is crucial for web application security because it serves as the first line of defense against unauthorized access to sensitive data, resources, and functionalities.
-
-By confirming user identities, authentication helps protect against data breaches, account takeovers, and other security threats, ensuring that only legitimate users can interact with restricted areas of the application.
+- Ini “gerbang pertama” sebelum kontrol lain bekerja.
+- Kelemahan autentikasi sering berujung ke **account takeover** (ATO): brute force, credential stuffing, reset password yang lemah, dll.
+- Kalau autentikasi jebol, kontrol otorisasi juga sering ikut terdampak (privilege escalation/hijack session).
 
 ---
 
-## Types of Authentication
+## Jenis Autentikasi (ringkas)
+
+- **Knowledge factor**: yang user tahu (password, PIN).
+- **Possession factor**: yang user punya (OTP, authenticator app, hardware token).
+- **Inherence factor**: yang melekat pada user (biometrik).
+- **Federated/SSO**: login via identity provider (OAuth/OIDC, SAML).
+- **Certificate-based**: client certificate / mTLS (umum di enterprise).

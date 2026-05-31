@@ -3,29 +3,29 @@
 Status:
 
 Tags: [[eWPTX]] [[Web Services]]
-###### Prerequisites: [[Web Service Implementations]]
+###### Prasyarat: [[Web Service Implementations]]
 # JSON-RPC
 
-## Overview
+## Gambaran singkat
 
-JSON-RPC is a remote procedure call (RPC) protocol encoded in JSON.
+JSON-RPC adalah protokol remote procedure call (RPC) yang di-encode dalam JSON.
 
-It is similar to XML-RPC but usually preferred because:
+Mirip XML-RPC, tapi sering lebih disukai karena:
 
-- messages are more human-readable
-- payloads are often smaller
+- pesannya lebih mudah dibaca
+- payload biasanya lebih kecil
 
 ---
 
-## Request object
+## Objek request
 
-A JSON-RPC request is a JSON object typically including:
+Request JSON-RPC biasanya berupa object JSON yang berisi:
 
-- `method`: method name
-- `params`: array/object of arguments
-- `id`: request ID to match responses
+- `method`: nama method
+- `params`: argumen (array/object)
+- `id`: request ID untuk mencocokkan response
 
-Example:
+Contoh:
 
 ```json
 {

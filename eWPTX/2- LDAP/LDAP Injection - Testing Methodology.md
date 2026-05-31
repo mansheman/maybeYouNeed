@@ -3,103 +3,103 @@
 Status:
 
 Tags: [[eWPTX]] [[LDAP]] [[LDAP Injection]]
-###### Prerequisites: [[LDAP Injection - Overview]] [[LDAP Injection - Examples]]
+###### Prasyarat: [[LDAP Injection - Overview]] [[LDAP Injection - Examples]]
 # LDAP Injection - Testing Methodology
 
-## Overview
+## Gambaran
 
-LDAP injection testing is usually **behavior-based**:
+Testing LDAP injection biasanya **berbasis perilaku (behavior-based)**:
 
-- different results count
+- jumlah hasil berbeda
     
-- different page content (e.g., “no results” vs “results”)
+- konten halaman berbeda (mis. “no results” vs “results”)
     
-- different redirects / auth outcome
+- redirect / hasil autentikasi berbeda
     
-- sometimes explicit LDAP errors (rare in production)
+- kadang muncul error LDAP eksplisit (jarang di produksi)
     
 ---
 
-## 1) Find likely LDAP-backed endpoints
+## 1) Cari endpoint yang kemungkinan LDAP-backed
 
-High probability targets:
+Target yang probabilitasnya tinggi:
 
 - login
     
 - directory search / autocomplete
     
-- group-based access controls
+- access control berbasis group
     
-- “choose department/printer/device” lookup
+- lookup “pilih departemen/printer/device”
     
 
-Clues in responses:
+Clue di response:
 
-- attributes like `uid`, `cn`, `sn`, `mail`, `memberOf`
+- atribut seperti `uid`, `cn`, `sn`, `mail`, `memberOf`
     
-- references to AD / OpenLDAP / “directory”
+- referensi ke AD / OpenLDAP / “directory”
     
 
 ---
 
-## 2) Identify parameters that influence a filter
+## 2) Identifikasi parameter yang mempengaruhi filter
 
-Common inputs that end up in LDAP filters:
+Input umum yang sering berakhir di filter LDAP:
 
 - username / email
     
-- name search
+- pencarian nama
     
-- department / OU selector
+- selector departemen / OU
     
-- device/printer type
-    
-
----
-
-## 3) Look for “filter break” signals
-
-Submit benign variations and watch for:
-
-- broader results than expected
-    
-- empty results unexpectedly
-    
-- stable true/false behavior (blind signal)
-    
-- server-side errors (syntax / invalid filter)
-    
-
-If you have logs (internal test), also look for:
-
-- the exact LDAP filter string being executed
+- tipe device/printer
     
 
 ---
 
-## 4) Confirm impact (prioritize)
+## 3) Cari sinyal “filter break”
 
-Confirm in this order:
+Kirim variasi input yang “normal” lalu amati:
 
-1. **Authorization bypass** (group/role checks)
-2. **Authentication bypass** (login behavior)
-3. **Data exposure** (extra entries/attributes)
-4. **Enumeration** (existence checks, timing)
+- hasil lebih luas dari yang seharusnya
+    
+- hasil tiba-tiba kosong
+    
+- perilaku true/false yang stabil (sinyal blind)
+    
+- error server-side (syntax / invalid filter)
+    
+
+Kalau punya log (pengujian internal), cari juga:
+
+- string filter LDAP persis yang dieksekusi
+    
 
 ---
 
-## 5) Document like your SQLi notes
+## 4) Konfirmasi dampak (prioritaskan)
 
-Capture:
+Konfirmasi dengan urutan berikut:
 
-- vulnerable endpoint + parameter
+1. **Authorization bypass** (check group/role)
+2. **Authentication bypass** (perilaku login)
+3. **Data exposure** (entry/atribut berlebih)
+4. **Enumeration** (cek eksistensi, timing)
+
+---
+
+## 5) Dokumentasikan seperti catatan SQLi
+
+Yang perlu dicatat:
+
+- endpoint + parameter yang vuln
     
 - expected vs observed behavior
     
-- the LDAP filter pattern used by the app (if visible / inferred)
+- pola filter LDAP yang dipakai aplikasi (kalau terlihat / bisa diinfer)
     
-- screenshots / responses
+- screenshot / response
     
-- security impact (auth, authz, data)
+- dampak security (auth, authz, data)
     
-- fix recommendation (escaping + allow-list + least privilege)
+- rekomendasi perbaikan (escaping + allow-list + least privilege)

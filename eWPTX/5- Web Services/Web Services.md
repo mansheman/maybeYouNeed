@@ -3,29 +3,29 @@
 Status:
 
 Tags: [[eWPTX]] [[Web Services]]
-###### Prerequisites: 
+###### Prasyarat:
 # Web Services
 
-## Notes (MOC)
+## Catatan (MOC)
 
 [[What Are Web Services?]]
 [[Web Services vs Web Applications]]
 [[Web Services vs APIs]]
 [[Web Service Implementations]]
 
-### Implementations / protocols
+### Implementasi / protokol
 
 [[XML-RPC]]
 [[JSON-RPC]]
 [[SOAP]]
 [[REST (RESTful APIs)]]
 
-### SOAP ecosystem
+### Ekosistem SOAP
 
 [[WSDL (Web Services Description Language)]]
 [[WS-Security & SOAP Attacks]]
 
-### Security Testing
+### Pengujian keamanan
 
 [[REST API Security Testing]]
 

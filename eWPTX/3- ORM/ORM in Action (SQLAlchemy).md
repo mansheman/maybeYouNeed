@@ -3,16 +3,16 @@
 Status:
 
 Tags: [[eWPTX]] [[eWPTX/3- ORM/ORM]] [[SQL Injection]]
-###### Prerequisites: [[ORM in Web Apps]]
-# ORM in Action (SQLAlchemy)
+###### Prasyarat: [[ORM in Web Apps]]
+# ORM dalam Praktik (SQLAlchemy)
 
-## Scenario
+## Skenario
 
-Create a user record (compare raw SQL vs ORM).
+Buat sebuah user record (bandingkan raw SQL vs ORM).
 
 ---
 
-## Without ORM (raw SQL)
+## Tanpa ORM (raw SQL)
 
 ```python
 import sqlite3
@@ -32,7 +32,7 @@ conn.close()
 
 ---
 
-## With ORM (SQLAlchemy)
+## Dengan ORM (SQLAlchemy)
 
 ```python
 from sqlalchemy import Column, Integer, String, create_engine
@@ -59,9 +59,9 @@ session.add(new_user)
 session.commit()
 ```
 
-## What’s happening
-
-- `User` maps to `users`
-- attributes map to columns
-- `session.add()` schedules an insert
+## Apa yang terjadi
+- `User` dipetakan ke tabel `users`
+- atribut dipetakan ke kolom
+- `session.add()` menjadwalkan operasi insert
+- `session.commit()` mengirim SQL ke database
 - `session.commit()` sends SQL to the DB

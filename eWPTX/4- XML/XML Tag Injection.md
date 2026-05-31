@@ -3,14 +3,14 @@
 Status:
 
 Tags: [[eWPTX]] [[XML]]
-###### Prerequisites: [[XML Injection]]
+###### Prasyarat: [[XML Injection]]
 # XML Tag Injection
 
-## Overview
+## Gambaran singkat
 
-Tag injection happens when user input is inserted into an XML document without proper escaping/validation, allowing the attacker to inject additional tags or change the XML structure.
+Tag injection terjadi ketika input user disisipkan ke dokumen XML tanpa escaping/validasi yang benar, sehingga penyerang dapat menambahkan tag baru atau mengubah struktur XML.
 
-## Notes (MOC)
+## Catatan (MOC)
 
 - [[XML Tag Injection - Overview]]
 - [[XML Tag Injection - Lab 1 (Warm-up)]]
